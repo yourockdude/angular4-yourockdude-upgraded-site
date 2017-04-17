@@ -1,0 +1,10 @@
+<div class="row">
+    <mz-input-container class="col s4 offset-s4">
+        <input [(ngModel)]="user.name" mz-input placeholder="username" type="text">
+        <input [(ngModel)]="user.password" mz-input placeholder="password" type="password">
+        <button mz-button (click)="signIn()">sign in</button>
+        <div>
+            token: {{token}}
+        </div>
+    </mz-input-container>
+</div>

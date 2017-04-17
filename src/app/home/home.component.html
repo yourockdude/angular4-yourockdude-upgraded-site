@@ -1,0 +1,138 @@
+<!--<div class="home" *ngIf="projects">
+    <span class="test-box"></span>
+    <h2 class="home-title">{{title}}</h2>
+    <a pageScroll href="#projects" class="show-projects">
+        <p>Наши любимые проекты</p>
+        <img src="../../../assets/images/arrow.png" class="show-projects-arrow">
+    </a>
+    <div class="projects">
+        <div *ngFor="let project of projects">
+            <app-yourock-project [project]="project" id="projects"></app-yourock-project>
+        </div>
+    </div>
+</div>-->
+
+<div class="home">
+    <h2 class="home__title" style="display: block;">Всем привет! Мы – digital-агентство <span class="my-object">YOUROCK INC.</span> Уже более 10 лет мы разрабатываем сайты
+        и мобильные приложения, и нам до сих пор нравится. Предоставляем все виды дизайна и контентной поддержки, занимаемся
+        индивидуальной разработкой мобильных приложений и игр. Мы создаём красивую, полезную и качественную продукцию.
+    </h2>
+    <a href="#projects" class="down__btn go_to" style="display: inline;">
+        <p>Наши любимые проекты</p>
+        <img src="../../assets/images/arrow.png" class="down__btn__img" alt="arrow">
+    </a>
+    <div id="cbp-so-scroller" class="cbp-so-scroller" style="display: block;">
+        <section class="cbp-so-section cbp-so-init" id="projects">
+            <article class="cbp-so-side cbp-so-side-left">
+                <h2>Vesper</h2>
+                <p>Разработка мобильного приложения для компании Vesper, предлагающей недвижимость класса de&nbsp;luxe. Приложение
+                    выдержано в строгом, изысканном стиле и является своеобразной презентацией лучших проектов компании.</p>
+                <a href="http://www.vespermoscow.com/" target="_blank" class="project__link">
+      vespermoscow.com
+      <img src="../../assets/images/arrow-project.png" class="project__arrow projects__arrow__1" alt="arrow left">
+    </a>
+            </article>
+            <figure class="cbp-so-side cbp-so-side-right">
+                <video autoplay="" loop="">
+                    <source src="../../assets/video/vesper.mp4">
+                </video>
+            </figure>
+        </section>
+        <section class="cbp-so-section cbp-so-init">
+            <figure class="cbp-so-side cbp-so-side-left">
+                <img src="../../assets/images/yota.png" alt="Yota">
+            </figure>
+            <article class="cbp-so-side cbp-so-side-right">
+                <h2>Yota</h2>
+                <p>Разработка промо-игры. Проект реализован в двух видах: как браузерная онлайн-игра и как мобильное приложение
+                    (iOS). Работать над ним было не менее интересно и увлекательно, чем тестировать.</p>
+                <a href="https://itunes.apple.com/us/app/begi-aicko-begi!/id1126738638?mt=8" target="_blank" class="project__link">
+                    <img src="../../assets/images/arrow-project-l.png" class="project__arrow projects__arrow__2" alt="arrow right">                    Доступно в App Store
+                </a>
+            </article>
+        </section>
+        <section class="cbp-so-section cbp-so-init" id="projects">
+            <article class="cbp-so-side cbp-so-side-left">
+                <h2>Suzuki</h2>
+                <p>Создание корпоративного сайта для официального импортера продукции Suzuki Motor Corporation в России. Перед
+                    нами стояла задача создать удобный, представительный сайт с нуля, снабдив его всем необходимым функционалом.
+                </p>
+                <a href="http://www.suzuki-motor.ru/" target="_blank" class="project__link">
+      suzuki-motor.ru
+      <img src="../../assets/images/arrow-project.png" class="project__arrow projects__arrow__1" alt="arrow left">
+    </a>
+            </article>
+            <figure class="cbp-so-side cbp-so-side-right">
+                <img src="../../assets/images/suzuki.png" alt="Suzuki">
+            </figure>
+        </section>
+        <section class="cbp-so-section cbp-so-init">
+            <figure class="cbp-so-side cbp-so-side-left">
+                <video autoplay="" loop="">
+                    <source src="../../assets/video/kaspersky2.mp4">
+                </video>
+            </figure>
+            <article class="cbp-so-side cbp-so-side-right">
+                <h2>Kaspersky<br>Game of Threats</h2>
+                <p>Создание промо-сайта для партнёров компании Kaspersky Lab. Классический пасьянс в новом обрамлении, реализованный
+                    как браузерная игра. Game of Threats приобрела своих поклонников в нашем офисе и до сих пор встречается
+                    на мониторах сотрудников во время перерывов.</p>
+                <a href="https://game.kaspersky.com/" target="_blank" class="project__link">
+                    <img src="../../assets/images/arrow-project-l.png" class="project__arrow projects__arrow__2" alt="arrow right">                    game.kaspersky.com
+                </a>
+            </article>
+        </section>
+        <section class="cbp-so-section cbp-so-init" id="projects">
+            <article class="cbp-so-side cbp-so-side-left">
+                <h2>Царьград</h2>
+                <p>Айдентика и дизайн для крупного новостного портала. Строгий, консервативный стиль соответствует миссии «Царьграда»
+                    и характерному позиционированию. Мы убрали всё лишнее, оставив самую суть.</p>
+                <a href="http://tsargrad.tv/" target="_blank" class="project__link">
+      tsargrad.tv
+      <img src="../../assets/images/arrow-project.png" class="project__arrow projects__arrow__1" alt="arrow left">
+    </a>
+            </article>
+            <figure class="cbp-so-side cbp-so-side-right">
+                <video autoplay="" loop="">
+                    <source src="../../assets/video/tsargrad.mp4">
+                </video>
+            </figure>
+        </section>
+        <section class="cbp-so-section cbp-so-init">
+            <figure class="cbp-so-side cbp-so-side-left">
+                <img src="../../assets/images/kaslab.png" alt="Kaspersky Lab">
+            </figure>
+            <article class="cbp-so-side cbp-so-side-right">
+                <h2>Kaspersky Lab</h2>
+                <p>Маркетинговое сопровождение для международной компании, разрабатывающей системы защиты от киберугроз. Задачи
+                    были разнообразными и интересными: мы создавали баннеры, e-mail рассылки, IPM, делали лэндинги, локализации
+                    для 32 стран и многое другое.</p>
+                <a href="https://www.kaspersky.com/" target="_blank" class="project__link">
+                    <img src="../../assets/images/arrow-project-l.png" class="project__arrow projects__arrow__2" alt="arrow right">                    kaspersky.com
+                </a>
+            </article>
+        </section>
+        <section class="cbp-so-section cbp-so-init" id="projects">
+            <article class="cbp-so-side cbp-so-side-left">
+                <h2>Leroy Merlin</h2>
+                <p>Полное маркетинговое сопровождение одного из крупнейших международных DIY-ритейлеров, включая создание баннеров,
+                    e-mail рассылок, 3D-моделирование. В лице Leroy Merlin мы смогли приобрести надёжного клиента и развить
+                    долговременное сотрудничество.</p>
+                <a href="http://leroymerlin.ru/" target="_blank" class="project__link">
+      leroymerlin.ru
+      <img src="../../assets/images/arrow-project.png" class="project__arrow projects__arrow__1" alt="arrow left">
+    </a>
+            </article>
+            <figure class="cbp-so-side cbp-so-side-right">
+                <img src="../../assets/images/leroy.png" alt="Leroy Merlin">
+            </figure>
+        </section>
+    </div>
+    <!--<div class="hire_us-wrapper">-->
+    <!--  <button class="hire_us">ОСТАВИТЬ ЗАЯВКУ</button>-->
+    <!--</div>-->
+    <div class="connection" style="display: block;">
+        Для связи с нами: <a href="mailto:sale@yourockdude.com" class="connection_email">Email</a> <a href="https://telegram.me/yourockinc"
+            target="_blank" class="connection_telegram">Telegram</a> <a href="skype:aq_rnd?chat" class="connection_skype">Skype</a>
+    </div>
+</div>

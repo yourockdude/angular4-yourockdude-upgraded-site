@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col s6">
+        <h3 class="paragraph-title">
+            {{description.paragraphTitle}}
+        </h3>
+    </div>
+    <div class="col s6 paragraph-description">
+        <div *ngFor="let item of description.content">
+            <h5 class="description-title">{{item.title}}</h5>
+            <p>
+                {{item.text}}
+            </p>
+        </div>
+    </div>
+</div>

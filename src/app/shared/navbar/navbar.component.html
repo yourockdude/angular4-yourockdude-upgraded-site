@@ -1,0 +1,73 @@
+<header class="header" style="display: block;">
+    <div class="header__left">
+        <div class="logo__wrapper" style="margin-right: 0px;">
+        </div>
+        <a [routerLink]="'/'" class="logo logo-1"><img src="/assets/images/logo.svg"></a>
+        <a [routerLink]="'/'" class="logo logo-2"><img src="/assets/images/logo.svg"></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a class="agency" [routerLink]="'/about'">МЫ</a></li>
+            <li><span class="hire_us hire_us-visible hire_us_ru" (click)="showHireUsForm()">СВЯЗАТЬСЯ</span></li>
+            <li>
+                <div class="language"><a class="ru">Ru</a> | <a class="en">En</a></div>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<form [@showHireUsForm]="state" action="http://yourockdude.ru/" method="post" class="form popup_form fadeInRight cmxform"
+    id="contactForm" enctype="multipart/form-data">
+    <!--TODO to fix when styles are fixed-->
+    <!------------------------------------------------------>
+    <div (click)="showHireUsForm()" style=`color:rgb(169,169,169);font-size:50px;position:absolute;top:5%;right:5%;cursor:pointer;z-index:150;width:12px;height:12px`>X</div>
+    <!--<div (click)="showHireUsForm()" class="popup_form-close"></div>-->
+    <!------------------------------------------------------>
+    <div class="sel sel--black-panther"><span class="sel__placeholder sel__placeholder--black-panther" data-placeholder="Выберите услугу">Выберите услугу</span>
+        <div class="sel__box sel__box--black-panther"><span class="sel__box__options sel__box__options--black-panther">Разработка сайта</span><span class="sel__box__options sel__box__options--black-panther">Разработка мобильного приложения</span>
+            <span class="sel__box__options sel__box__options--black-panther">Разработка фирменного стиля</span>
+            <span class="sel__box__options sel__box__options--black-panther">Комплексная дизайн-поддержка</span>
+        </div>
+        <select name="select-servises" id="select-profession" style="display: none;">
+      <option value="" disabled="">Выберите услугу</option>
+      <option value="development">Разработка сайта</option>
+      <option value="mobile">Разработка мобильного приложения</option>
+      <option value="style">Разработка фирменного стиля</option>
+      <option value="design">Комплексная дизайн-поддержка</option>
+    </select>
+    </div>
+
+    <div class="popup_form-item-mandatory">
+        <input class="popup_form-item" type="text" name="name" id="name" value="" placeholder="Ваше имя">
+    </div>
+
+    <div class="popup_form-item-mandatory">
+        <input class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="Телефон">
+    </div>
+
+    <div class="popup_form-item-mandatory">
+        <input class="popup_form-item" type="text" name="email" id="email" value="" placeholder="E-mail">
+    </div>
+
+    <div class="popup_form-item-mandatory item-message">
+        <textarea class="popup_form-item" name="text" id="text" value="" placeholder="Сообщение"></textarea>
+    </div>
+
+    <div class="wrapper_popup_form-item">
+        <div class="item_tittle">Прикрепите файл (максимальный размер 25 МБ)</div>
+        <input class="popup_form-item attach" name="file" type="file" value="">
+    </div>
+
+    <!--<div>-->
+    <!--  <label for="contact_attachment">Attach a File </label><em>(optional)</em><br />-->
+    <!--  <input type="file" name="contact_attachment" value="[-[!+fi.contact_attachment]]" />-->
+    <!--</div>-->
+
+    <input class="submit_button popup_form-btn" type="submit" value="Отправить">
+    <div class="popup_form-item-mandatory">
+        <span>— поля обязательные для заполнения</span>
+    </div>
+    <div class="social">
+        <a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram-white"></a>
+    </div>
+</form>
