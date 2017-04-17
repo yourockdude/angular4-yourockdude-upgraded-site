@@ -1,0 +1,13 @@
+<article class="cbp-so-side" [ngClass]="{'cbp-so-side-left': index%2===0, 'cbp-so-side-right': index%2===1}">
+    <h2>{{project.title}}</h2>
+    <p>{{project.text}}</p>
+    <a *ngIf="index%2===0;else leftArrow" href="{{project.site.link}}" target="_blank" class="project__link">
+            {{project.site.title}}
+            <img src="../../assets/images/arrow-project.png" class="project__arrow projects__arrow__1" alt="arrow left">
+    </a>
+    <ng-template #leftArrow>
+        <a href="{{project.site.link}}" target="_blank" class="project__link">
+            <img src="../../assets/images/arrow-project-l.png" class="project__arrow projects__arrow__2" alt="arrow right">            {{project.site.title}}
+        </a>
+    </ng-template>
+</article>

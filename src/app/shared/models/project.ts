@@ -1,6 +1,13 @@
 export class Project {
+    id?: string;
     title: string;
     text: string;
-    site: string;
-    media: string;
+    site: {
+        title: string,
+        link: string,
+    };
+    media: {
+        type: string,
+        src: string,
+    };
 }

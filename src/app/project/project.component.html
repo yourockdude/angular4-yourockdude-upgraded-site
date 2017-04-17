@@ -1,10 +1,11 @@
-<section class="project-section">
-    <article class="left-side">
-        <h2>{{project.title}}</h2>
-        <p>{{project.text}}</p>
-        <a href="{{project.site}}"></a>
-    </article>
-    <figure class="right-side">
-        <img src="{{project.media}}" alt="" style="width:100%">
-    </figure>
+<section *ngIf="index%2===0;else reverseSide" class="cbp-so-section cbp-so-init">
+    <app-yourock-project-title [project]="project" [index]="index"></app-yourock-project-title>
+    <app-yourock-project-media [project]="project" [index]="index"></app-yourock-project-media>
 </section>
+
+<ng-template #reverseSide>
+    <section class="cbp-so-section cbp-so-init">
+        <app-yourock-project-media [project]="project" [index]="index"></app-yourock-project-media>
+        <app-yourock-project-title [project]="project" [index]="index"></app-yourock-project-title>
+    </section>
+</ng-template>

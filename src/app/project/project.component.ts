@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef } from '@angular/core';
 import { Project } from '../shared/models/project';
 
 @Component({
@@ -7,10 +7,21 @@ import { Project } from '../shared/models/project';
     templateUrl: 'project.component.html'
 })
 
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, AfterViewInit {
+    @Input() index: number;
     @Input() project: Project;
 
-    constructor() { }
+    constructor(
+        private elementRef: ElementRef
+    ) { }
 
     ngOnInit() { }
+
+    ngAfterViewInit() {
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.innerHTML = `new cbpScroller(document.getElementById('cbp-so-scroller'))`;
+        this.elementRef.nativeElement.appendChild(script);
+    }
+
 }

@@ -15,7 +15,6 @@ export class AppComponent {
     this.loaderService.changeEmitted$.subscribe(
       loader => {
         this.testLoader = loader;
-        console.log(loader);
       }
     );
   }

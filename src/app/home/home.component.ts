@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DescriptionService } from '../shared/services/description.service';
 import { Project } from '../shared/models/project';
 import { Observable } from 'rxjs/Rx';
@@ -11,7 +11,7 @@ import { LoaderService } from '../shared/services/loader.service';
     providers: [DescriptionService],
 })
 
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
     title: string;
     projects: Project[];
     isLoaded: boolean;
@@ -22,26 +22,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
     constructor(
         private descriptionService: DescriptionService,
         private loaderService: LoaderService,
-        private elementRef: ElementRef,
     ) {
-        this.loaderService.emitChange(true);
+        this.loaderService.emitChange(false);
         this.descriptionService.getTestHomeContent()
             .subscribe(res => {
-                const timer = Observable.timer(3000);
+                // TODO remove timer
+                const timer = Observable.timer(5000);
                 timer.subscribe(() => {
                     this.title = res.text;
                     this.projects = res.projects;
-                    this.loaderService.emitChange(false);
+                    this.loaderService.emitChange(true);
                 });
             });
     }
 
     ngOnInit() { }
-
-    ngAfterViewInit() {
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.innerHTML = `new cbpScroller(document.getElementById('cbp-so-scroller'))`;
-        this.elementRef.nativeElement.appendChild(script);
-    }
 }
