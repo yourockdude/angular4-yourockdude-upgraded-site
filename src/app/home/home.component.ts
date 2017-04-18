@@ -27,12 +27,12 @@ export class HomeComponent implements OnInit {
         this.descriptionService.getTestHomeContent()
             .subscribe(res => {
                 // TODO remove timer
-                const timer = Observable.timer(5000);
-                timer.subscribe(() => {
-                    this.title = res.text;
-                    this.projects = res.projects;
-                    this.loaderService.emitChange(true);
-                });
+                // const timer = Observable.timer(5000);
+                // timer.subscribe(() => {
+                this.title = res.text;
+                this.projects = res.projects;
+                this.loaderService.emitChange(true);
+                // });
             });
     }
 
