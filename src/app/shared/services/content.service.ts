@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class DescriptionService {
+export class ContentService {
 
     constructor(private http: Http) { }
 
@@ -11,8 +12,9 @@ export class DescriptionService {
             .map(res => res.json());
     }
 
-    getTestHomeContent() {
-        return this.http.request('../../../assets/content/test-home-content.json')
+    getProjects() {
+        return this.http.get(`${environment.api}products`)
             .map(res => res.json());
+
     }
 }

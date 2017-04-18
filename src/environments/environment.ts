@@ -6,4 +6,5 @@
 export const environment = {
   production: false,
   api: 'http://yourockdudeapi.herokuapp.com/yourockdude_api/',
+  contentUrl: 'http://yourockdudeapi.herokuapp.com/',
 };
