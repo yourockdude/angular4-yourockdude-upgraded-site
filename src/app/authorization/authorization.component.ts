@@ -20,6 +20,7 @@ export class AuthorizationComponent implements OnInit {
             .subscribe(res => {
                 if (res.success === true) {
                     this.token = res.data;
+                    alert('token:' + this.token);
                 }
                 console.log(res);
             });

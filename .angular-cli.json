@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../src/assets/styles/main.css"
+        "../src/assets/styles/main.css",
+        "../src/assets/styles/pandora.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

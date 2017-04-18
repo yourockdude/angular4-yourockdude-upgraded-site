@@ -1,9 +1,9 @@
-<div [hidden]="testLoader" class="loader-area">
+<!--<div [hidden]="testLoader" class="loader-area">
   <div class="loader"></div>
-</div>
+</div>-->
 <!--TODO add styles for loader-->
-<div [hidden]="!testLoader" class="page">
-  <app-yourock-navbar></app-yourock-navbar>
+<div [hidden]="false" class="page">
+  <app-yourock-navbar *ngIf="!isLoginPage"></app-yourock-navbar>
   <router-outlet></router-outlet>
-  <app-yourock-footer></app-yourock-footer>
+  <app-yourock-footer *ngIf="!isLoginPage"></app-yourock-footer>
 </div>

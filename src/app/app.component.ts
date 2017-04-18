@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { LoaderService } from './shared/services/loader.service';
+import { Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,23 @@ import { LoaderService } from './shared/services/loader.service';
 })
 export class AppComponent {
   testLoader: boolean;
+  isLoginPage: boolean;
 
   constructor(
     private loaderService: LoaderService,
     private elementRef: ElementRef,
+    private router: Router
   ) {
+    router.events.subscribe((val: RoutesRecognized) => {
+      console.log(val.url);
+      if (val.url === '/authorization') {
+        this.isLoginPage = true;
+      } else {
+        this.isLoginPage = false;
+      }
+      console.log(this.isLoginPage);
+    });
+
     this.loaderService.changeEmitted$.subscribe(
       loader => {
         this.testLoader = loader;

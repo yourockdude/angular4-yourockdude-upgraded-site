@@ -1,10 +1,11 @@
-<div class="row">
-    <mz-input-container class="col s4 offset-s4">
-        <input [(ngModel)]="user.name" mz-input placeholder="username" type="text">
-        <input [(ngModel)]="user.password" mz-input placeholder="password" type="password">
-        <button mz-button (click)="signIn()">sign in</button>
-        <div>
-            token: {{token}}
-        </div>
-    </mz-input-container>
+<div class="login">
+    <div class="pandora">
+        <p>YOUROCK INC</p>
+        <span>Pandora 1.0</span>
+    </div>
+    <form class="login__form">
+        <input [(ngModel)]="user.name" type="text" placeholder="Username" name="username" required>
+        <input [(ngModel)]="user.password" type="password" placeholder="Password" name="password" required>
+        <button type="submit" (click)="signIn()">Login</button>
+    </form>
 </div>
