@@ -16,25 +16,20 @@
     </nav>
 </header>
 
-<form [@showHireUsForm]="state" action="http://yourockdude.ru/" method="post" class="form popup_form fadeInRight cmxform"
-    id="contactForm" enctype="multipart/form-data">
-    <!--TODO to fix when styles are fixed-->
-    <!------------------------------------------------------>
-    <div (click)="showHireUsForm()" style=`color:rgb(169,169,169);font-size:50px;position:absolute;top:5%;right:5%;cursor:pointer;z-index:150;width:12px;height:12px`>X</div>
-    <!--<div (click)="showHireUsForm()" class="popup_form-close"></div>-->
-    <!------------------------------------------------------>
+<form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
+    <div (click)="showHireUsForm()" class="popup_form-close"></div>
     <div class="sel sel--black-panther"><span class="sel__placeholder sel__placeholder--black-panther" data-placeholder="Выберите услугу">Выберите услугу</span>
         <div class="sel__box sel__box--black-panther"><span class="sel__box__options sel__box__options--black-panther">Разработка сайта</span><span class="sel__box__options sel__box__options--black-panther">Разработка мобильного приложения</span>
             <span class="sel__box__options sel__box__options--black-panther">Разработка фирменного стиля</span>
             <span class="sel__box__options sel__box__options--black-panther">Комплексная дизайн-поддержка</span>
         </div>
         <select name="select-servises" id="select-profession" style="display: none;">
-      <option value="" disabled="">Выберите услугу</option>
-      <option value="development">Разработка сайта</option>
-      <option value="mobile">Разработка мобильного приложения</option>
-      <option value="style">Разработка фирменного стиля</option>
-      <option value="design">Комплексная дизайн-поддержка</option>
-    </select>
+            <option value="" disabled="">Выберите услугу</option>
+            <option value="development">Разработка сайта</option>
+            <option value="mobile">Разработка мобильного приложения</option>
+            <option value="style">Разработка фирменного стиля</option>
+            <option value="design">Комплексная дизайн-поддержка</option>
+        </select>
     </div>
 
     <div class="popup_form-item-mandatory">
