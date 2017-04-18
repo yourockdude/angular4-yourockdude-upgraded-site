@@ -12,7 +12,6 @@ import { LoaderService } from '../shared/services/loader.service';
 })
 
 export class HomeComponent implements OnInit {
-    title: string;
     projects: Project[];
     isLoaded: boolean;
     test: any;
@@ -26,13 +25,8 @@ export class HomeComponent implements OnInit {
         this.loaderService.emitChange(false);
         this.descriptionService.getTestHomeContent()
             .subscribe(res => {
-                // TODO remove timer
-                // const timer = Observable.timer(5000);
-                // timer.subscribe(() => {
-                this.title = res.text;
-                this.projects = res.projects;
+                this.projects = res;
                 this.loaderService.emitChange(true);
-                // });
             });
     }
 
