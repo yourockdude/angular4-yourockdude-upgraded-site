@@ -15,6 +15,15 @@ export class ContentService {
     getProjects() {
         return this.http.get(`${environment.api}products`)
             .map(res => res.json());
-
     }
+
+    getHomeTitle() {
+        return this.http.request('../../../assets/content/home-title.json')
+            .map(res => res.json());
+    }
+
+    // getHomeTitle() {
+    //     return this.http.get(`${environment.api}??????`)
+    //         .map(res => res.json());
+    // }
 }

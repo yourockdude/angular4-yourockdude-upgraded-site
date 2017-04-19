@@ -14,12 +14,17 @@ import { environment } from '../../environments/environment';
 
 export class HomeComponent implements OnInit {
     projects: Project[];
+    title: string;
 
     constructor(
         private contentService: ContentService,
         private loaderService: LoaderService,
     ) {
         this.loaderService.emitChange(false);
+        this.contentService.getHomeTitle()
+            .subscribe(res => {
+                this.title = res.title;
+            });
         this.contentService.getProjects()
             .subscribe(res => {
                 res.data.map(project => {
