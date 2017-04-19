@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '../shared/services/authorization.service';
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class AdminComponent implements OnInit {
-    constructor() { }
+    constructor(
+        private authorizationService: AuthorizationService
+    ) { }
 
     ngOnInit() { }
+
+    signOut() {
+        // add a confirmation
+        this.authorizationService.signOut();
+    }
 }

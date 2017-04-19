@@ -1,9 +1,9 @@
-.page.page_about {
+.page .page_about {
   padding: 5% 10%; }
-  .page.page_about b {
+  .page .page_about b {
     display: block;
     margin-top: 20px; }
-  .page.page_about h2 {
+  .page .page_about h2 {
     font-family: "HelveticaNeueCyr-Thin"; }
 
 .left_part {

@@ -7,7 +7,7 @@
     </div>
     <nav>
         <ul>
-            <!--<li><a class="agency" [routerLink]="'/about'">МЫ</a></li>-->
+            <li><a class="agency" [routerLink]="'/about'">МЫ</a></li>
             <li><span class="hire_us hire_us-visible hire_us_ru" (click)="showHireUsForm()">СВЯЗАТЬСЯ</span></li>
             <li>
                 <div class="language"><a class="ru">Ru</a> | <a class="en">En</a></div>
@@ -33,24 +33,24 @@
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input class="popup_form-item" type="text" name="name" id="name" value="" placeholder="Ваше имя">
+        <input [(ngModel)]="name"  class="popup_form-item" type="text" name="name" id="name" value="" placeholder="Ваше имя">
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="Телефон">
+        <input [(ngModel)]="phone"  class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="Телефон">
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input class="popup_form-item" type="text" name="email" id="email" value="" placeholder="E-mail">
+        <input [(ngModel)]="email"  class="popup_form-item" type="text" name="email" id="email" value="" placeholder="E-mail">
     </div>
 
     <div class="popup_form-item-mandatory item-message">
-        <textarea class="popup_form-item" name="text" id="text" value="" placeholder="Сообщение"></textarea>
+        <textarea [(ngModel)]="message" class="popup_form-item" name="text" id="text" value="" placeholder="Сообщение"></textarea>
     </div>
 
     <div class="wrapper_popup_form-item">
         <div class="item_tittle">Прикрепите файл (максимальный размер 25 МБ)</div>
-        <input class="popup_form-item attach" name="file" type="file" value="">
+        <input class="popup_form-item attach" (change)="fileChange($event)" name="file_for_email" type="file" value="">
     </div>
 
     <!--<div>-->
@@ -58,7 +58,7 @@
     <!--  <input type="file" name="contact_attachment" value="[-[!+fi.contact_attachment]]" />-->
     <!--</div>-->
 
-    <input class="submit_button popup_form-btn" type="submit" value="Отправить">
+    <input class="submit_button popup_form-btn" type="submit" value="Отправить" (click)="sendEmail()">
     <div class="popup_form-item-mandatory">
         <span>— поля обязательные для заполнения</span>
     </div>

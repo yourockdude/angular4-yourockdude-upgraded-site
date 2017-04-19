@@ -9,8 +9,9 @@
                 <a href="" class="ru">Ru</a> | <a href="" class="en">En</a></div>
         </div>
         <div class="pandora_menu_list">
-            <p>Main page</p>
-            <p>Agency</p>
+            <a [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</a>
+            <!--<p (click)="openLink($event, 'MainPage')">Main page</p>-->
+            <p (click)="openLink($event, 'Agency')">Agency</p>
             <div class="pandora_projects">
                 <p>Projects</p>
                 <ul>
@@ -23,14 +24,18 @@
             </div>
             <p>Contacts</p>
         </div>
-        <div class="logout">
+        <button class="logout" (click)="signOut()">
             Log out
-        </div>
+        </button>
     </div>
-    <div class="add_project">
+    <div class="admin-panel">
+        test
+        <router-outlet name="sidebar"></router-outlet>
+    </div>
+    <!--<div class="add_project">
         <div class="add_project__btn">Add project</div>
     </div>
     <div class="edit_contacts">
         <div class="edit_contacts__btn">Edit contacts</div>
-    </div>
+    </div>-->
 </div>

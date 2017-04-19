@@ -46,3 +46,11 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+.admin-panel {
+    width: 60%;
+    background: #555;
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}

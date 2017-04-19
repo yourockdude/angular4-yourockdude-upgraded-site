@@ -19,7 +19,11 @@ export class AuthorizationComponent implements OnInit {
         private router: Router,
     ) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        if (localStorage.getItem('id_token')) {
+            this.router.navigate([this.adminPath]);
+        }
+    }
 
     signIn() {
         this.authorizationService.signIn(this.user)

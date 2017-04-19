@@ -15,6 +15,7 @@ import { MaterializeModule } from 'ng2-materialize';
         CommonModule,
         RouterModule,
         MaterializeModule.forRoot(),
+        FormsModule,
     ],
     declarations: [NavbarComponent, FooterComponent],
     exports: [

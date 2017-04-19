@@ -7,6 +7,7 @@ import {
     transition,
     keyframes,
 } from '@angular/animations';
+import { EmailService } from '../services/email.service';
 declare const $: JQueryStatic;
 
 @Component({
@@ -25,13 +26,20 @@ declare const $: JQueryStatic;
                 ]
             ),
         ])
-    ]
+    ],
+    providers: [EmailService],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
 
     state = 'closed';
-    constructor() { }
+    file: File;
+    name: string;
+    phone: string;
+    email: string;
+    message: string;
+
+    constructor(private emailService: EmailService) { }
 
     ngOnInit() { }
 
@@ -108,5 +116,19 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     showHireUsForm() {
         this.state = (this.state === 'opened' ? 'closed' : 'opened');
         console.log(this.state);
+    }
+
+    fileChange(event) {
+        this.file = event.target.files[0];
+    }
+
+    sendEmail() {
+        const formData: FormData = new FormData();
+        formData.append('name', this.name);
+        formData.append('phone', this.phone);
+        formData.append('email', this.email);
+        formData.append('message', this.message);
+        formData.append('file_for_email', this.file, this.file.name);
+        this.emailService.sendEmail(formData).subscribe(res => console.log(res));
     }
 }
