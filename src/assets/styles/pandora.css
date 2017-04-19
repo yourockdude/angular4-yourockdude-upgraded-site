@@ -1,4 +1,4 @@
-.page {
+.page.pandora_login_page {
   background: #f8f8f8;
   border: 70px solid #fff; }
 
@@ -63,9 +63,16 @@
   padding-bottom: 10%; }
 
 .pandora_language {
-  margin-left: 10%; }
+  margin-left: 10%;
+  margin-bottom: 5%; }
 
 .pandora_menu_list {
+  margin-left: 10%; }
+  .pandora_menu_list p {
+    margin-top: 5%; }
+
+.pandora_projects ul {
+  margin-top: 5%;
   margin-left: 10%; }
 
 .pandora_projects li {

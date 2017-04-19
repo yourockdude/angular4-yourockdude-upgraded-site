@@ -13,6 +13,16 @@ export class AuthorizationService {
 
     signIn(user: User) {
         return this.http.post(`${environment.api}auth`, user)
-            .map(res => res.json());
+            .map(res => {
+                const response = res.json();
+                if (response.success) {
+                    localStorage.setItem('id_token', response.data);
+                }
+                return response;
+            });
+    }
+
+    getUser() {
+        return localStorage.getItem('id_token');
     }
 }

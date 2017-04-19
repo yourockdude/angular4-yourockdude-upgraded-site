@@ -11,8 +11,10 @@ import { AboutModule } from './about/about.module';
 import { SharedModule } from './shared/shared.module';
 import { NotFoundModule } from './not-found/not-found.module';
 import { AuthorizationModule } from './authorization/authorization.module';
+import { AdminModule } from './admin/admin.module';
 
 import { LoaderService } from './shared/services/loader.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { LoaderService } from './shared/services/loader.service';
     HomeModule,
     AboutModule,
     AuthorizationModule,
-    NotFoundModule,
+    AdminModule,
+    NotFoundModule, // Always should be at the end
   ],
   providers: [LoaderService],
   bootstrap: [AppComponent]

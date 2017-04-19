@@ -17,13 +17,17 @@ export class AppComponent {
     private router: Router
   ) {
     router.events.subscribe((val: RoutesRecognized) => {
-      console.log(val.url);
-      if (val.url === '/authorization') {
-        this.isLoginPage = true;
-      } else {
-        this.isLoginPage = false;
+      switch (val.url) {
+        case '/authorization':
+          this.isLoginPage = true;
+          break;
+        case '/admin':
+          this.isLoginPage = true;
+          break;
+        default:
+          this.isLoginPage = false;
+          break;
       }
-      console.log(this.isLoginPage);
     });
 
     this.loaderService.changeEmitted$.subscribe(

@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "../src/assets/styles/main.css",
-        "../src/assets/styles/pandora.css"
+        "../src/assets/styles/pandora.css",
+        "../src/assets/styles/additional-styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../shared/models/user';
 import { AuthorizationService } from '../shared/services/authorization.service';
 
@@ -11,18 +12,24 @@ import { AuthorizationService } from '../shared/services/authorization.service';
 export class AuthorizationComponent implements OnInit {
     user: User = new User();
     token: string;
-    constructor(private authorizationService: AuthorizationService) { }
+    adminPath = '/admin';
+
+    constructor(
+        private authorizationService: AuthorizationService,
+        private router: Router,
+    ) { }
 
     ngOnInit() { }
 
     signIn() {
         this.authorizationService.signIn(this.user)
             .subscribe(res => {
-                if (res.success === true) {
-                    this.token = res.data;
-                    alert('token:' + this.token);
+                if (res.success) {
+                    this.router.navigate([this.adminPath]);
+                } else {
+                    // TODO add toaster
+                    alert('error');
                 }
-                console.log(res);
             });
     }
 }
