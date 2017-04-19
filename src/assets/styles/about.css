@@ -1,0 +1,43 @@
+.page.page_about {
+  padding: 5% 10%; }
+  .page.page_about b {
+    display: block;
+    margin-top: 20px; }
+  .page.page_about h2 {
+    font-family: "HelveticaNeueCyr-Thin"; }
+
+.left_part {
+  width: 50%;
+  display: inline-block; }
+
+.right_part {
+  margin-left: 50%;
+  margin-bottom: 5%;
+  display: inline-block; }
+
+.awards_block img {
+  width: 80px;
+  margin-top: 70px;
+  margin-bottom: 50px; }
+
+.right_part_awards {
+  margin-left: 0; }
+
+.about_tittle {
+  margin-bottom: 20px; }
+
+.page_about_description {
+  margin: 7% 0; }
+
+.ready_to_start {
+  text-align: center;
+  font-size: 24px; }
+  .ready_to_start a {
+    color: #000;
+    text-decoration: none; }
+
+.follow_us {
+  font-size: 20px; }
+  .follow_us a {
+    color: black;
+    text-decoration: none; }
