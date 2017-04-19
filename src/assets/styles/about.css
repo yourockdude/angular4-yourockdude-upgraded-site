@@ -27,11 +27,15 @@
   margin-bottom: 20px; }
 
 .page_about_description {
-  margin: 7% 0; }
+  margin: 7% 0;
+  font-family: "HelveticaNeueCyr-Thin";
+}
 
 .ready_to_start {
   text-align: center;
-  font-size: 24px; }
+  font-size: 24px;
+  margin-bottom: 150px;
+  }
   .ready_to_start a {
     color: #000;
     text-decoration: none; }
@@ -41,3 +45,7 @@
   .follow_us a {
     color: black;
     text-decoration: none; }
+
+.right_part p {
+  font-family: "HelveticaNeueCyr-Thin"
+}

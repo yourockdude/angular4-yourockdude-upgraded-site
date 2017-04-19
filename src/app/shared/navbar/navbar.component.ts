@@ -1,4 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    AfterViewInit,
+    ViewChild,
+    ElementRef,
+} from '@angular/core';
 import {
     trigger,
     state,
@@ -32,12 +38,15 @@ declare const $: JQueryStatic;
 
 export class NavbarComponent implements OnInit, AfterViewInit {
 
+    @ViewChild('select') select: ElementRef;
+
     state = 'closed';
     file: File;
     name: string;
     phone: string;
     email: string;
     message: string;
+    theme: string;
 
     constructor(private emailService: EmailService) { }
 
@@ -128,7 +137,13 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         formData.append('phone', this.phone);
         formData.append('email', this.email);
         formData.append('message', this.message);
+        formData.append('theme', this.select.nativeElement.textContent);
         formData.append('file_for_email', this.file, this.file.name);
-        this.emailService.sendEmail(formData).subscribe(res => console.log(res));
+        this.emailService.sendEmail(formData).subscribe(res => {
+            if (res.success) {
+                // TODO add info for user
+                this.showHireUsForm();
+            }
+        });
     }
 }

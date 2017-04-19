@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
         this.loaderService.emitChange(false);
         this.contentService.getProjects()
             .subscribe(res => {
-                // res.data.map(project => {
-                //     project.media.src = [environment.contentUrl, project.media.src].join('');
-                // });
+                res.data.map(project => {
+                    project.media.src = [environment.contentUrl, project.media.src].join('');
+                });
                 this.projects = res.data;
                 this.loaderService.emitChange(true);
             });
