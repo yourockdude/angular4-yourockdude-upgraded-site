@@ -1,7 +1,7 @@
 <div class="home">
     <h2 class="home__title" style="display: block;" [innerHTML]="title">
     </h2>
-    <a href="#projects" class="down__btn go_to" style="display: inline;">
+    <a *ngIf="title" href="#projects" class="down__btn go_to" style="display: inline;">
         <p>Наши любимые проекты</p>
         <img src="../../assets/images/arrow.png" class="down__btn__img" alt="arrow">
     </a>

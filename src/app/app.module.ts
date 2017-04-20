@@ -14,7 +14,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
 import { AdminModule } from './admin/admin.module';
 
 import { LoaderService } from './shared/services/loader.service';
-import { AuthGuard } from './shared/services/auth-guard.service';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { AuthGuard } from './shared/services/auth-guard.service';
     AdminModule,
     NotFoundModule, // Always should be at the end
   ],
-  providers: [LoaderService],
+  providers: [LoaderService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
