@@ -147,23 +147,31 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         formData.append('file_for_email', this.file);
         this.emailService.sendEmail(formData).subscribe(res => {
             if (res.success) {
-                this.toastrService.success('Ваше сообщение отправлено', 'ololoo');
+                this.toastrService.success('Ваше сообщение отправлено');
                 this.showHireUsForm();
             }
         });
     }
 
     get allowToSendEmail() {
-        if ([this.name, this.phone, this.email, this.message].find(item => item === '') === undefined) {
+        if (
+            ([this.name, this.phone, this.email, this.message].find(item => item === '') === undefined)
+            && this.isValidEmail
+            && this.isValidPhone
+        ) {
             return true;
         } else {
             return false;
         }
     }
 
-    // get isValidPhone() {
-    //     return /^(\+7|8)\d{10}/.test(this.phone);
-    // }
+    get isValidPhone() {
+        return /^(\+7|8)\d{10}$/.test(this.phone);
+    }
+
+    get isValidEmail() {
+        return /^[\w\d]+@[\w\d]+.[\w]{2,3}$/.test(this.email);
+    }
 
     // test() {
     //     this.toastrService.success('test', 'test')

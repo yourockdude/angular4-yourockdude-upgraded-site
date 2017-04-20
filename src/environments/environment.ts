@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  api: 'http://yourockdudeapi.herokuapp.com/yourockdude_api/',
+  api: 'http://localhost:3000/yourockdude_api/',
   contentUrl: 'http://yourockdudeapi.herokuapp.com/',
 };

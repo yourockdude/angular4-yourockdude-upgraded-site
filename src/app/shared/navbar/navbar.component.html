@@ -30,19 +30,19 @@
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input [(ngModel)]="name" class="popup_form-item" type="text" name="name" id="name" value="" placeholder="Ваше имя">
+        <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text" name="name" id="name" value="" placeholder="Ваше имя">
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input [(ngModel)]="phone" class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="Телефон">
+        <input [style.border-bottom-color]="!isValidPhone ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="Телефон">
     </div>
 
     <div class="popup_form-item-mandatory">
-        <input [(ngModel)]="email" class="popup_form-item" type="text" name="email" id="email" value="" placeholder="E-mail">
+        <input [style.border-bottom-color]="!isValidEmail ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item" type="text" name="email" id="email" value="" placeholder="E-mail">
     </div>
 
     <div class="popup_form-item-mandatory item-message">
-        <textarea [(ngModel)]="message" class="popup_form-item" name="text" id="text" value="" placeholder="Сообщение"></textarea>
+        <textarea [style.border-bottom-color]="!message ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item" name="text" id="text" value="" placeholder="Сообщение"></textarea>
     </div>
 
     <div class="wrapper_popup_form-item">
