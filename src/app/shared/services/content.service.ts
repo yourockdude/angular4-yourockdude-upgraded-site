@@ -13,7 +13,7 @@ export class ContentService {
     }
 
     getProjects() {
-        return this.http.get(`${environment.api}products`)
+        return this.http.get(`${environment.api}products/ru`)
             .map(res => res.json());
     }
 
@@ -23,7 +23,7 @@ export class ContentService {
     // }
 
     getHomeTitle(name: string) {
-        return this.http.get(`${environment.api}pages/${name}`)
+        return this.http.get(`${environment.api}pages/${name}RU`)
             .map(res => res.json());
     }
 }

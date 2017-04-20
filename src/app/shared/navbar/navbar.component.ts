@@ -14,7 +14,9 @@ import {
     keyframes,
 } from '@angular/animations';
 import { EmailService } from '../services/email.service';
-declare const $: JQueryStatic;
+import { ToastrService } from 'ngx-toastr';
+import * as $ from 'jquery';
+declare const el: JQuery;
 
 @Component({
     moduleId: module.id,
@@ -33,7 +35,7 @@ declare const $: JQueryStatic;
             ),
         ])
     ],
-    providers: [EmailService],
+    providers: [EmailService, ToastrService],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
@@ -42,13 +44,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     state = 'closed';
     file: File;
-    name: string;
-    phone: string;
-    email: string;
-    message: string;
+    name = '';
+    phone = '';
+    email = '';
+    message = '';
     theme: string;
+    fileName: string;
 
-    constructor(private emailService: EmailService) { }
+    constructor(
+        private emailService: EmailService,
+        private toastrService: ToastrService
+    ) { }
 
     ngOnInit() { }
 
@@ -124,11 +130,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     showHireUsForm() {
         this.state = (this.state === 'opened' ? 'closed' : 'opened');
-        console.log(this.state);
     }
 
     fileChange(event) {
         this.file = event.target.files[0];
+        this.fileName = this.file.name;
     }
 
     sendEmail() {
@@ -138,12 +144,29 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         formData.append('email', this.email);
         formData.append('message', this.message);
         formData.append('theme', this.select.nativeElement.textContent);
-        formData.append('file_for_email', this.file, this.file.name);
+        formData.append('file_for_email', this.file);
         this.emailService.sendEmail(formData).subscribe(res => {
             if (res.success) {
-                // TODO add info for user
+                this.toastrService.success('Ваше сообщение отправлено', 'ololoo');
                 this.showHireUsForm();
             }
         });
     }
+
+    get allowToSendEmail() {
+        if ([this.name, this.phone, this.email, this.message].find(item => item === '') === undefined) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // get isValidPhone() {
+    //     return /^(\+7|8)\d{10}/.test(this.phone);
+    // }
+
+    // test() {
+    //     this.toastrService.success('test', 'test')
+    //     console.log('test');
+    // }
 }

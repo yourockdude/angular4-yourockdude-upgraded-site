@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { MaterializeModule } from 'ng2-materialize';
+import { ToastrModule } from 'ngx-toastr';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
  */
@@ -14,8 +14,8 @@ import { MaterializeModule } from 'ng2-materialize';
     imports: [
         CommonModule,
         RouterModule,
-        MaterializeModule.forRoot(),
         FormsModule,
+        ToastrModule.forRoot(),
     ],
     declarations: [NavbarComponent, FooterComponent],
     exports: [
@@ -24,7 +24,6 @@ import { MaterializeModule } from 'ng2-materialize';
         RouterModule,
         NavbarComponent,
         FooterComponent,
-        MaterializeModule,
     ]
 })
 export class SharedModule {
