@@ -10,7 +10,6 @@
         </div>
         <div class="pandora_menu_list">
             <a [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</a>
-            <!--<p (click)="openLink($event, 'MainPage')">Main page</p>-->
             <p (click)="openLink($event, 'Agency')">Agency</p>
             <div class="pandora_projects">
                 <p>Projects</p>
@@ -29,7 +28,6 @@
         </button>
     </div>
     <div class="admin-panel">
-        test
         <router-outlet name="sidebar"></router-outlet>
     </div>
     <!--<div class="add_project">

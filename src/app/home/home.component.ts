@@ -21,9 +21,9 @@ export class HomeComponent implements OnInit {
         private loaderService: LoaderService,
     ) {
         this.loaderService.emitChange(false);
-        this.contentService.getHomeTitle()
+        this.contentService.getHomeTitle('main')
             .subscribe(res => {
-                this.title = res.title;
+                this.title = res.data.title;
             });
         this.contentService.getProjects()
             .subscribe(res => {

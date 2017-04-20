@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../shared/services/content.service';
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class MainPageComponent implements OnInit {
-    constructor() { }
+    title: string;
+
+    constructor(private contentService: ContentService) {
+        this.contentService.getHomeTitle('main')
+            .subscribe(res => {
+                this.title = res.data.title;
+            });
+    }
 
     ngOnInit() { }
 }

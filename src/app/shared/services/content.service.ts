@@ -17,13 +17,13 @@ export class ContentService {
             .map(res => res.json());
     }
 
-    getHomeTitle() {
-        return this.http.request('../../../assets/content/home-title.json')
-            .map(res => res.json());
-    }
-
     // getHomeTitle() {
-    //     return this.http.get(`${environment.api}??????`)
+    //     return this.http.request('../../../assets/content/home-title.json')
     //         .map(res => res.json());
     // }
+
+    getHomeTitle(name: string) {
+        return this.http.get(`${environment.api}pages/${name}`)
+            .map(res => res.json());
+    }
 }
