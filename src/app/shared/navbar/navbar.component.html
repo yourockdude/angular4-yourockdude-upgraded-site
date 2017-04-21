@@ -19,15 +19,15 @@
 
 <form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
     <div (click)="showHireUsForm()" class="popup_form-close"></div>
-    <div class="sel sel--black-panther">
+    <!--<div class="sel sel--black-panther">
         <span #select class="sel__placeholder sel__placeholder--black-panther" data-placeholder="Выберите услугу">{{hireUsForm?.subject}}</span>
         <div class="sel__box sel__box--black-panther">
             <span *ngFor="let option of hireUsForm?.options" class="sel__box__options sel__box__options--black-panther">{{hireUsForm?.option}}</span>
-            <!--<span class="sel__box__options sel__box__options--black-panther">Разработка мобильного приложения</span>
+            <span class="sel__box__options sel__box__options--black-panther">Разработка мобильного приложения</span>
             <span class="sel__box__options sel__box__options--black-panther">Разработка фирменного стиля</span>
-            <span class="sel__box__options sel__box__options--black-panther">Комплексная дизайн-поддержка</span>-->
+            <span class="sel__box__options sel__box__options--black-panther">Комплексная дизайн-поддержка</span>
         </div>
-    </div>
+    </div>-->
 
     <div class="popup_form-item-mandatory">
         <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text" name="name" id="name" value="" placeholder="{{hireUsForm?.name}}">
