@@ -1,60 +1,39 @@
 <!--<app-yourock-description *ngFor="let description of descriptions" [description]="description"></app-yourock-description>-->
-<div id="root" class="page_about">
+<div *ngIf="static" id="root" class="page_about">
     <div>
-        <h2 class="left_part">Что мы делаем</h2>
+        <h2 class="left_part">{{static.whatWeDo.title}}</h2>
         <div class="right_part">
-            <b class="about_tittle">Брендинг и Дизайн</b>
-            <p>Мы, прежде всего, студия графического дизайна. Мы живём для того, чтобы рассказывать истории на страницах и экранах
-                мониторов, и наша одержимость дизайном влияет на всё остальное, что мы делаем. Мы ценим простоту и стремимся
-                донести ваше сообщение с помощью продуманного дизайна.</p>
-            <b class="about_tittle">Разработка</b>
-            <p>От одностраничных сайтов до интерактивных мобильных приложений и полностью интегрированных e-commerce проектов.
-                Мы высококлассные разработчики, которые день за днём создают впечатляющую продукцию в сфере digital.</p>
+            <div *ngFor="let item of static.whatWeDo.content">
+                <b class="about_tittle">{{item.title}}</b>
+                <p>{{item.text}}</p>
+            </div>
         </div>
     </div>
     <div>
-        <h2 class="left_part">Наши услуги</h2>
+        <h2 class="left_part">{{static.capabilities.title}}</h2>
         <div class="right_part">
-            <b>Мобильная разработка</b>
-            <b>Брендинг и Айдентика</b>
-            <b>Полиграфия</b>
-            <b>UX & UI дизайн</b>
-            <b>Веб-разработка и Адаптация</b>
-            <b>Хостинг и Поддержка</b>
-            <b>Видео-контент</b>
+            <b *ngFor="let item of static.capabilities.content">{{item.title}}</b>
         </div>
     </div>
     <div>
-        <h2>Instagram</h2>
-        <b class="right_part follow_us">Присоединяйся <a href="https://www.instagram.com/yourock_inc/" target="_blank">@yourock_inc</a></b>
-        <h2 lass="left_part">Наши клиенты</h2>
+        <h2>{{static.instagram.title}}</h2>
+        <b class="right_part follow_us"><a href="{{static.instagram.link}}" target="_blank">{{static.instagram.content}}</a></b>
+        <h2 lass="left_part">{{static.client.title}}</h2>
         <div class="right_part">
-            <b>Yota</b>
-            <b>Kaspersky Lab</b>
-            <b>MTS</b>
-            <b>Leroy Merlin</b>
-            <b>Fendi</b>
-            <b>Nivea</b>
+            <b *ngFor="let item of static.client.content">{{item.clientName}}</b>
         </div>
         <div>
             <div class="awards_block">
-                <h2 class="left_part">Награды</h2>
+                <h2 class="left_part">{{static.awards.title}}</h2>
                 <div class="left_part">
-                    <img src="/assets/images/be.png" alt="Behance">
-                    <p><b>Behance</b> Interaction Gallery</p>
-                    <p><b>AWWWARDS</b> Site of the Day</p>
-                    <p><b>Top100 RUWARD</b> Mobile Developers</p>
+                    <img src="{{static.awards.leftPart.image}}" alt="Behance">
+                    <p *ngFor="let item of static.awards.leftPart.content"><b>{{item.title}}</b> {{item.text}}</p>
                 </div>
                 <div class="right_part right_part_awards">
-                    <img src="/assets/images/aw.png" alt="Awwwards">
-                    <p><b>Top100 TAGLINE</b> Mobile Developers</p>
-                    <p><b>Top100 TAGLINE</b> Game Developers</p>
-                    <p><b>Top100 Raiting Runet</b></p>
+                    <img src="{{static.awards.rightPart.image}}" alt="Awwwards">
+                    <p *ngFor="let item of static.awards.rightPart.content"><b>{{item.title}}</b> {{item.text}}</p>
                 </div>
             </div>
-            <p class="page_about_description">Работа с нами означает открытость и прозрачность. Мы добились этого результата благодаря годам улучшений нашего
-                рабочего процесса. Мы высоко ценим сотрудничество и воспринимаем его, как работу «вместе» а не «на». Завершая
-                работу над проектом, мы всегда стремимся остаться стратегическими партнёрами, а не разовыми подрядчиками.
-                Мы привыкаем быть рядом.</p>
-            <b class="ready_to_start">Готовы начать проект? <a href="https://telegram.me/yourockinc" target="_blank" >Жмите сюда.</a></b>
+            <p class="page_about_description">{{static.description}}</p>
+            <b class="ready_to_start">{{static.start.title}} <a href="{{static.start.link}}" target="_blank" >{{static.start.linkTitle}}</a></b>
         </div>

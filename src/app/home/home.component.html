@@ -2,14 +2,14 @@
     <h2 class="home__title" style="display: block;" [innerHTML]="title">
     </h2>
     <a *ngIf="title" pageScroll href="#projects" class="down__btn go_to" style="display: inline;">
-        <p>Наши любимые проекты</p>
+        <p>{{static?.ourProjects}}</p>
         <img src="../../assets/images/arrow.png" class="down__btn__img" alt="arrow">
     </a>
     <div id="cbp-so-scroller" class="cbp-so-scroller" style="display: block;">
         <app-yourock-project *ngFor="let project of projects;let i = index" [index]="i" [project]="project" id="projects"></app-yourock-project>
     </div>
     <div class="connection" style="display: block;">
-        Для связи с нами: <a href="mailto:sale@yourockdude.com" class="connection_email">Email</a> <a href="https://telegram.me/yourockinc"
+        {{static?.contacts}}: <a href="mailto:sale@yourockdude.com" class="connection_email">Email</a> <a href="https://telegram.me/yourockinc"
             target="_blank" class="connection_telegram">Telegram</a> <a href="skype:aq_rnd?chat" class="connection_skype">Skype</a>
     </div>
 </div>

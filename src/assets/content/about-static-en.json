@@ -1,0 +1,115 @@
+{
+    "whatWeDo": {
+        "title": "What We Do",
+        "content": [
+            {
+                "title": "Branding & Design",
+                "text": "We're first and foremost a graphic design studio. We live to tell stories on pages and screens and our obsession with design affects everything else we do. We value simplicity and aim to distill your message with intelligent design."
+            },
+            {
+                "title": "Development",
+                "text": "We're first and foremost a graphic design studio. We live to tell stories on pages and screens and our obsession with design affects everything else we do. We value simplicity and aim to distill your message with intelligent design."
+            }
+        ]
+    },
+    "capabilities": {
+        "title": "Capabilities",
+        "content": [
+            {
+                "title": "Mobile dev"
+            },
+            {
+                "title": "Branding & Identity"
+            },
+            {
+                "title": "Print"
+            },
+            {
+                "title": "UX & UI Design"
+            },
+            {
+                "title": "Web & Responsive"
+            },
+            {
+                "title": "E-Commerce"
+            },
+            {
+                "title": "Hosting & Maintenance"
+            },
+            {
+                "title": "Moving Content"
+            }
+        ]
+    },
+    "instagram": {
+        "title": "Instagram",
+        "content": "Follow us @yourock_inc",
+        "link": "https://www.instagram.com/yourock_inc/"
+    },
+    "client": {
+        "title": "Our clients",
+        "content": [
+            {
+                "clientName": "Yota"
+            },
+            {
+                "clientName": "Kaspersky Lab"
+            },
+            {
+                "clientName": "Leroy Merlin"
+            },
+            {
+                "clientName": "Fendi"
+            },
+            {
+                "clientName": "Nivea"
+            },
+            {
+                "clientName": "MTS"
+            }
+        ]
+    },
+    "awards": {
+        "title": "Awards",
+        "leftPart": {
+            "image": "/assets/images/be.png",
+            "content": [
+                {
+                    "title": "Behance",
+                    "text": "Interaction Gallery"
+                },
+                {
+                    "title": "AWWWARDS",
+                    "text": "Site of the Day"
+                },
+                {
+                    "title": "Top100 RUWARD",
+                    "text": "Mobile Developers"
+                }
+            ]
+        },
+        "rightPart": {
+            "image": "/assets/images/aw.png",
+            "content": [
+                {
+                    "title": "Top100 TAGLINE",
+                    "text": "Mobile Developers"
+                },
+                {
+                    "title": "Top100 TAGLINE",
+                    "text": " Game Developers"
+                },
+                {
+                    "title": "Top100 Raiting Runet",
+                    "text": ""
+                }
+            ]
+        }
+    },
+    "description": "We work openly and transparently. Our process is the product of years of refinement and we pride ourselves on our approach. We treasure collaboration and like working with you, not for you. We always aim to finish a project as long term strategic partners, not just one-time service providers. Get used to us being around.",
+    "start": {
+        "title": "Ready to start a project? ",
+        "linkTitle": "Click here.",
+        "link": "https://telegram.me/yourockinc"
+    }
+}

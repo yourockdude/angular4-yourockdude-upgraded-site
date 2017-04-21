@@ -14,6 +14,7 @@ import {
     keyframes,
 } from '@angular/animations';
 import { EmailService } from '../services/email.service';
+import { ContentService } from '../services/content.service';
 import { ToastrService } from 'ngx-toastr';
 import * as $ from 'jquery';
 declare const el: JQuery;
@@ -35,7 +36,7 @@ declare const el: JQuery;
             ),
         ])
     ],
-    providers: [EmailService, ToastrService],
+    providers: [EmailService, ToastrService, ContentService],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
@@ -51,10 +52,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     theme: string;
     fileName: string;
 
+    navbar: any;
+    hireUsForm: any;
+
     constructor(
         private emailService: EmailService,
-        private toastrService: ToastrService
-    ) { }
+        private toastrService: ToastrService,
+        private contentService: ContentService,
+    ) {
+        this.contentService.getNavbar().subscribe(res => {
+            this.navbar = res;
+        });
+        this.contentService.getHireUsForm().subscribe(res => {
+            this.hireUsForm = res;
+        })
+    }
 
     ngOnInit() { }
 
@@ -171,6 +183,26 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     get isValidEmail() {
         return /^[\w\d]+@[\w\d]+.[\w]{2,3}$/.test(this.email);
+    }
+
+    swithLanguage(btn: string) {
+        const page: HTMLHtmlElement = window.document.getElementsByClassName('page')[0] as HTMLHtmlElement;
+        const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader-area')[0] as HTMLHtmlElement;
+        if (btn === 'en') {
+            if (localStorage.getItem('current_language') === 'ru') {
+                localStorage.setItem('current_language', 'en');
+                window.location.reload();
+                page.style.display = 'none';
+                loader.style.display = 'block';
+            }
+        } else {
+            if (localStorage.getItem('current_language') === 'en') {
+                localStorage.setItem('current_language', 'ru');
+                window.location.reload();
+                page.style.display = 'none';
+                loader.style.display = 'block';
+            }
+        }
     }
 
     // test() {

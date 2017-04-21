@@ -22,12 +22,18 @@ export class AppComponent implements OnInit, OnDestroy {
   testLoader: boolean;
   isLoginPage: boolean;
 
+  currentLanguage: string;
+
   constructor(
     private loaderService: LoaderService,
     private elementRef: ElementRef,
     private router: Router,
     private location: Location,
   ) {
+    if (!localStorage.getItem('current_language')) {
+      localStorage.setItem('current_language', 'ru');
+    };
+    console.log('current language ', localStorage.getItem('current_language'))
     router.events.subscribe((val: RoutesRecognized) => {
       const pattern = /\/admin(\/\([\w]+:[\w-]+\))?|\/authorization/;
       if (pattern.test(val.url)) {

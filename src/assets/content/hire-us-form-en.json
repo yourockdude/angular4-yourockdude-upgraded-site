@@ -1,0 +1,25 @@
+{
+    "title": "Choose a subject",
+    "options": [
+        {
+            "name": "Website development"
+        },
+        {
+            "name": "Mobile application development"
+        },
+        {
+            "name": "Corporate Identity design"
+        },
+        {
+            "name": "Complex design support"
+        }
+    ],
+    "name": "Full name",
+    "phone": "Phone number",
+    "email": "E-mail",
+    "message": "Message",
+    "file": "Attach a file (max size 25 MB)",
+    "send": "Submit",
+    "error": "Fill in all required fields",
+    "footnote": "Required fields"
+}

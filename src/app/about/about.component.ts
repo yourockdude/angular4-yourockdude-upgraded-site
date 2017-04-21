@@ -10,11 +10,11 @@ import { Description } from '../shared/models/description';
 })
 
 export class AboutComponent implements OnInit {
-    descriptions: Description[] = [];
+    static: any;
     constructor(private contentService: ContentService) {
-        this.contentService.getTestAboutContent()
+        this.contentService.getStaticAbout()
             .subscribe(res => {
-                this.descriptions = res;
+                this.static = res;
             });
     }
 

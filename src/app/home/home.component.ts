@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
     projects: Project[];
     title: string;
+    static: any;
 
     constructor(
         private contentService: ContentService,
@@ -34,6 +35,8 @@ export class HomeComponent implements OnInit {
                 this.projects = res.data;
                 this.loaderService.emitChange(true);
             });
+        this.contentService.getStaticHome()
+            .subscribe(res => this.static = res);
     }
 
     ngOnInit() { }

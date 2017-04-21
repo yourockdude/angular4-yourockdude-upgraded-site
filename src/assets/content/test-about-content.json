@@ -1,4 +1,3 @@
-[
     {
         "paragraphTitle": "Что мы делаем",
         "content": [
@@ -54,5 +53,33 @@
                 "title": "Присоединяйся @yourock_inc"
             }
         ]
-    }
+    },
+    {
+        "paragraphTitle": "Наши клиенты",
+        "content": [
+            {
+                "title": "Yota"
+            },
+            {
+                "title": "Kaspersky Lab"
+            },
+            {
+                "title": "Leroy Merlin"
+            },
+            {
+                "title": "Fendi"
+            },
+            {
+                "title": "Nivea"
+            },
+            {
+                "title": "MTS"
+            }
+        ]
+    },
+    {
+        "paragraphTitle": "Награды",
+        "content": [
+        ]
+    },
 ]

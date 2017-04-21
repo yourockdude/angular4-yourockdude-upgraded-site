@@ -40,6 +40,7 @@
     -ms-user-select: none;
     user-select: none; 
     -webkit-user-drag: none;
+    display: none;
 }
 
 @keyframes spin {
@@ -53,4 +54,8 @@
     display: inline-block;
     vertical-align: top;
     height: 100%;
+}
+
+.ru, .en {
+    cursor: pointer;
 }
