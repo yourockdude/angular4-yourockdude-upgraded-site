@@ -27,22 +27,22 @@
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text"
+            <input [style.border-bottom-color]="!name ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text"
                 name="name" id="name" value="" placeholder="{{hireUsForm?.formName}}">
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!isValidPhone ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item"
+            <input [style.border-bottom-color]="!isValidPhone ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item"
                 type="text" name="phone" id="phone" value="" placeholder="{{hireUsForm?.phone}}">
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!isValidEmail ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item"
+            <input [style.border-bottom-color]="!isValidEmail ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item"
                 type="text" name="email" id="email" value="" placeholder="{{hireUsForm?.email}}">
         </div>
 
         <div class="popup_form-item-mandatory item-message">
-            <textarea [style.border-bottom-color]="!message ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item"
+            <textarea [style.border-bottom-color]="!message ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item"
                 name="text" id="text" value="" placeholder="{{hireUsForm?.message}}"></textarea>
         </div>
 

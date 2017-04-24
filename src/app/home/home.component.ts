@@ -52,11 +52,30 @@ export class HomeComponent implements OnInit {
                 res.data.map(project => {
                     project.media.src = [environment.contentUrl, project.media.src].join('');
                 });
-                this.projects = res.data;
+                this.projects = this.moveElementInArray(res.data, res.data.find(f => f.title === 'Vesper'), 0);
                 this.loaderService.emitChange(true);
             });
     }
 
     ngOnInit() { }
 
+    moveElementInArray(array: any[], value: any, newPosition?: any) {
+        const oldIndex = array.indexOf(value);
+        if (oldIndex > -1) {
+
+            if (newPosition < 0) {
+                newPosition = 0;
+            } else if (newPosition >= array.length) {
+                newPosition = array.length;
+            }
+
+            const arrayClone = array.slice();
+            arrayClone.splice(oldIndex, 1);
+            arrayClone.splice(newPosition, 0, value);
+
+            return arrayClone;
+        }
+        console.log(array.map(m => m.title));
+        return array;
+    }
 }

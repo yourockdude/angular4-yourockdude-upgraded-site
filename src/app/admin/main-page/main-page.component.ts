@@ -9,6 +9,8 @@ import { ContentService } from '../../shared/services/content.service';
 
 export class MainPageComponent implements OnInit {
     title: string;
+    editing = false;
+    editText: string;
 
     constructor(private contentService: ContentService) {
         this.contentService.getHomePage()
@@ -18,4 +20,25 @@ export class MainPageComponent implements OnInit {
     }
 
     ngOnInit() { }
+
+    edit() {
+        this.editing = true;
+        this.editText = this.title;
+    }
+
+    save() {
+        this.contentService.editHomeTitle(this.editText)
+            .subscribe(res => {
+                if (res.success) {
+                    this.editing = false;
+                    this.title = this.editText;
+                }
+            });
+    }
+
+    cancel() {
+        this.editing = false;
+        this.editText = this.title;
+    }
+
 }

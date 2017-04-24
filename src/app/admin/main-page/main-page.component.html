@@ -1,1 +1,9 @@
-<h2 [innerHTML]="title"></h2>
+<div *ngIf="!editing" class="show">
+    <h2 [innerHTML]="title"></h2>
+    <button (click)="edit()">edit</button>
+</div>
+<div *ngIf="editing" class="edit">
+    <textarea name="" id="" [(ngModel)]="editText"></textarea>
+    <button (click)="save()">save</button>
+    <button (click)="cancel()">cancel</button>
+</div>

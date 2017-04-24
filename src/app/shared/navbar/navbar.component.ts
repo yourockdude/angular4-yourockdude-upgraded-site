@@ -161,7 +161,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         formData.append('phone', this.phone);
         formData.append('email', this.email);
         formData.append('message', this.message);
-        formData.append('theme', this.theme);
+        formData.append('theme', this.theme ? this.theme : 'Без темы');
         formData.append('file_for_email', this.file);
         this.emailService.sendEmail(formData).subscribe(res => {
             if (res.success) {
