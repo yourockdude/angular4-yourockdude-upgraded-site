@@ -8,7 +8,6 @@
         </div>
         <nav>
             <ul>
-                <!--<li (click)="test()">test</li>-->
                 <li><a class="agency" [routerLink]="'/about'">{{navbar.agency}}</a></li>
                 <li><span class="hire_us hire_us-visible hire_us_ru" (click)="showHireUsForm()">{{navbar.hireUs}}</span></li>
                 <li>
@@ -20,15 +19,12 @@
 
     <form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
         <div (click)="showHireUsForm()" class="popup_form-close"></div>
-        <!--<div class="sel sel--black-panther">
-        <span #select class="sel__placeholder sel__placeholder--black-panther" data-placeholder="Выберите услугу">{{hireUsForm?.subject}}</span>
-        <div class="sel__box sel__box--black-panther">
-            <span *ngFor="let option of hireUsForm?.options" class="sel__box__options sel__box__options--black-panther">{{hireUsForm?.option}}</span>
-            <span class="sel__box__options sel__box__options--black-panther">Разработка мобильного приложения</span>
-            <span class="sel__box__options sel__box__options--black-panther">Разработка фирменного стиля</span>
-            <span class="sel__box__options sel__box__options--black-panther">Комплексная дизайн-поддержка</span>
+        <div class="sel sel--black-panther">
+            <span #select class="sel__placeholder sel__placeholder--black-panther" placeholder="Выберите услугу">{{hireUsForm?.title}}</span>
+            <div class="sel__box sel__box--black-panther">
+                <span *ngFor="let option of hireUsForm?.options" (click)="onSubjectClick($event)" class="sel__box__options sel__box__options--black-panther">{{option.name}}</span>
+            </div>
         </div>
-    </div>-->
 
         <div class="popup_form-item-mandatory">
             <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text"
@@ -58,7 +54,7 @@
             <input class="popup_form-item attach" (change)="fileChange($event)" name="file_for_email" type="file" value="">
         </div>
 
-        <input *ngIf="allowToSendEmail;else error" class="submit_button popup_form-btn" type="submit" value="hireUsForm?.submit"
+        <input *ngIf="allowToSendEmail;else error" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.send}}"
             (click)="sendEmail()">
         <ng-template #error>
             <input style="cursor:initial" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.error}}">

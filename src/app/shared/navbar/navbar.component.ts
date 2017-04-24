@@ -4,6 +4,7 @@ import {
     AfterViewInit,
     ViewChild,
     ElementRef,
+    ViewContainerRef,
 } from '@angular/core';
 import {
     trigger,
@@ -15,7 +16,7 @@ import {
 } from '@angular/animations';
 import { EmailService } from '../services/email.service';
 import { ContentService } from '../services/content.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as $ from 'jquery';
 declare const el: JQuery;
 
@@ -33,10 +34,10 @@ declare const el: JQuery;
                 'opened => closed', [
                     animate('2s')
                 ]
-            ),
+            )
         ])
     ],
-    providers: [EmailService, ToastrService, ContentService],
+    providers: [EmailService, ToastsManager, ContentService],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
@@ -55,11 +56,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     navbar: any;
     hireUsForm: any;
 
+    sendingEmail: boolean;
+
     constructor(
         private emailService: EmailService,
-        private toastrService: ToastrService,
+        private toastrManager: ToastsManager,
         private contentService: ContentService,
+        private vcr: ViewContainerRef
     ) {
+        this.toastrManager.setRootViewContainerRef(vcr);
         this.contentService.getNavbar().subscribe(res => {
             this.navbar = res.data;
         });
@@ -127,17 +132,17 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             $(this).toggleClass('active');
         });
 
-        $('.sel__box__options').click(function () {
-            const txt = $(this).text();
-            const index = $(this).index();
+        // $('.sel__box__options').click(function () {
+        //     const txt = $(this).text();
+        //     const index = $(this).index();
 
-            $(this).siblings('.sel__box__options').removeClass('selected');
-            $(this).addClass('selected');
+        //     $(this).siblings('.sel__box__options').removeClass('selected');
+        //     $(this).addClass('selected');
 
-            const $currentSel = $(this).closest('.sel');
-            $currentSel.children('.sel__placeholder').text(txt);
-            $currentSel.children('select').prop('selectedIndex', index + 1);
-        });
+        //     const $currentSel = $(this).closest('.sel');
+        //     $currentSel.children('.sel__placeholder').text(txt);
+        //     $currentSel.children('select').prop('selectedIndex', index + 1);
+        // });
     }
 
     showHireUsForm() {
@@ -150,24 +155,31 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     sendEmail() {
+        this.sendingEmail = true;
         const formData: FormData = new FormData();
         formData.append('name', this.name);
         formData.append('phone', this.phone);
         formData.append('email', this.email);
         formData.append('message', this.message);
-        formData.append('theme', this.select.nativeElement.textContent);
+        formData.append('theme', this.theme);
         formData.append('file_for_email', this.file);
         this.emailService.sendEmail(formData).subscribe(res => {
             if (res.success) {
-                this.toastrService.success('Ваше сообщение отправлено');
                 this.showHireUsForm();
+                this.sendingEmail = false;
+                this.toastrManager.success('Ваше сообщение отправлено');
             }
         });
     }
 
     get allowToSendEmail() {
         if (
-            ([this.name, this.phone, this.email, this.message].find(item => item === '') === undefined)
+            ([
+                this.name,
+                this.phone,
+                this.email,
+                this.message
+            ].find(item => item === '') === undefined)
             && this.isValidEmail
             && this.isValidPhone
         ) {
@@ -205,8 +217,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         }
     }
 
-    // test() {
-    //     this.toastrService.success('test', 'test')
-    //     console.log('test');
-    // }
+    onSubjectClick(event: any) {
+        this.select.nativeElement.innerText = event.target.innerText;
+        this.theme = event.target.innerText;
+    }
 }

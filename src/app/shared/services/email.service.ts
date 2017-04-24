@@ -13,7 +13,7 @@ export class EmailService {
     constructor(private http: Http) { }
 
     sendEmail(formData: FormData) {
-        return this.http.post(`${environment.api}send_email`, formData)
+        return this.http.post(`${environment.api}mail_messages`, formData)
             .map(res => {
                 return res.json();
             });
