@@ -61,11 +61,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         private contentService: ContentService,
     ) {
         this.contentService.getNavbar().subscribe(res => {
-            this.navbar = res;
+            this.navbar = res.data;
         });
         this.contentService.getHireUsForm().subscribe(res => {
-            this.hireUsForm = res;
-        })
+            this.hireUsForm = res.data;
+        });
     }
 
     ngOnInit() { }
