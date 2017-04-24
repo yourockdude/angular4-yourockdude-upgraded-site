@@ -14,7 +14,6 @@ import { AuthorizationModule } from './authorization/authorization.module';
 import { AdminModule } from './admin/admin.module';
 
 import { LoaderService } from './shared/services/loader.service';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     AdminModule,
     NotFoundModule, // Always should be at the end
   ],
-  providers: [LoaderService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [LoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
