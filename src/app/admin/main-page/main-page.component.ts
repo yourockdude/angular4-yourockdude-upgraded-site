@@ -11,7 +11,7 @@ export class MainPageComponent implements OnInit {
     title: string;
 
     constructor(private contentService: ContentService) {
-        this.contentService.getHomeTitle('main')
+        this.contentService.getHomePage()
             .subscribe(res => {
                 this.title = res.data.title;
             });

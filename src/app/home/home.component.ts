@@ -22,7 +22,7 @@ import {
         trigger('fadeIn', [
             state('in', style({ opacity: 1 })),
             state('void', style({ opacity: 0 })),
-            transition('* <=> *', animate('3000ms')),
+            transition('* <=> *', animate('2000ms')),
         ])
     ]
 })
@@ -30,8 +30,7 @@ import {
 export class HomeComponent implements OnInit {
 
     projects: Project[];
-    title: string;
-    static: any;
+    homeContent: any;
     in = 'in';
 
     constructor(
@@ -39,9 +38,9 @@ export class HomeComponent implements OnInit {
         private loaderService: LoaderService,
     ) {
         this.loaderService.emitChange(false);
-        this.contentService.getHomeTitle('main')
+        this.contentService.getHomePage()
             .subscribe(res => {
-                this.title = res.data.title;
+                this.homeContent = res.data;
             });
         this.contentService.getProjects()
             .subscribe(res => {
@@ -51,8 +50,6 @@ export class HomeComponent implements OnInit {
                 this.projects = res.data;
                 this.loaderService.emitChange(true);
             });
-        this.contentService.getStaticHome()
-            .subscribe(res => this.static = res);
     }
 
     ngOnInit() { }

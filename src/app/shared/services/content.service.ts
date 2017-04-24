@@ -10,11 +10,6 @@ export class ContentService {
         this.currentLanguage = localStorage.getItem('current_language');
     }
 
-    getTestAboutContent() {
-        return this.http.request('../../../assets/content/test-about-content.json')
-            .map(res => res.json());
-    }
-
     getProjects() {
         return this.http.get(`${environment.api}products/${this.currentLanguage}`)
             .map(res => res.json());
@@ -25,28 +20,48 @@ export class ContentService {
     //         .map(res => res.json());
     // }
 
-    getHomeTitle(name: string) {
-        return this.http.get(`${environment.api}pages/${name}${this.currentLanguage.toUpperCase()}`)
+    getHomePage() {
+        return this.http.get(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
     }
+
+    // getNavbar() {
+    //     return this.http.request(`../../../assets/content/navbar-${this.currentLanguage}.json`)
+    //         .map(res => res.json());
+    // }
 
     getNavbar() {
-        return this.http.request(`../../../assets/content/navbar-${this.currentLanguage}.json`)
+        return this.http.get(`${environment.api}pages/navbar${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
     }
 
-    getStaticHome() {
-        return this.http.request(`../../../assets/content/home-static-${this.currentLanguage}.json`)
-            .map(res => res.json());
-    }
+    // getStaticHome() {
+    //     return this.http.request(`../../../assets/content/home-static-${this.currentLanguage}.json`)
+    //         .map(res => res.json());
+    // }
+
+    // getStaticHome() {
+    //     return this.http.get(`${environment.api}pages/${name}${this.currentLanguage.toUpperCase()}`)
+    //         .map(res => res.json());
+    // }
+
+    // getHireUsForm() {
+    //     return this.http.request(`../../../assets/content/hire-us-form-${this.currentLanguage}.json`)
+    //         .map(res => res.json());
+    // }
 
     getHireUsForm() {
-        return this.http.request(`../../../assets/content/hire-us-form-${this.currentLanguage}.json`)
+        return this.http.get(`${environment.api}pages/hireUs${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
     }
 
-    getStaticAbout() {
-        return this.http.request(`../../../assets/content/about-static-${this.currentLanguage}.json`)
+    // getStaticAbout() {
+    //     return this.http.request(`../../../assets/content/about-static-${this.currentLanguage}.json`)
+    //         .map(res => res.json());
+    // }
+
+    getAboutPage() {
+        return this.http.get(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
     }
 
