@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
 import { LoaderService } from './shared/services/loader.service';
 import {
   Router,
@@ -15,12 +15,11 @@ import 'rxjs/add/operator/pairwise';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit, OnDestroy {
-  private _routeScrollPositions: { [url: string]: number } = {};
-  private _subscriptions: Subscription[] = [];
+export class AppComponent implements OnInit, AfterViewInit {
 
   testLoader: boolean;
-  showNavbarNFooter: boolean;
+  showNavbar: boolean;
+  showFooter: boolean;
 
   currentLanguage: string;
 
@@ -33,15 +32,12 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!localStorage.getItem('current_language')) {
       localStorage.setItem('current_language', 'ru');
     };
-    console.log('current language ', localStorage.getItem('current_language'));
     router.events.subscribe((val: RoutesRecognized) => {
-      // const pattern = /\/admin(\/\([\w]+:[\w-]+\))?|\/authorization/;
       const pattern = /^\/(about)?$/;
-      console.log(val.url, pattern.test(val.url));
       if (pattern.test(val.url)) {
-        this.showNavbarNFooter = false;
+        this.showFooter = true;
       } else {
-        this.showNavbarNFooter = true;
+        this.showFooter = false;
       }
     });
 
@@ -61,7 +57,12 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+  ngAfterViewInit(): void {
+    if (localStorage.getItem('current_language') === 'ru') {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = '../assets/3rd-scripts/loader_2_002e96.js';
+      this.elementRef.nativeElement.appendChild(script);
+    }
   }
 }

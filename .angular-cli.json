@@ -30,9 +30,7 @@
         "../src/assets/3rd-scripts/common.js",
         "../src/assets/3rd-scripts/cbpScroller.js",
         "../src/assets/3rd-scripts/classie.js",
-        "../src/assets/3rd-scripts/a9bd9a.js",
         "../src/assets/3rd-scripts/libs.min.js",
-        "../src/assets/3rd-scripts/loader_2_002e96.js",
         "../src/assets/3rd-scripts/modernizr.custom.js"
       ],
       "environmentSource": "environments/environment.ts",
