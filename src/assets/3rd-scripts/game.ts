@@ -370,7 +370,7 @@ export function game() {
                 ctx.fillStyle = "white";
                 ctx.textBaseline = 'middle';
                 ctx.textAlign = "left";
-                ctx.fillText('Record: ' + record + '', 20, 30);
+                ctx.fillText('Record: ' + record + '', 20, 60);
 
                 ctx.font = "40px Verdana";
                 ctx.fillStyle = "white";

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ContentService } from '../shared/services/content.service';
 import { Project } from '../shared/models/project';
 import { Observable } from 'rxjs/Rx';
@@ -36,11 +36,16 @@ export class HomeComponent implements OnInit {
     constructor(
         private contentService: ContentService,
         private loaderService: LoaderService,
+        private elementRef: ElementRef,
     ) {
         this.loaderService.emitChange(false);
         this.contentService.getHomePage()
             .subscribe(res => {
                 this.homeContent = res.data;
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = '../assets/3rd-scripts/common.js';
+                this.elementRef.nativeElement.appendChild(script);
             });
         this.contentService.getProjects()
             .subscribe(res => {

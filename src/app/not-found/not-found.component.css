@@ -1,8 +1,8 @@
 .not-found {
-      overflow: hidden !important;
-      height: 100% !important;
-      background: #191919 !important;
-      width: 100% !important;
+      overflow: hidden;
+      height: 100%;
+      background: #191919;
+      width: 100%;
     }
 
 #canvas {
@@ -30,4 +30,5 @@
 .game_header {
     text-align: center;
     font-family: "HelveticaNeueCyr-Thin";
+    margin: 4% 0 3% 0;
 }

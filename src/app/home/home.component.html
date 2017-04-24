@@ -2,7 +2,7 @@
     <div *ngIf="projects && homeContent" class="home">
         <h2 [@fadeIn]="in" class="home__title" style="display: block;" [innerHTML]="homeContent.title">
         </h2>
-        <a [@fadeIn]="in" pageScroll href="#projects" class="down__btn go_to" style="display: inline;">
+        <a [@fadeIn]="in" href="#projects" class="down__btn go_to" style="display: inline;">
             <p>{{homeContent.ourProjects}}</p>
             <img src="../../assets/images/arrow.png" class="down__btn__img" alt="arrow">
         </a>
