@@ -4,12 +4,27 @@ import { Project } from '../shared/models/project';
 import { Observable } from 'rxjs/Rx';
 import { LoaderService } from '../shared/services/loader.service';
 import { environment } from '../../environments/environment';
+import {
+    trigger,
+    state,
+    style,
+    animate,
+    transition,
+    keyframes,
+} from '@angular/animations';
 
 @Component({
     moduleId: module.id,
     selector: 'app-yourock-home',
     templateUrl: 'home.component.html',
     providers: [ContentService],
+    animations: [
+        trigger('fadeIn', [
+            state('in', style({ opacity: 1 })),
+            state('void', style({ opacity: 0 })),
+            transition('* <=> *', animate('3000ms')),
+        ])
+    ]
 })
 
 export class HomeComponent implements OnInit {
@@ -17,6 +32,7 @@ export class HomeComponent implements OnInit {
     projects: Project[];
     title: string;
     static: any;
+    in = 'in';
 
     constructor(
         private contentService: ContentService,
@@ -40,4 +56,5 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() { }
+
 }

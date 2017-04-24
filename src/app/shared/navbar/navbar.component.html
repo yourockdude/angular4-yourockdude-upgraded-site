@@ -1,25 +1,26 @@
-<header *ngIf="navbar" class="header" style="display: block;">
-    <div class="header__left">
-        <div class="logo__wrapper" style="margin-right: 0px;">
+<div class="page">
+    <header *ngIf="navbar" class="header" style="display: block;">
+        <div class="header__left">
+            <div class="logo__wrapper" style="margin-right: 0px;">
+            </div>
+            <a [routerLink]="'/'" class="logo logo-1"><img src="/assets/images/logo.svg"></a>
+            <a [routerLink]="'/'" class="logo logo-2"><img src="/assets/images/logo.svg"></a>
         </div>
-        <a [routerLink]="'/'" class="logo logo-1"><img src="/assets/images/logo.svg"></a>
-        <a [routerLink]="'/'" class="logo logo-2"><img src="/assets/images/logo.svg"></a>
-    </div>
-    <nav>
-        <ul>
-            <!--<li (click)="test()">test</li>-->
-            <li><a class="agency" [routerLink]="'/about'">{{navbar.agency}}</a></li>
-            <li><span class="hire_us hire_us-visible hire_us_ru" (click)="showHireUsForm()">{{navbar.hireUs}}</span></li>
-            <li>
-                <div class="language"><a (click)="swithLanguage('ru')" class="ru">Ru</a> | <a (click)="swithLanguage('en')" class="en">En</a></div>
-            </li>
-        </ul>
-    </nav>
-</header>
+        <nav>
+            <ul>
+                <!--<li (click)="test()">test</li>-->
+                <li><a class="agency" [routerLink]="'/about'">{{navbar.agency}}</a></li>
+                <li><span class="hire_us hire_us-visible hire_us_ru" (click)="showHireUsForm()">{{navbar.hireUs}}</span></li>
+                <li>
+                    <div class="language"><a (click)="swithLanguage('ru')" class="ru">Ru</a> | <a (click)="swithLanguage('en')" class="en">En</a></div>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-<form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
-    <div (click)="showHireUsForm()" class="popup_form-close"></div>
-    <!--<div class="sel sel--black-panther">
+    <form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
+        <div (click)="showHireUsForm()" class="popup_form-close"></div>
+        <!--<div class="sel sel--black-panther">
         <span #select class="sel__placeholder sel__placeholder--black-panther" data-placeholder="Выберите услугу">{{hireUsForm?.subject}}</span>
         <div class="sel__box sel__box--black-panther">
             <span *ngFor="let option of hireUsForm?.options" class="sel__box__options sel__box__options--black-panther">{{hireUsForm?.option}}</span>
@@ -29,38 +30,44 @@
         </div>
     </div>-->
 
-    <div class="popup_form-item-mandatory">
-        <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text" name="name" id="name" value="" placeholder="{{hireUsForm?.name}}">
-    </div>
+        <div class="popup_form-item-mandatory">
+            <input [style.border-bottom-color]="!name ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item" type="text"
+                name="name" id="name" value="" placeholder="{{hireUsForm?.name}}">
+        </div>
 
-    <div class="popup_form-item-mandatory">
-        <input [style.border-bottom-color]="!isValidPhone ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item" type="text" name="phone" id="phone" value="" placeholder="{{hireUsForm?.phone}}">
-    </div>
+        <div class="popup_form-item-mandatory">
+            <input [style.border-bottom-color]="!isValidPhone ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item"
+                type="text" name="phone" id="phone" value="" placeholder="{{hireUsForm?.phone}}">
+        </div>
 
-    <div class="popup_form-item-mandatory">
-        <input [style.border-bottom-color]="!isValidEmail ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item" type="text" name="email" id="email" value="" placeholder="{{hireUsForm?.email}}">
-    </div>
+        <div class="popup_form-item-mandatory">
+            <input [style.border-bottom-color]="!isValidEmail ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item"
+                type="text" name="email" id="email" value="" placeholder="{{hireUsForm?.email}}">
+        </div>
 
-    <div class="popup_form-item-mandatory item-message">
-        <textarea [style.border-bottom-color]="!message ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item" name="text" id="text" value="" placeholder="{{hireUsForm?.message}}"></textarea>
-    </div>
+        <div class="popup_form-item-mandatory item-message">
+            <textarea [style.border-bottom-color]="!message ? 'red' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item"
+                name="text" id="text" value="" placeholder="{{hireUsForm?.message}}"></textarea>
+        </div>
 
-    <div class="wrapper_popup_form-item">
-        <div *ngIf="file; else noFile" class="item_tittle">{{fileName}}</div>
-        <ng-template #noFile>
-            <div class="item_tittle">{{hireUsForm?.file}}</div>
+        <div class="wrapper_popup_form-item">
+            <div *ngIf="file; else noFile" class="item_tittle">{{fileName}}</div>
+            <ng-template #noFile>
+                <div class="item_tittle">{{hireUsForm?.file}}</div>
+            </ng-template>
+            <input class="popup_form-item attach" (change)="fileChange($event)" name="file_for_email" type="file" value="">
+        </div>
+
+        <input *ngIf="allowToSendEmail;else error" class="submit_button popup_form-btn" type="submit" value="hireUsForm?.submit"
+            (click)="sendEmail()">
+        <ng-template #error>
+            <input style="cursor:initial" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.error}}">
         </ng-template>
-        <input class="popup_form-item attach" (change)="fileChange($event)" name="file_for_email" type="file" value="">
-    </div>
-
-    <input *ngIf="allowToSendEmail;else error" class="submit_button popup_form-btn" type="submit" value="hireUsForm?.submit" (click)="sendEmail()">
-    <ng-template #error>
-    <input style="cursor:initial" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.error}}">
-    </ng-template>
-    <div class="popup_form-item-mandatory">
-        <span>— {{hireUsForm?.footnote}}</span>
-    </div>
-    <div class="social">
-        <a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram-white"></a>
-    </div>
-</form>
+        <div class="popup_form-item-mandatory">
+            <span>— {{hireUsForm?.footnote}}</span>
+        </div>
+        <div class="social">
+            <a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram-white"></a>
+        </div>
+    </form>
+</div>

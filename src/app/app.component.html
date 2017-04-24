@@ -2,8 +2,8 @@
   <div class="loader"></div>
 </div>
 <!--TODO add styles for loader-->
-<div [hidden]="false" class="page">
-  <app-yourock-navbar *ngIf="!isLoginPage"></app-yourock-navbar>
+<div [hidden]="false">
+  <app-yourock-navbar *ngIf="!showNavbarNFooter"></app-yourock-navbar>
   <router-outlet></router-outlet>
-  <app-yourock-footer *ngIf="!isLoginPage"></app-yourock-footer>
+  <app-yourock-footer *ngIf="!showNavbarNFooter"></app-yourock-footer>
 </div>

@@ -1,39 +1,40 @@
-<!--<app-yourock-description *ngFor="let description of descriptions" [description]="description"></app-yourock-description>-->
-<div *ngIf="static" id="root" class="page_about">
-    <div>
-        <h2 class="left_part">{{static.whatWeDo.title}}</h2>
-        <div class="right_part">
-            <div *ngFor="let item of static.whatWeDo.content">
-                <b class="about_tittle">{{item.title}}</b>
-                <p>{{item.text}}</p>
+<div class="page">
+    <div *ngIf="static" id="root" class="page_about">
+        <div>
+            <h2 class="left_part">{{static.whatWeDo.title}}</h2>
+            <div class="right_part">
+                <div *ngFor="let item of static.whatWeDo.content">
+                    <b class="about_tittle">{{item.title}}</b>
+                    <p>{{item.text}}</p>
+                </div>
             </div>
-        </div>
-    </div>
-    <div>
-        <h2 class="left_part">{{static.capabilities.title}}</h2>
-        <div class="right_part">
-            <b *ngFor="let item of static.capabilities.content">{{item.title}}</b>
-        </div>
-    </div>
-    <div>
-        <h2>{{static.instagram.title}}</h2>
-        <b class="right_part follow_us"><a href="{{static.instagram.link}}" target="_blank">{{static.instagram.content}}</a></b>
-        <h2 lass="left_part">{{static.client.title}}</h2>
-        <div class="right_part">
-            <b *ngFor="let item of static.client.content">{{item.clientName}}</b>
         </div>
         <div>
-            <div class="awards_block">
-                <h2 class="left_part">{{static.awards.title}}</h2>
-                <div class="left_part">
-                    <img src="{{static.awards.leftPart.image}}" alt="Behance">
-                    <p *ngFor="let item of static.awards.leftPart.content"><b>{{item.title}}</b> {{item.text}}</p>
-                </div>
-                <div class="right_part right_part_awards">
-                    <img src="{{static.awards.rightPart.image}}" alt="Awwwards">
-                    <p *ngFor="let item of static.awards.rightPart.content"><b>{{item.title}}</b> {{item.text}}</p>
-                </div>
+            <h2 class="left_part">{{static.capabilities.title}}</h2>
+            <div class="right_part">
+                <b *ngFor="let item of static.capabilities.content">{{item.title}}</b>
             </div>
-            <p class="page_about_description">{{static.description}}</p>
-            <b class="ready_to_start">{{static.start.title}} <a href="{{static.start.link}}" target="_blank" >{{static.start.linkTitle}}</a></b>
+        </div>
+        <div>
+            <h2>{{static.instagram.title}}</h2>
+            <b class="right_part follow_us"><a href="{{static.instagram.link}}" target="_blank">{{static.instagram.content}}</a></b>
+            <h2 lass="left_part">{{static.client.title}}</h2>
+            <div class="right_part">
+                <b *ngFor="let item of static.client.content">{{item.clientName}}</b>
+            </div>
+            <div>
+                <div class="awards_block">
+                    <h2 class="left_part">{{static.awards.title}}</h2>
+                    <div class="left_part">
+                        <img src="{{static.awards.leftPart.image}}" alt="Behance">
+                        <p *ngFor="let item of static.awards.leftPart.content"><b>{{item.title}}</b> {{item.text}}</p>
+                    </div>
+                    <div class="right_part right_part_awards">
+                        <img src="{{static.awards.rightPart.image}}" alt="Awwwards">
+                        <p *ngFor="let item of static.awards.rightPart.content"><b>{{item.title}}</b> {{item.text}}</p>
+                    </div>
+                </div>
+                <p class="page_about_description">{{static.description}}</p>
+                <b class="ready_to_start">{{static.start.title}} <a href="{{static.start.link}}" target="_blank" >{{static.start.linkTitle}}</a></b>
+            </div>
         </div>

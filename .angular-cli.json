@@ -22,7 +22,6 @@
         "../src/assets/styles/main.css",
         "../src/assets/styles/pandora.css",
         "../src/assets/styles/about.css",
-        "../src/assets/styles/not-found.css",
         "../src/assets/styles/additional-styles.css",
         "../node_modules/ngx-toastr/toastr.css"
       ],

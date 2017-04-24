@@ -20,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
 
   testLoader: boolean;
-  isLoginPage: boolean;
+  showNavbarNFooter: boolean;
 
   currentLanguage: string;
 
@@ -33,13 +33,15 @@ export class AppComponent implements OnInit, OnDestroy {
     if (!localStorage.getItem('current_language')) {
       localStorage.setItem('current_language', 'ru');
     };
-    console.log('current language ', localStorage.getItem('current_language'))
+    console.log('current language ', localStorage.getItem('current_language'));
     router.events.subscribe((val: RoutesRecognized) => {
-      const pattern = /\/admin(\/\([\w]+:[\w-]+\))?|\/authorization/;
+      // const pattern = /\/admin(\/\([\w]+:[\w-]+\))?|\/authorization/;
+      const pattern = /^\/(about)?$/;
+      console.log(val.url, pattern.test(val.url));
       if (pattern.test(val.url)) {
-        this.isLoginPage = true;
+        this.showNavbarNFooter = false;
       } else {
-        this.isLoginPage = false;
+        this.showNavbarNFooter = true;
       }
     });
 

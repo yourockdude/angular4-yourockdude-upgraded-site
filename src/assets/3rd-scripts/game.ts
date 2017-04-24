@@ -3,7 +3,7 @@
 //PLAY IN FULL PAGE VIEW!
 
 
-window.addEventListener("DOMContentLoaded", game);
+// window.addEventListener("DOMContentLoaded", game);
 
 //General sprite load
 var sprite = new Image();
@@ -15,10 +15,10 @@ window.onload = function () {
 };
 
 //Game
-function game() {
+export function game() {
 
     //Canvas
-    var canvas = document.getElementById('canvas'),
+    var canvas: any = document.getElementById('canvas'),
         ctx = canvas.getContext('2d'),
         cH = ctx.canvas.height = window.innerHeight,
         cW = ctx.canvas.width = window.innerWidth;
@@ -97,6 +97,7 @@ function game() {
                 }
             } else {
                 dist = Math.sqrt(((e.offsetX - cW / 2) * (e.offsetX - cW / 2)) + ((e.offsetY - cH / 2) * (e.offsetY - cH / 2)));
+                console.log(dist)
 
                 if (dist < 27) {
                     if (e.type == 'click') {
