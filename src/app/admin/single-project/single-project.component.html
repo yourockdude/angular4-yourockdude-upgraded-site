@@ -1,0 +1,70 @@
+<div *ngIf="project">
+    <div class="edit_page_h">Проект</div>
+    <div *ngIf="!editing" style="height:100%">
+        <div>
+            <div class="project_info">
+                <table>
+                    <tr>
+                        <td>name: </td>
+                        <td>{{project.title}}</td>
+                    </tr>
+                    <tr>
+                        <td>descriptions: </td>
+                        <td>{{project.text}}</td>
+                    </tr>
+                    <tr>
+                        <td>site link: </td>
+                        <td>{{project.site.link}}</td>
+                    </tr>
+                    <tr>
+                        <td>site name: </td>
+                        <td>{{project.site.title}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="project_img">
+                <video *ngIf="project.media.type==='video';else image">
+                    <source src="{{project.media.src}}">
+                </video>
+                <ng-template #image>
+                    <img src="{{project.media.src}}">
+                </ng-template>
+            </div>
+        </div>
+        <div class="edit_btn_block">
+            <button class="edit_btn" (click)="edit()">Редактировать</button>
+        </div>
+    </div>
+    <div *ngIf="editing" style="height:100%">
+        <div>
+            <div class="project_info">
+                <table>
+                    <tr>
+                        <td>name: </td>
+                        <td><input type="text" [(ngModel)]="editProject.title"></td>
+                    </tr>
+                    <tr>
+                        <td>descriptions: </td>
+                        <td><textarea rows="7" cols="30" [(ngModel)]="editProject.text"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>site link: </td>
+                        <td><input type="text" [(ngModel)]="editProject.site.link"></td>
+                    </tr>
+                    <tr>
+                        <td>site name: </td>
+                        <td><input type="text" [(ngModel)]="editProject.site.title"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="project_img">
+                <img src="http://yourockdudeapi.herokuapp.com/images/suzuki.png" alt="">
+                <input name="project_img" type="file" value="">
+            </div>
+        </div>
+        <div class="edit_btn_block">
+            <button class="edit_btn" (click)="save()">Сохранить</button>
+            <button class="edit_btn" (click)="cancel()">Отмена</button>
+        </div>
+    </div>
+</div>

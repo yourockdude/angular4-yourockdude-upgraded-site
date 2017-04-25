@@ -1,9 +1,16 @@
-<div *ngIf="!editing" class="show">
-    <h2 [innerHTML]="title"></h2>
-    <button (click)="edit()">edit</button>
+<div class="edit_page_h">Main Page</div>
+<div *ngIf="!editing" style="height:100%">
+    <div class="edit_page_text">{{title}}</div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" (click)="edit()">Редактировать</button>
+    </div>
 </div>
-<div *ngIf="editing" class="edit">
-    <textarea name="" id="" [(ngModel)]="editText"></textarea>
-    <button (click)="save()">save</button>
-    <button (click)="cancel()">cancel</button>
+<div *ngIf="editing" style="height:100%">
+    <div class="edit_page_text">
+        <textarea rows="20" cols="70" [(ngModel)]="editText"></textarea>
+    </div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" (click)="save()">Сохранить</button>
+        <button class="edit_btn" (click)="cancel()">Отмена</button>
+    </div>
 </div>

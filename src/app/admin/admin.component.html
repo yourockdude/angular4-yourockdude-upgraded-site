@@ -1,33 +1,31 @@
 <div id="root" class="pandora_page">
     <div class="pandora_menu">
         <div class="pandora pandora_admin">
-            <p>YOUROCK INC</p>
+            <p [routerLink]="'/'">YOUROCK INC</p>
             <span>Pandora 1.0</span>
         </div>
         <div>
             <div class="language pandora_language">
-                <a href="" class="ru">Ru</a> | <a href="" class="en">En</a></div>
+                <a class="ru" (click)="swithLanguage('ru')">Ru</a> |
+                <a class="en" (click)="swithLanguage('en')">En</a>
+            </div>
         </div>
         <div class="pandora_menu_list">
-            <a [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</a>
-            <!--<p (click)="openLink($event, 'Agency')">Agency</p>-->
+            <p [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</p>
+            <p [routerLink]="[{ outlets: {'sidebar': ['agency'] } }]">Agency</p>
             <div class="pandora_projects">
-                <p>Projects</p>
+                <p [routerLink]="[{ outlets: {'sidebar': ['projects'] } }]">Projects</p>
                 <ul>
-                    <li>Project 1</li>
-                    <li>Project 2</li>
-                    <li>Project 3</li>
-                    <li>Project 4</li>
-                    <li>Project 5</li>
+                    <li *ngFor="let project of projects" [routerLink]="[{ outlets: {'sidebar': ['project', project.id] } }]">{{project.title}}</li>
                 </ul>
             </div>
-            <p>Contacts</p>
+            <p [routerLink]="[{ outlets: {'sidebar': ['contacts'] } }]">Contacts</p>
         </div>
         <button class="logout" (click)="signOut()">
             Log out
         </button>
     </div>
-    <div class="admin-panel">
+    <div class="edit_page">
         <router-outlet name="sidebar"></router-outlet>
     </div>
     <!--<div class="add_project">

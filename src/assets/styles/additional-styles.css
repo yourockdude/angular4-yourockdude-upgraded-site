@@ -48,13 +48,13 @@
     100% { transform: rotate(360deg); }
 }
 
-.admin-panel {
+/*.admin-panel {
     width: 60%;
     background: #555;
     display: inline-block;
     vertical-align: top;
     height: 100%;
-}
+}*/
 
 .ru, .en {
     cursor: pointer;

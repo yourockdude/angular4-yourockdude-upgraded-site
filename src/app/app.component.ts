@@ -1,5 +1,9 @@
-import { Component, ElementRef, OnInit, AfterViewInit } from '@angular/core';
-import { LoaderService } from './shared/services/loader.service';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  AfterViewInit
+} from '@angular/core';
 import {
   Router,
   NavigationStart,
@@ -8,6 +12,9 @@ import {
 } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs/Rx';
+
+import { LoaderService } from './shared/services/loader.service';
+
 import 'rxjs/add/operator/pairwise';
 
 @Component({
@@ -34,10 +41,16 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
     router.events.subscribe((val: RoutesRecognized) => {
       const pattern = /^\/(about)?$/;
+      const navbarPattern = /^\/admin(\/\(.+\))?$/;
       if (pattern.test(val.url)) {
         this.showFooter = true;
       } else {
         this.showFooter = false;
+      };
+      if (navbarPattern.test(val.url)) {
+        this.showNavbar = false;
+      } else {
+        this.showNavbar = true;
       }
     });
 
@@ -57,12 +70,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void {
-    if (localStorage.getItem('current_language') === 'ru') {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = '../assets/3rd-scripts/loader_2_002e96.js';
-      this.elementRef.nativeElement.appendChild(script);
-    }
-  }
+  ngAfterViewInit(): void { }
 }

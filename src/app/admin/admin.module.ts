@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
-import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './index';
+import { AdminComponent } from './admin.component';
+import { SharedModule } from '../shared/shared.module';
+
 import { AuthGuard } from '../shared/services/auth-guard.service';
 import { ContentService } from '../shared/services/content.service';
+
 import { MainPageComponent } from './main-page/main-page.component';
-import { SharedModule } from '../shared/shared.module';
+import { AgencyComponent } from './agency/agency.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { SingleProjectComponent } from './single-project/single-project.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
     imports: [
@@ -14,7 +20,14 @@ import { SharedModule } from '../shared/shared.module';
     exports: [
         SharedModule
     ],
-    declarations: [AdminComponent, MainPageComponent],
+    declarations: [
+        AdminComponent,
+        MainPageComponent,
+        AgencyComponent,
+        ProjectsComponent,
+        SingleProjectComponent,
+        ContactsComponent,
+    ],
     providers: [AuthGuard, ContentService],
 })
 export class AdminModule { }

@@ -14,9 +14,14 @@ import {
     transition,
     keyframes,
 } from '@angular/animations';
+
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
 import { EmailService } from '../services/email.service';
 import { ContentService } from '../services/content.service';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+
+import { swithLanguage } from '../utils/swith-language';
+
 import * as $ from 'jquery';
 declare const el: JQuery;
 
@@ -198,23 +203,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     swithLanguage(btn: string) {
-        const page: HTMLHtmlElement = window.document.getElementsByClassName('page')[0] as HTMLHtmlElement;
-        const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader-area')[0] as HTMLHtmlElement;
-        if (btn === 'en') {
-            if (localStorage.getItem('current_language') === 'ru') {
-                localStorage.setItem('current_language', 'en');
-                window.location.reload();
-                page.style.display = 'none';
-                loader.style.display = 'block';
-            }
-        } else {
-            if (localStorage.getItem('current_language') === 'en') {
-                localStorage.setItem('current_language', 'ru');
-                window.location.reload();
-                page.style.display = 'none';
-                loader.style.display = 'block';
-            }
-        }
+        swithLanguage(btn);
     }
 
     onSubjectClick(event: any) {

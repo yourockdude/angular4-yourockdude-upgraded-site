@@ -10,8 +10,10 @@
             <app-yourock-project *ngFor="let project of projects;let i = index" [index]="i" [project]="project" id="projects"></app-yourock-project>
         </div>
         <div [@fadeIn]="in" class="connection" style="display: block;">
-            {{homeContent.contacts}}: <a href="mailto:sale@yourockdude.com" class="connection_email">Email</a> <a href="https://telegram.me/yourockinc"
-                target="_blank" class="connection_telegram">Telegram</a> <a href="skype:aq_rnd?chat" class="connection_skype">Skype</a>
+            {{homeContent.contacts}}:
+            <a href="mailto:sale@yourockdude.com" class="connection_email">Email</a>
+            <a href="https://telegram.me/yourockinc" target="_blank" class="connection_telegram">Telegram</a>
+            <a href="skype:aq_rnd?chat" class="connection_skype">Skype</a>
         </div>
     </div>
 </div>

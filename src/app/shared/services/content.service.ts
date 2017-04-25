@@ -15,6 +15,11 @@ export class ContentService {
             .map(res => res.json());
     }
 
+    getProjectById(id: string) {
+        return this.http.get(`${environment.api}product/${id}`)
+            .map(res => res.json());
+    }
+
     getHomePage() {
         return this.http.get(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
@@ -40,6 +45,22 @@ export class ContentService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`, body, options)
+            .map(res => res.json());
+    }
+
+    editAboutPage(aboutPage: any) {
+        const body = JSON.stringify(aboutPage);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.put(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`, body, options)
+            .map(res => res.json());
+    }
+
+    editProject(id: string, project: any) {
+        const body = JSON.stringify(project);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.put(`${environment.api}product/${id}`, body, options)
             .map(res => res.json());
     }
 

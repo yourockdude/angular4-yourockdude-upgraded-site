@@ -1,0 +1,48 @@
+<div *ngIf="aboutPage">
+    <div class="edit_page_h">About Page</div>
+    <div *ngIf="!editing" style="height:100%">
+        <section>
+            <div>
+                <div class="edit_page_h2">{{aboutPage.whatWeDo.title}}</div>
+                <div>
+                    <div *ngFor="let item of aboutPage.whatWeDo.content">
+                        <div class="edit_page_h3">{{item.title}}</div>
+                        <div class="text-block">{{item.text}}</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="edit_page_h2">{{aboutPage.capabilities.title}}</div>
+                <ul class="edit_services">
+                    <li *ngFor="let item of aboutPage.capabilities.content">{{item.title}}</li>
+                </ul>
+            </div>
+        </section>
+        <div class="edit_btn_block">
+            <button class="edit_btn" (click)="edit()">Редактировать</button>
+        </div>
+    </div>
+    <div *ngIf="editing" style="height:100%">
+        <section>
+            <div>
+                <div class="edit_page_h2">{{editAboutPage.whatWeDo.title}}</div>
+                <div>
+                    <div *ngFor="let item of editAboutPage.whatWeDo.content">
+                        <input class="edit_page_h3" [(ngModel)]="item.title">
+                        <textarea class="text-block" textarea rows="7" cols="70" [(ngModel)]="item.text"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="edit_page_h2">Услуги</div>
+                <ul class="edit_services">
+                    <input *ngFor="let item of editAboutPage.capabilities.content" [(ngModel)]="item.title">
+                </ul>
+            </div>
+        </section>
+        <div class="edit_btn_block">
+            <button class="edit_btn" (click)="save()">Сохранить</button>
+            <button class="edit_btn" (click)="cancel()">Отмена</button>
+        </div>
+    </div>
+</div>

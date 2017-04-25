@@ -75,7 +75,6 @@ export class HomeComponent implements OnInit {
 
             return arrayClone;
         }
-        console.log(array.map(m => m.title));
         return array;
     }
 }

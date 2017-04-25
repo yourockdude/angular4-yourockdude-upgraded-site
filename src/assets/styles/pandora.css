@@ -43,7 +43,7 @@
       text-align: left; }
 
 .pandora_page {
-  min-width: 1024px;
+  min-width: 1200px;
   background: #f8f8f8;
   border: 70px solid #fff;
   height: 100%;
@@ -68,6 +68,9 @@
 
 .pandora_menu_list {
   margin-left: 10%; }
+  .pandora_menu_list a {
+    display: block;
+    margin-top: 5%; }
   .pandora_menu_list p {
     margin-top: 5%; }
 
@@ -113,7 +116,9 @@
   padding: 3% 5%;
   position: absolute;
   bottom: 0;
-  width: 100%; }
+  width: 100%;
+  border: none;
+  text-align: left; }
 
 .add_project_form {
   width: 40%;
@@ -151,3 +156,82 @@
 
 .add_socials input {
   margin-bottom: 7%; }
+
+.edit_page {
+  display: inline-block;
+  width: 74.5%;
+  position: relative;
+  height: 100%;
+  padding: 1.5%; }
+
+.edit_page_h {
+  text-align: center;
+  margin: 5% 0;
+  font-size: 25px; }
+
+.edit_page_text {
+  margin-left: 10%;
+  margin-top: 10%; }
+
+.edit_btn_block {
+  position: absolute;
+  bottom: 0;
+  background: #ebebeb;
+  width: 100%;
+  padding-left: 60%; }
+
+.edit_btn {
+  border: 1px solid #000;
+  padding: 3%;
+  text-align: center;
+  -webkit-border-radius: 5px;
+          border-radius: 5px;
+  margin-left: 15%; }
+
+.edit_page section {
+  max-height: 500px;
+  overflow-y: scroll; }
+
+.edit_page_h2 {
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 2%; }
+
+.edit_page_h3 {
+  font-size: 18px;
+  width: 25%; }
+
+.text-block {
+  margin-left: 30%;
+  margin-right: 10%;
+  margin-bottom: 3%;
+  width: 60%; }
+
+.edit_services {
+  display: block;
+  list-style-type: none;
+  margin-left: 43%; }
+  .edit_services input {
+    display: block;
+    margin-bottom: 1%; }
+
+.project_info {
+  width: 50%;
+  display: inline-block; }
+  .project_info td {
+    padding-bottom: 5%;
+    vertical-align: top; }
+  .project_info td:first-child {
+    width: 120px; }
+
+.project_img {
+  display: inline-block;
+  width: 40%;
+  vertical-align: top;
+  float: right; }
+  .project_img img {
+    width: 300px;
+    margin-bottom: 3%; }
+    .project_img video {
+    width: 300px;
+    margin-bottom: 3%; }
