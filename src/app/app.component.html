@@ -1,7 +1,6 @@
 <div class="loader-area">
-  <div class="loader"></div>
+  <img class="loader" src="/assets/images/preloader.svg">
 </div>
-<!--TODO add styles for loader-->
 <div class="common" [style.height]="showNavbar ? 'initial' : '100%'">
   <app-yourock-navbar *ngIf="showNavbar"></app-yourock-navbar>
   <router-outlet></router-outlet>
