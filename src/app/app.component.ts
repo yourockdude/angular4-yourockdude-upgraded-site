@@ -30,7 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   testLoader: boolean;
   showNavbar: boolean;
   showFooter: boolean;
-  loaderSrc = '/assets/images/preloader-2.svg';
+  loaderSrc = '/assets/images/preloader-2.png';
 
   currentLanguage: string;
 
@@ -40,9 +40,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     private router: Router,
     private location: Location,
   ) {
-    router.events.subscribe((event: RouterEvent) => {
-      this.navigationInterceptor(event);
-    });
     if (!localStorage.getItem('current_language')) {
       localStorage.setItem('current_language', 'ru');
     };
@@ -58,6 +55,11 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.showNavbar = false;
       } else {
         this.showNavbar = true;
+      }
+    });
+    router.events.subscribe((event: RouterEvent) => {
+      if (!(/^\/admin(\/\(.+\))?$/.test((event as RoutesRecognized).url))) {
+        this.navigationInterceptor(event);
       }
     });
 
@@ -80,16 +82,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void { }
 
   getRandomLoader() {
-    this.loaderSrc = `/assets/images/preloader-${Math.floor(Math.random() * 2) + 1}.svg`;
+    this.loaderSrc = `/assets/images/preloader-${Math.floor(Math.random() * 2) + 1}.png`;
   }
 
   navigationInterceptor(event: RouterEvent): void {
     const common: HTMLHtmlElement = window.document.getElementsByClassName('common')[0] as HTMLHtmlElement;
-    const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader-area')[0] as HTMLHtmlElement;
+    const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader_wrapper')[0] as HTMLHtmlElement;
     if (event instanceof NavigationStart) {
       this.getRandomLoader();
       common.style.display = 'none';
-      loader.style.display = 'block';
+      loader.style.display = 'flex';
     }
     if (event instanceof NavigationEnd) {
       setTimeout(() => {

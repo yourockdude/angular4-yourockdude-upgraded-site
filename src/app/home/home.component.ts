@@ -49,11 +49,13 @@ export class HomeComponent implements OnInit {
             });
         this.contentService.getProjects()
             .subscribe(res => {
-                res.data.map(project => {
-                    project.media.src = [environment.contentUrl, project.media.src].join('');
-                });
-                this.projects = this.moveElementInArray(res.data, res.data.find(f => f.title === 'Vesper'), 0);
-                this.loaderService.emitChange(true);
+                if (res.success) {
+                    res.data.map(project => {
+                        project.media.src = [environment.contentUrl, project.media.src].join('');
+                    });
+                    this.projects = this.moveElementInArray(res.data, res.data.find(f => f.title === 'Vesper'), 0);
+                    this.loaderService.emitChange(true);
+                }
             });
     }
 

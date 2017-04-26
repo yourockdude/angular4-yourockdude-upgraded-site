@@ -16,7 +16,9 @@ export class ContactsComponent implements OnInit {
         private contentService: ContentService,
     ) {
         this.contentService.getContacts().subscribe(res => {
-            this.contacts = res;
+            if (res.success) {
+                this.contacts = res.data.socialLinks;
+            }
             console.log(this.contacts);
         });
     }

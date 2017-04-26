@@ -6,38 +6,40 @@
     cursor: pointer;
 }
 
-.loader-area {
-    position: fixed;
-    top: 0; 
-    right: 0;
-    bottom: 0; 
-    left: 0;
-    background: #fff;
-    z-index: 9999; 
-    display: none;
+.loader_wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      display: none;
 }
 
 .loader {
-    left: 50%;
-    margin-left: -5em;
-    font-size: 10px;
-    animation: spin 3s infinite linear;
-}
+      margin-top: 17%;
+      margin-bottom: 17%;
+      height: 270px;
+      -webkit-animation: preloader 3s infinite linear;
+      -moz-animation: preloader 3s infinite linear;
+      -ms-animation: preloader 3s infinite linear;
+      -o-animation: preloader 3s infinite linear;
+      animation: preloader 3s infinite linear;
+    }
 
-.loader, .loader:after {
-    width: 10em;
-    height: 10em;
-    display: block;
-    position: absolute;
-    top: 50%;
-    margin-top: -5.5em;
-}
+    @-webkit-keyframes preloader {
+      to { -webkit-transform: rotate(360deg); }
+    }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
+    @-moz-keyframes preloader {
+      to { -moz-transform: rotate(360deg); }
+    }
+
+    @-ms-keyframes preloader {
+      to { -ms-transform: rotate(360deg); }
+    }
+
+    @-o-keyframes preloader {
+      to { -o-transform: rotate(360deg); }
+    }
+
+    @keyframes preloader {
+      to { transform: rotate(360deg); }
+    }

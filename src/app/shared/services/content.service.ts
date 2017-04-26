@@ -41,7 +41,7 @@ export class ContentService {
     }
 
     getContacts() {
-        return this.http.request(`../../../assets/content/contacts.json`)
+        return this.http.get(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`)
             .map(res => res.json());
     }
 
@@ -73,7 +73,7 @@ export class ContentService {
         const body = JSON.stringify(project);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`${environment.api}products`, body, options)
+        return this.http.post(`${environment.api}products/${this.currentLanguage}`, body, options)
             .map(res => res.json());
     }
 
