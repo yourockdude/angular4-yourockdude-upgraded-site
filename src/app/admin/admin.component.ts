@@ -19,6 +19,7 @@ export class AdminComponent implements OnInit {
     ) {
         this.contentService.getProjects().subscribe(res => {
             this.projects = res.data;
+            console.log(res.data);
         });
     }
 

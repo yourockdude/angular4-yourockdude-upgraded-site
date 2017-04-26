@@ -1,1 +1,28 @@
-contacts
+<div *ngIf="contacts" class="edit_page_h">Контакты</div>
+<div *ngIf="!editing" style="height:100%">
+    <div class="project_info">
+        <table>
+            <tr *ngFor="let contact of contacts">
+                <td>{{contact.name}}: </td>
+                <td>{{contact.link}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" (click)="edit()">Редактировать</button>
+    </div>
+</div>
+<div *ngIf="editing" style="height:100%">
+    <div class="project_info">
+        <table>
+            <tr *ngFor="let contact of editContacts">
+                <td>{{contact.name}}: </td>
+                <td><input type="text" [(ngModel)]="contact.link"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" (click)="save()">Сохранить</button>
+        <button class="edit_btn" (click)="cancel()">Отмена</button>
+    </div>
+</div>

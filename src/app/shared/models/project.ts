@@ -10,4 +10,10 @@ export class Project {
         type: string,
         src: string,
     };
+    constructor() {
+        this.title = '';
+        this.text = '';
+        this.site = { title: '', link: '' };
+        this.media = { src: '', type: '' };
+    }
 }

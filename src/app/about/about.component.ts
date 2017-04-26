@@ -20,7 +20,7 @@ import {
         trigger('fadeIn', [
             state('in', style({ opacity: 1 })),
             state('void', style({ opacity: 0 })),
-            transition('* <=> *', animate('2000ms')),
+            transition('* <=> *', animate('3000ms')),
         ])
     ]
 })
@@ -31,9 +31,11 @@ export class AboutComponent implements OnInit {
     constructor(private contentService: ContentService) {
         this.contentService.getAboutPage()
             .subscribe(res => {
-                res.data.awards.leftPart.image = [environment.contentUrl, res.data.awards.leftPart.image].join('');
-                res.data.awards.rightPart.image = [environment.contentUrl, res.data.awards.rightPart.image].join('');
-                this.aboutContent = res.data;
+                if (res.success) {
+                    res.data.awards.leftPart.image = [environment.contentUrl, res.data.awards.leftPart.image].join('');
+                    res.data.awards.rightPart.image = [environment.contentUrl, res.data.awards.rightPart.image].join('');
+                    this.aboutContent = res.data;
+                }
             });
     }
 

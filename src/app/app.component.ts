@@ -8,7 +8,10 @@ import {
   Router,
   NavigationStart,
   NavigationEnd,
-  RoutesRecognized
+  RoutesRecognized,
+  Event as RouterEvent,
+  NavigationCancel,
+  NavigationError
 } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs/Rx';
@@ -27,6 +30,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   testLoader: boolean;
   showNavbar: boolean;
   showFooter: boolean;
+  loaderSrc = '/assets/images/preloader-2.svg';
 
   currentLanguage: string;
 
@@ -36,6 +40,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     private router: Router,
     private location: Location,
   ) {
+    router.events.subscribe((event: RouterEvent) => {
+      this.navigationInterceptor(event);
+    });
     if (!localStorage.getItem('current_language')) {
       localStorage.setItem('current_language', 'ru');
     };
@@ -71,4 +78,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void { }
+
+  getRandomLoader() {
+    this.loaderSrc = `/assets/images/preloader-${Math.floor(Math.random() * 2) + 1}.svg`;
+  }
+
+  navigationInterceptor(event: RouterEvent): void {
+    const common: HTMLHtmlElement = window.document.getElementsByClassName('common')[0] as HTMLHtmlElement;
+    const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader-area')[0] as HTMLHtmlElement;
+    if (event instanceof NavigationStart) {
+      this.getRandomLoader();
+      common.style.display = 'none';
+      loader.style.display = 'block';
+    }
+    if (event instanceof NavigationEnd) {
+      setTimeout(() => {
+        common.style.display = 'block';
+        loader.style.display = 'none';
+      }, 1000);
+    }
+  }
 }

@@ -23,8 +23,7 @@
                 </table>
             </div>
             <div class="project_img">
-                <video *ngIf="project.media.type==='video';else image">
-                    <source src="{{project.media.src}}">
+                <video autoplay="" loop="" *ngIf="project.media.type==='video';else image" src="{{project.media.src}}">
                 </video>
                 <ng-template #image>
                     <img src="{{project.media.src}}">
@@ -58,8 +57,12 @@
                 </table>
             </div>
             <div class="project_img">
-                <img src="http://yourockdudeapi.herokuapp.com/images/suzuki.png" alt="">
-                <input name="project_img" type="file" value="">
+                <video autoplay="" loop="" *ngIf="editProject.media.type==='video';else image" [src]="url">
+                </video>
+                <ng-template #image>
+                    <img [src]="url">
+                </ng-template>
+                <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">
             </div>
         </div>
         <div class="edit_btn_block">

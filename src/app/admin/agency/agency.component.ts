@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../shared/services/content.service';
 import { AboutPage } from '../../shared/models/about-page';
+import { clone } from '../../shared/utils/clone-object';
 
 @Component({
     moduleId: module.id,
@@ -24,7 +25,7 @@ export class AgencyComponent implements OnInit {
 
     edit() {
         this.editing = true;
-        this.editAboutPage = this.aboutPage;
+        this.editAboutPage = clone(this.aboutPage);
     }
 
     save() {
@@ -33,13 +34,14 @@ export class AgencyComponent implements OnInit {
             .subscribe(res => {
                 if (res.success) {
                     this.editing = false;
-                    this.aboutPage = this.editAboutPage;
+                    this.aboutPage = clone(this.editAboutPage);
                 };
             });
     }
 
     cancel() {
         this.editing = false;
-        this.editAboutPage = this.aboutPage;
+        this.editAboutPage = clone(this.aboutPage);
     };
+
 }

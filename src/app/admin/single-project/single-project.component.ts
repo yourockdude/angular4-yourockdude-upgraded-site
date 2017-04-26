@@ -10,6 +10,7 @@ import {
 import { ContentService } from '../../shared/services/content.service';
 import { Project } from '../../shared/models/project';
 import { environment } from '../../../environments/environment';
+import { clone } from '../../shared/utils/clone-object';
 
 @Component({
     moduleId: module.id,
@@ -22,6 +23,8 @@ export class SingleProjectComponent implements OnInit {
     editing = false;
     editProject: Project;
     id: string;
+    file: File;
+    url: any;
 
     constructor(
         private router: Router,
@@ -34,7 +37,6 @@ export class SingleProjectComponent implements OnInit {
                 this.contentService.getProjectById(this.id).subscribe(res => {
                     res.data.media.src = [environment.contentUrl, res.data.media.src].join('');
                     this.project = res.data;
-                    console.log(this.project);
                 });
             }
         });
@@ -44,27 +46,43 @@ export class SingleProjectComponent implements OnInit {
 
     edit() {
         this.editing = true;
-        this.editProject = this.project;
+        this.editProject = clone(this.project);
+        this.url = this.editProject.media.src;
     }
 
     save() {
-        const src = this.project.media.src.split('http://yourockdudeapi.herokuapp.com/').pop();
-        this.editProject.media = {
-            type: this.project.media.type,
-            src: src,
-        };
-        this.editProject.media = this.project.media;
+        this.editProject.media.src = this.editProject.media.src.split(environment.contentUrl).pop();
         this.contentService.editProject(this.id, this.editProject)
             .subscribe(res => {
                 if (res.success) {
                     this.editing = false;
-                    this.project = this.editProject;
+                    this.editProject.media.src = [environment.contentUrl, this.editProject.media.src].join('');
+                    this.project = clone(this.editProject);
                 }
             });
     }
 
     cancel() {
         this.editing = false;
-        this.editProject = this.project;
+        this.editProject = clone(this.project);
+    }
+
+    fileChange(event) {
+        this.file = event.target.files[0];
+
+        const reader = new FileReader();
+        // tslint:disable-next-line:no-shadowed-variable
+        reader.onload = (event: any) => {
+            this.url = event.target.result;
+        };
+        reader.readAsDataURL(this.file);
+
+        if (this.file.type === 'image/png') {
+            this.editProject.media.type = 'image';
+            this.editProject.media.src = `images/${this.file.name}`;
+        } else {
+            this.editProject.media.type = 'video';
+            this.editProject.media.src = `video/${this.file.name}`;
+        }
     }
 }

@@ -1,5 +1,5 @@
 <div class="loader-area">
-  <img class="loader" src="/assets/images/preloader.svg">
+  <img class="loader" [src]="loaderSrc">
 </div>
 <div class="common" [style.height]="showNavbar ? 'initial' : '100%'">
   <app-yourock-navbar *ngIf="showNavbar"></app-yourock-navbar>

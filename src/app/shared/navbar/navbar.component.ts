@@ -178,13 +178,12 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     get allowToSendEmail() {
-        if (
-            ([
-                this.name,
-                this.phone,
-                this.email,
-                this.message
-            ].find(item => item === '') === undefined)
+        if (([
+            this.name,
+            this.phone,
+            this.email,
+            this.message
+        ].find(item => item === '') === undefined)
             && this.isValidEmail
             && this.isValidPhone
         ) {

@@ -22,7 +22,7 @@ import {
         trigger('fadeIn', [
             state('in', style({ opacity: 1 })),
             state('void', style({ opacity: 0 })),
-            transition('* <=> *', animate('2000ms')),
+            transition('* <=> *', animate('3000ms')),
         ])
     ]
 })

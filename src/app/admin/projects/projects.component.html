@@ -1,1 +1,39 @@
-{{projects | json}}
+<button *ngIf="!adding" (click)="add()">add project</button>
+<div *ngIf="adding">
+    <div>
+        <div class="project_info">
+            <table>
+                <tr>
+                    <td>name: </td>
+                    <td><input type="text" [(ngModel)]="newProject.title"></td>
+                </tr>
+                <tr>
+                    <td>descriptions: </td>
+                    <td><textarea rows="7" cols="30" [(ngModel)]="newProject.text"></textarea></td>
+                </tr>
+                <tr>
+                    <td>site link: </td>
+                    <td><input type="text" [(ngModel)]="newProject.site.link"></td>
+                </tr>
+                <tr>
+                    <td>site name: </td>
+                    <td><input type="text" [(ngModel)]="newProject.site.title"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="project_img">
+             <video autoplay="" loop="" *ngIf="editProject.media.type==='video';else image" [src]="url">
+                </video>
+                <ng-template #image>
+                    <img [src]="url">
+                </ng-template>
+                <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">
+            <!--<img [src]="url ? url : 'assets/images/no-image.png'" alt="">
+            <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">-->
+        </div>
+    </div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" (click)="save()">Сохранить</button>
+        <button class="edit_btn" (click)="cancel()">Отмена</button>
+    </div>
+</div>

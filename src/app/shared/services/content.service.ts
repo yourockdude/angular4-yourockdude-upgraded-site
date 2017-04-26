@@ -40,6 +40,11 @@ export class ContentService {
             .map(res => res.json());
     }
 
+    getContacts() {
+        return this.http.request(`../../../assets/content/contacts.json`)
+            .map(res => res.json());
+    }
+
     editHomeTitle(title: string) {
         const body = JSON.stringify({ title: title });
         const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -61,6 +66,14 @@ export class ContentService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}product/${id}`, body, options)
+            .map(res => res.json());
+    }
+
+    addProject(project: any) {
+        const body = JSON.stringify(project);
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`${environment.api}products`, body, options)
             .map(res => res.json());
     }
 
