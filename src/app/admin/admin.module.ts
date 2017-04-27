@@ -11,6 +11,7 @@ import { AgencyComponent } from './agency/agency.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { SingleProjectComponent } from './single-project/single-project.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { ProjectService } from '../shared/services/project.service';
 
 @NgModule({
     imports: [
@@ -28,6 +29,10 @@ import { ContactsComponent } from './contacts/contacts.component';
         SingleProjectComponent,
         ContactsComponent,
     ],
-    providers: [AuthGuard, ContentService],
+    providers: [
+        AuthGuard,
+        ContentService,
+        ProjectService,
+    ],
 })
 export class AdminModule { }

@@ -27,8 +27,9 @@ const routes: Routes = [
                 outlet: 'sidebar',
             },
             {
-                path: 'projects',
+                path: '',
                 component: ProjectsComponent,
+                pathMatch: 'full',
                 outlet: 'sidebar',
             },
             {

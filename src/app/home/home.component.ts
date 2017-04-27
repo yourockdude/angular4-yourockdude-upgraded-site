@@ -12,6 +12,7 @@ import {
     transition,
     keyframes,
 } from '@angular/animations';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     moduleId: module.id,
@@ -31,12 +32,14 @@ export class HomeComponent implements OnInit {
 
     projects: Project[];
     homeContent: any;
+    contacts: any;
     in = 'in';
 
     constructor(
         private contentService: ContentService,
         private loaderService: LoaderService,
         private elementRef: ElementRef,
+        private domSanitizer: DomSanitizer,
     ) {
         this.loaderService.emitChange(false);
         this.contentService.getHomePage()
@@ -57,6 +60,13 @@ export class HomeComponent implements OnInit {
                     this.loaderService.emitChange(true);
                 }
             });
+        this.contentService.getContacts().subscribe(res => {
+            this.contacts = {
+                email: res.data.socialLinks.find(f => f.name === 'Email').link,
+                telegram: res.data.socialLinks.find(f => f.name === 'Telegram').link,
+                skype: this.domSanitizer.bypassSecurityTrustUrl(res.data.socialLinks.find(f => f.name === 'Skype').link),
+            };
+        });
     }
 
     ngOnInit() { }

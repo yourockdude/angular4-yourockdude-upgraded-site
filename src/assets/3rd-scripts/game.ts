@@ -97,7 +97,6 @@ export function game() {
                 }
             } else {
                 dist = Math.sqrt(((e.offsetX - cW / 2) * (e.offsetX - cW / 2)) + ((e.offsetY - cH / 2) * (e.offsetY - cH / 2)));
-                console.log(dist)
 
                 if (dist < 27) {
                     if (e.type == 'click') {

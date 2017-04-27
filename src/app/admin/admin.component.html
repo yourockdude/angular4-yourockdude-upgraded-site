@@ -11,14 +11,14 @@
             </div>
         </div>
         <div class="pandora_menu_list">
-            <p [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</p>
-            <p [routerLink]="[{ outlets: {'sidebar': ['agency'] } }]">Agency</p>
             <div class="pandora_projects">
-                <p [routerLink]="[{ outlets: {'sidebar': ['projects'] } }]">Projects</p>
+                <p [routerLink]="[{ outlets: {'sidebar': [''] } }]">Projects {{projects.length}}</p>
                 <ul>
                     <li *ngFor="let project of projects" [routerLink]="[{ outlets: {'sidebar': ['project', project.id] } }]">{{project.title}}</li>
                 </ul>
             </div>
+            <p [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</p>
+            <p [routerLink]="[{ outlets: {'sidebar': ['agency'] } }]">Agency</p>
             <p [routerLink]="[{ outlets: {'sidebar': ['contacts'] } }]">Contacts</p>
         </div>
         <button class="logout" (click)="signOut()">
@@ -28,10 +28,4 @@
     <div class="edit_page">
         <router-outlet name="sidebar"></router-outlet>
     </div>
-    <!--<div class="add_project">
-        <div class="add_project__btn">Add project</div>
-    </div>
-    <div class="edit_contacts">
-        <div class="edit_contacts__btn">Edit contacts</div>
-    </div>-->
 </div>

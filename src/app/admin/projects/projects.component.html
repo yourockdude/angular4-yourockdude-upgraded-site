@@ -1,5 +1,5 @@
-<button *ngIf="!adding" (click)="add()">add project</button>
 <div *ngIf="adding">
+    <div class="edit_page_h">Добавление</div>
     <div>
         <div class="project_info">
             <table>
@@ -22,18 +22,33 @@
             </table>
         </div>
         <div class="project_img">
-             <video autoplay="" loop="" *ngIf="editProject.media.type==='video';else image" [src]="url">
-                </video>
-                <ng-template #image>
-                    <img [src]="url">
-                </ng-template>
-                <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">
-            <!--<img [src]="url ? url : 'assets/images/no-image.png'" alt="">
-            <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">-->
+            <video autoplay="" loop="" *ngIf="newProject.media.type==='video';else image" [src]="url">
+            </video>
+            <ng-template #image>
+                <img [src]="url ? url : 'assets/images/no-image.png'">
+            </ng-template>
+            <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">
         </div>
     </div>
     <div class="edit_btn_block">
         <button class="edit_btn" (click)="save()">Сохранить</button>
         <button class="edit_btn" (click)="cancel()">Отмена</button>
+    </div>
+</div>
+<div *ngIf="!adding">
+    <div class="edit_page_h">Проекты</div>
+    <div class="projects_list">
+        <div *ngFor="let project of projects" (click)="onProjectClick(project.id)" class="project_wrapper">
+            <p class="project_name">{{project.title}}</p>
+            <video class="projects_img" autoplay="" loop="" *ngIf="project.media.type==='video';else image" [src]="project.media.src">
+            </video>
+            <ng-template #image>
+                <img class="projects_img" [src]="project.media.src">
+            </ng-template>
+            <div class="project_desc">{{project.text}}</div>
+        </div>
+    </div>
+    <div class="edit_btn_block">
+        <button class="edit_btn" *ngIf="!adding" (click)="add()">Добавить</button>
     </div>
 </div>

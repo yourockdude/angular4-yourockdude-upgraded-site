@@ -161,8 +161,7 @@
   display: inline-block;
   width: 74.5%;
   position: relative;
-  height: 100%;
-  padding: 1.5%; }
+  height: 100%; }
 
 .edit_page_h {
   text-align: center;
@@ -182,7 +181,7 @@
 
 .edit_btn {
   border: 1px solid #000;
-  padding: 3%;
+  padding: 2.5%;
   text-align: center;
   -webkit-border-radius: 5px;
           border-radius: 5px;
@@ -235,3 +234,23 @@
     .project_img video {
     width: 300px;
     margin-bottom: 3%; }
+
+.projects_list {
+  overflow-y: scroll;
+  max-height: 600px;
+  padding-left: 1%; }
+
+.project_name {
+  font-size: 23px;
+  margin-bottom: 5px; }
+
+.projects_img {
+  width: 70px;
+  float: left;
+  margin-right: 20px; }
+
+.project_desc {
+  margin-right: 2%; }
+
+.project_wrapper {
+  margin-bottom: 50px; }

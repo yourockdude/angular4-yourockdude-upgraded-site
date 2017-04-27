@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../shared/services/content.service';
+import { clone } from '../../shared/utils/clone-object';
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,6 @@ export class ContactsComponent implements OnInit {
             if (res.success) {
                 this.contacts = res.data.socialLinks;
             }
-            console.log(this.contacts);
         });
     }
 
@@ -27,25 +27,19 @@ export class ContactsComponent implements OnInit {
 
     edit() {
         this.editing = true;
-        this.editContacts = this.contacts;
-        // this.editText = this.title;
+        this.editContacts = clone(this.contacts);
     }
 
     save() {
-        this.editing = false;
-        this.contacts = this.editContacts;
-        console.log(this.editContacts.map(m => m.link));
-        // this.contentService.editHomeTitle(this.editText)
-        //     .subscribe(res => {
-        //         if (res.success) {
-        //             this.editing = false;
-        //             this.title = this.editText;
-        //         }
-        //     });
+        this.contentService.editContacts(this.editContacts)
+            .subscribe(res => {
+                this.editing = false;
+                this.contacts = clone(this.editContacts);
+            });
     }
 
     cancel() {
         this.editing = false;
-        this.editContacts = this.contacts;
+        this.editContacts = clone(this.contacts);
     }
 }

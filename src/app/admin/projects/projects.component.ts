@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ContentService } from '../../shared/services/content.service';
 import { Project } from '../../shared/models/project';
+import { environment } from '../../../environments/environment';
+import { ProjectService } from '../../shared/services/project.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     moduleId: module.id,
@@ -14,15 +18,22 @@ export class ProjectsComponent implements OnInit {
     adding = false;
     file: File;
     url: string;
+    subscription: Subscription;
 
-    constructor(private contentService: ContentService) {
+    constructor(
+        private contentService: ContentService,
+        private projectService: ProjectService,
+        private router: Router,
+    ) {
         this.contentService.getProjects().subscribe(res => {
+            res.data.map(project => {
+                project.media.src = [environment.contentUrl, project.media.src].join('');
+            });
             this.projects = res.data;
         });
     }
 
     ngOnInit() {
-        console.log(this.newProject);
     }
 
     add() {
@@ -30,21 +41,34 @@ export class ProjectsComponent implements OnInit {
     }
 
     save() {
-        this.adding = false;
-        console.log(this.newProject);
+        const formData = new FormData();
+        formData.append('product_file', this.file);
+        this.contentService.uploadMedia(formData).subscribe(res => {
+            if (res.success) {
+                this.contentService.addProject(this.newProject).subscribe(response => {
+                    response.data.media.src = [environment.contentUrl, response.data.media.src].join('');
+                    this.projects.push(response.data);
+                    this.projectService.changeNav({ type: 'add', obj: response.data });
+                    this.adding = false;
+                });
+            }
+        });
     }
 
     cancel() {
         this.adding = false;
     }
 
+    onProjectClick(id: string) {
+        // this.router.navigate([decodeURI(`/admin/(sidebar:project/${id})`)]);
+    }
+
     fileChange(event) {
         this.file = event.target.files[0];
 
         const reader = new FileReader();
-        // tslint:disable-next-line:no-shadowed-variable
-        reader.onload = (event: any) => {
-            this.url = event.target.result;
+        reader.onload = (e: any) => {
+            this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
 

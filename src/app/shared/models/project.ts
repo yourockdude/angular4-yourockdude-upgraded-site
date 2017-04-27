@@ -2,6 +2,8 @@ export class Project {
     id?: string;
     title: string;
     text: string;
+    lang?: string;
+    product_file?: any;
     site: {
         title: string,
         link: string,
@@ -13,6 +15,7 @@ export class Project {
     constructor() {
         this.title = '';
         this.text = '';
+        this.lang = '';
         this.site = { title: '', link: '' };
         this.media = { src: '', type: '' };
     }

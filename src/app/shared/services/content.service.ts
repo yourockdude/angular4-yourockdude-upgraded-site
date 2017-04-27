@@ -53,6 +53,14 @@ export class ContentService {
             .map(res => res.json());
     }
 
+    editContacts(contacts: any) {
+        const body = JSON.stringify({ socialLinks: contacts });
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.put(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`, body, options)
+            .map(res => res.json());
+    }
+
     editAboutPage(aboutPage: any) {
         const body = JSON.stringify(aboutPage);
         const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -69,11 +77,21 @@ export class ContentService {
             .map(res => res.json());
     }
 
+    uploadMedia(formData: FormData) {
+        return this.http.post(`${environment.api}product_file`, formData)
+            .map(res => res.json());
+    }
+
     addProject(project: any) {
         const body = JSON.stringify(project);
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
         return this.http.post(`${environment.api}products/${this.currentLanguage}`, body, options)
+            .map(res => res.json());
+    }
+
+    deleteProject(id: string) {
+        return this.http.delete(`${environment.api}product/${id}`)
             .map(res => res.json());
     }
 
