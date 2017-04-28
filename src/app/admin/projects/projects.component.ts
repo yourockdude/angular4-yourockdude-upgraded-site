@@ -38,6 +38,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     ngOnInit() {
+
     }
 
     add() {
@@ -45,18 +46,30 @@ export class ProjectsComponent implements OnInit {
     }
 
     save() {
-        const formData = new FormData();
-        formData.append('product_file', this.file);
-        this.contentService.uploadMedia(formData).subscribe(res => {
-            if (res.success) {
-                this.contentService.addProject(this.newProject).subscribe(response => {
-                    response.data.media.src = [environment.contentUrl, response.data.media.src].join('');
-                    this.projects.push(response.data);
-                    this.projectService.changeNav({ type: 'add', obj: response.data });
-                    this.adding = false;
-                });
-            }
-        });
+        if (this.file) {
+            const formData = new FormData();
+            formData.append('product_file', this.file);
+            this.contentService.uploadMedia(formData).subscribe(res => {
+                if (res.success) {
+                    this.newProject.media = res.data.media;
+                    this.contentService.addProject(this.newProject).subscribe(response => {
+                        response.data.media.src = [environment.contentUrl, response.data.media.src].join('');
+                        this.projects.push(response.data);
+                        this.projectService.changeNav({ type: 'add', obj: response.data });
+                        this.adding = false;
+                        this.newProject = new Project();
+                    });
+                }
+            });
+        } else {
+            this.contentService.addProject(this.newProject).subscribe(response => {
+                response.data.media.src = [environment.contentUrl, response.data.media.src].join('');
+                this.projects.push(response.data);
+                this.projectService.changeNav({ type: 'add', obj: response.data });
+                this.adding = false;
+                this.newProject = new Project();
+            });
+        }
     }
 
     cancel() {
@@ -70,6 +83,16 @@ export class ProjectsComponent implements OnInit {
                 const index = this.projects.indexOf(this.projects.find(f => f.id === this.selectedItemId));
                 this.projects.splice(index, 1);
             });
+    }
+
+    edit() {
+        this.router.navigate(
+            [{ outlets: { 'sidebar': ['project', this.selectedItemId] } }],
+            {
+                relativeTo: this.activatedRoute,
+                queryParams: { 'editing': true },
+            }
+        );
     }
 
     onProjectClick(id: string, index: string) {
@@ -93,13 +116,13 @@ export class ProjectsComponent implements OnInit {
             this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
+    }
 
-        if (this.file.type === 'image/png') {
-            this.newProject.media.type = 'image';
-            this.newProject.media.src = `images/${this.file.name}`;
+    noImage(src: string) {
+        if (src.split(environment.contentUrl).pop() === '') {
+            return true;
         } else {
-            this.newProject.media.type = 'video';
-            this.newProject.media.src = `video/${this.file.name}`;
+            return false;
         }
     }
 

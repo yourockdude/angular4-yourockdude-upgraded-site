@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from 'app/shared/models/project';
+import { environment } from '../../environments/environment';
 
 @Component({
     moduleId: module.id,
@@ -10,8 +11,13 @@ import { Project } from 'app/shared/models/project';
 export class ProjectMediaComponent implements OnInit {
     @Input() index: number;
     @Input() project: Project;
+    noImage = false;
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        if (this.project.media.src.split(environment.contentUrl).pop() === '') {
+            this.noImage = true;
+        }
+    }
 }

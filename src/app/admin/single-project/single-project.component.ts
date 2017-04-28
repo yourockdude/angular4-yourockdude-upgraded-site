@@ -34,13 +34,18 @@ export class SingleProjectComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private projectService: ProjectService,
     ) {
-        router.events.subscribe((val: NavigationEnd) => {
+        this.router.events.subscribe((val: NavigationEnd) => {
             if (val instanceof NavigationEnd) {
                 this.id = this.activatedRoute.snapshot.url[1].path;
                 this.contentService.getProjectById(this.id).subscribe(res => {
                     if (res.success) {
                         res.data.media.src = [environment.contentUrl, res.data.media.src].join('');
                         this.project = res.data;
+                        this.editProject = clone(this.project);
+                        this.editing = this.activatedRoute.snapshot.queryParams['editing']
+                        if (this.editing) {
+                            this.url = this.editProject.media.src;
+                        }
                     }
                 });
             }
@@ -51,7 +56,6 @@ export class SingleProjectComponent implements OnInit {
 
     edit() {
         this.editing = true;
-        this.editProject = clone(this.project);
         this.url = this.editProject.media.src;
     }
 
@@ -72,6 +76,7 @@ export class SingleProjectComponent implements OnInit {
             this.contentService.uploadMedia(formData)
                 .subscribe(res => {
                     if (res.success) {
+                        this.editProject.media = res.data.media;
                         this.contentService.editProject(this.id, this.editProject)
                             .subscribe(response => {
                                 if (response.success) {
@@ -109,12 +114,5 @@ export class SingleProjectComponent implements OnInit {
             this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
-        if (this.file.type === 'image/png') {
-            this.editProject.media.type = 'image';
-            this.editProject.media.src = `images/${this.file.name}`;
-        } else {
-            this.editProject.media.type = 'video';
-            this.editProject.media.src = `video/${this.file.name}`;
-        }
     }
 }

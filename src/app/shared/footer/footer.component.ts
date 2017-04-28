@@ -19,7 +19,6 @@ export class FooterComponent implements OnInit {
                 behance: res.data.socialLinks.find(f => f.name === 'Behance').link,
                 instagram: res.data.socialLinks.find(f => f.name === 'Instagram').link,
             };
-            console.log(this.footerContacts);
         });
     }
 

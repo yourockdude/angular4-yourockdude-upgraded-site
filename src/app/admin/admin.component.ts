@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import { AuthorizationService } from '../shared/services/authorization.service';
 import { ContentService } from '../shared/services/content.service';
@@ -16,14 +17,24 @@ import { Subscription } from 'rxjs/Rx';
 export class AdminComponent implements OnInit, OnDestroy {
     projects: any[] = [];
     subscription: Subscription;
+    selectedItem: string;
+    path: string;
+    navigationItems: any[];
 
     constructor(
         private authorizationService: AuthorizationService,
         private contentService: ContentService,
         private projectService: ProjectService,
+        private activatedRoute: ActivatedRoute,
+        private router: Router,
+        private elementRef: ElementRef,
     ) {
+        this.router.events.subscribe((val: any) => {
+            this.path = (this.activatedRoute.firstChild.url as any).value.map(v => v.path).join('/');
+        });
         this.contentService.getProjects().subscribe(res => {
             this.projects = res.data;
+            this.navigationItems = this.elementRef.nativeElement.getElementsByClassName('navigation-item');
         });
     }
 
@@ -32,7 +43,6 @@ export class AdminComponent implements OnInit, OnDestroy {
             .subscribe(res => {
                 this.contentService.getProjects().subscribe(r => {
                     this.projects = r.data;
-                    console.log(this.projects.map(m => m.title));
                 });
                 // if (res.type === 'add') {
 
@@ -58,5 +68,15 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     swithLanguage(btn: string) {
         swithLanguage(btn);
+    }
+
+    onItemClick(e: MouseEvent, part: string, id?: string) {
+        const parts = id ? [part, id] : [part];
+        this.router.navigate(
+            [{ outlets: { 'sidebar': parts } }],
+            {
+                relativeTo: this.activatedRoute,
+            }
+        );
     }
 }

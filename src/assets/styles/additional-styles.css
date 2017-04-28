@@ -57,9 +57,9 @@
       min-height: 100px;
     }
     
-    .project_name {
+    /*.project_name {
       display: inline-block;
-    }
+    }*/
 
     .disable-text-selection {
       -webkit-touch-callout: none;
@@ -72,4 +72,12 @@
 
 .edit_btn {
   margin-left: 3% !important;
+}
+
+.pandora_menu_list p, .pandora.pandora_admin p {
+  cursor: pointer;
+}
+
+.pandora_menu_list p:hover {
+  background-color: lightsteelblue;
 }

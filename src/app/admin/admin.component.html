@@ -12,14 +12,15 @@
         </div>
         <div class="pandora_menu_list">
             <div class="pandora_projects">
-                <p [routerLink]="[{ outlets: {'sidebar': [''] } }]">Projects {{projects.length}}</p>
+                <p [ngClass]="{'select': path === '' }" (click)="onItemClick($event, '')">Projects</p>
                 <ul>
-                    <li *ngFor="let project of projects" [routerLink]="[{ outlets: {'sidebar': ['project', project.id] } }]">{{project.title}}</li>
+                    <p [ngClass]="{'select': path === 'project/'+ project.id}" (click)="onItemClick($event, 'project', project.id)" *ngFor="let project of projects"
+                        [routerLink]="[{ outlets: {'sidebar': ['project', project.id] } }]">{{project.title}}</p>
                 </ul>
             </div>
-            <p [routerLink]="[{ outlets: {'sidebar': ['main-page'] } }]">Main page</p>
-            <p [routerLink]="[{ outlets: {'sidebar': ['agency'] } }]">Agency</p>
-            <p [routerLink]="[{ outlets: {'sidebar': ['contacts'] } }]">Contacts</p>
+            <p [ngClass]="{'select': path === 'main-page'}" (click)="onItemClick($event, 'main-page')">Main page</p>
+            <p [ngClass]="{'select': path === 'agency'}" (click)="onItemClick($event, 'agency')">Agency</p>
+            <p [ngClass]="{'select': path === 'contacts'}" (click)="onItemClick($event, 'contacts')">Contacts</p>
         </div>
         <button class="logout" (click)="signOut()">
             Log out

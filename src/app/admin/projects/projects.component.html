@@ -1,5 +1,5 @@
 <div *ngIf="adding">
-    <div class="edit_page_h">Добавление</div>
+    <div class="edit_page_h">Add Project</div>
     <div>
         <div class="project_info">
             <table>
@@ -31,12 +31,12 @@
         </div>
     </div>
     <div class="edit_btn_block">
-        <button class="edit_btn" (click)="save()">Сохранить</button>
-        <button class="edit_btn" (click)="cancel()">Отмена</button>
+        <button class="edit_btn" (click)="save()">Save</button>
+        <button class="edit_btn" (click)="cancel()">Cancel</button>
     </div>
 </div>
 <div *ngIf="!adding">
-    <div class="edit_page_h">Проекты</div>
+    <div class="edit_page_h">Projects</div>
     <div class="projects_list">
         <div [ngClass]="{'select': selectedItemIndex === i}" *ngFor="let project of projects;  let i = index" (click)="onProjectClick(project.id, i)"
             class="project_wrapper" (dblclick)="onProjectDbClick(project.id)">
@@ -44,14 +44,14 @@
             <video class="projects_img" autoplay="" loop="" *ngIf="project.media.type==='video';else image" [src]="project.media.src">
             </video>
             <ng-template #image>
-                <img class="projects_img" [src]="project.media.src">
+                <img class="projects_img" [src]="noImage(project.media.src) ? '/assets/images/no-image.png' : project.media.src">
             </ng-template>
-            <div class="project_desc" [ngClass]="{'disable-text-selection': isDbClick}">{{project.text}}</div>
+            <div class="project_desc disable-text-selection">{{project.text}}</div>
         </div>
     </div>
     <div class="edit_btn_block">
-        <button class="edit_btn" *ngIf="!adding" (click)="add()">Добавить</button>
-        <button class="edit_btn" *ngIf="selectedItemId" (click)="delete()">Удалить</button>
-        <button class="edit_btn" *ngIf="selectedItemId" (click)="edit()">Редактировать</button>
+        <button class="edit_btn" *ngIf="!adding" (click)="add()">Add</button>
+        <button class="edit_btn" *ngIf="selectedItemId" (click)="delete()">Delete</button>
+        <button class="edit_btn" *ngIf="selectedItemId" (click)="edit()">Edit</button>
     </div>
 </div>

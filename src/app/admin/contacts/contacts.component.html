@@ -1,4 +1,4 @@
-<div *ngIf="contacts" class="edit_page_h">Контакты</div>
+<div *ngIf="contacts" class="edit_page_h">Contacts</div>
 <div *ngIf="!editing" style="height:100%">
     <div class="project_info">
         <table>
@@ -9,7 +9,7 @@
         </table>
     </div>
     <div class="edit_btn_block">
-        <button class="edit_btn" (click)="edit()">Редактировать</button>
+        <button class="edit_btn" (click)="edit()">Edit</button>
     </div>
 </div>
 <div *ngIf="editing" style="height:100%">
@@ -22,7 +22,7 @@
         </table>
     </div>
     <div class="edit_btn_block">
-        <button class="edit_btn" (click)="save()">Сохранить</button>
-        <button class="edit_btn" (click)="cancel()">Отмена</button>
+        <button class="edit_btn" (click)="save()">Save</button>
+        <button class="edit_btn" (click)="cancel()">Cancel</button>
     </div>
 </div>

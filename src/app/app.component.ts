@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
     router.events.subscribe((val: RoutesRecognized) => {
       const pattern = /^\/(about)?$/;
-      const navbarPattern = /^\/admin(\/\(.+\))?$/;
+      const navbarPattern = /^\/admin(\/\(.+\))?(\?.+)?$/;
       if (pattern.test(val.url)) {
         this.showFooter = true;
       } else {
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     });
     router.events.subscribe((event: RouterEvent) => {
-      if (!(/^\/admin(\/\(.+\))?$/.test((event as RoutesRecognized).url))) {
+      if (!(/^\/admin(\/\(.+\))?(\?.+)?$/.test((event as RoutesRecognized).url))) {
         this.navigationInterceptor(event);
       }
     });
