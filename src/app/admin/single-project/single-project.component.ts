@@ -46,9 +46,9 @@ export class SingleProjectComponent implements OnInit {
                             this.noImage = true;
                         }
                         this.editProject = clone(this.project);
-                        this.editing = this.activatedRoute.snapshot.queryParams['editing']
+                        this.editing = this.activatedRoute.snapshot.queryParams['editing'];
                         if (this.editing) {
-                            this.url = this.editProject.media.src;
+                            this.url = this.editProject.media.src === environment.contentUrl ? '/assets/images/no-image.png' : this.editProject.media.src;
                         }
                     }
                 });
@@ -60,6 +60,8 @@ export class SingleProjectComponent implements OnInit {
     }
 
     edit() {
+        this.project;
+        this.noImage;
         this.editing = true;
         this.url = this.noImage ? '/assets/images/no-image.png' : this.editProject.media.src;
     }
