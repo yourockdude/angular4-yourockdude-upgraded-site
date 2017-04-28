@@ -622,21 +622,6 @@ nav li a {
   margin-top: 5%;
 }
 
-.project__link {
-  text-transform: uppercase;
-  color: #0c0c0c;
-  text-decoration: none;
-  font-size: 16px;
-  letter-spacing: -0.61px;
-  font-family: "HelveticaNeueLTCYR-Cond";
-  font-weight: 500;
-}
-
-.project__arrow {
-  padding-top: 6px;
-  float: none;
-}
-
 .down__btn {
   margin: 0 auto;
   text-transform: uppercase;
@@ -656,15 +641,29 @@ nav li a {
   margin-left: 46%;
   margin-top: 5%;
 }
-/*
+
+.project__link {
+  text-transform: uppercase;
+  color: #0c0c0c;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: -0.61px;
+  font-family: "HelveticaNeueLTCYR-Cond";
+  font-weight: 500;
+}
+
 .project__arrow {
+  padding-top: 3px;
   position: absolute;
-  margin-top: -3px;
+}
+
+.projects__arrow__2 {
+  margin-left: -55px;
 }
 
 .project__link {
   margin-right: 55px;
-  margin-left: 55px;
+  margin-left:  55px;
 }
 
 .down__btn__img:hover {
@@ -698,10 +697,10 @@ nav li a {
   animation-timing-function: linear;
 }
 @keyframes bounce-r {
-  0%  {margin-right: 6px;}
-  50%  {margin-right: 26px;}
-  100% {margin-right: 6px;}
-}*/
+  0%  {margin-left: -61px;}
+  50%  {margin-left: -81px;}
+  100% {margin-left: -61px;}
+}
 
 .hire_us-wrapper {
   position: absolute;

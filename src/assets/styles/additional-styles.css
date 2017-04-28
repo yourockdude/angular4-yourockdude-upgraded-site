@@ -43,3 +43,33 @@
     @keyframes preloader {
       to { transform: rotate(360deg); }
     }
+
+    .select {
+      background-color: lightgray;
+    }
+
+    .project_wrapper:hover {
+      background-color: lightsteelblue;
+      cursor: pointer;
+    }
+
+    .project_wrapper {
+      min-height: 100px;
+    }
+    
+    .project_name {
+      display: inline-block;
+    }
+
+    .disable-text-selection {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+}
+
+.edit_btn {
+  margin-left: 3% !important;
+}

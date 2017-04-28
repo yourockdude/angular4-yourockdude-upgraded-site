@@ -38,17 +38,20 @@
 <div *ngIf="!adding">
     <div class="edit_page_h">Проекты</div>
     <div class="projects_list">
-        <div *ngFor="let project of projects" (click)="onProjectClick(project.id)" class="project_wrapper">
+        <div [ngClass]="{'select': selectedItemIndex === i}" *ngFor="let project of projects;  let i = index" (click)="onProjectClick(project.id, i)"
+            class="project_wrapper" (dblclick)="onProjectDbClick(project.id)">
             <p class="project_name">{{project.title}}</p>
             <video class="projects_img" autoplay="" loop="" *ngIf="project.media.type==='video';else image" [src]="project.media.src">
             </video>
             <ng-template #image>
                 <img class="projects_img" [src]="project.media.src">
             </ng-template>
-            <div class="project_desc">{{project.text}}</div>
+            <div class="project_desc" [ngClass]="{'disable-text-selection': isDbClick}">{{project.text}}</div>
         </div>
     </div>
     <div class="edit_btn_block">
         <button class="edit_btn" *ngIf="!adding" (click)="add()">Добавить</button>
+        <button class="edit_btn" *ngIf="selectedItemId" (click)="delete()">Удалить</button>
+        <button class="edit_btn" *ngIf="selectedItemId" (click)="edit()">Редактировать</button>
     </div>
 </div>

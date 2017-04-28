@@ -69,20 +69,26 @@ export class SingleProjectComponent implements OnInit {
         if (this.file) {
             const formData = new FormData();
             formData.append('product_file', this.file);
-            this.contentService.uploadMedia(formData).subscribe(res => {
-                if (res.success) {
-                    this.contentService.editProject(this.id, this.editProject).subscribe(response => {
-                        this.editing = false;
-                        this.editProject.media.src = [environment.contentUrl, this.editProject.media.src].join('');
-                        this.project = clone(this.editProject);
-                    });
-                }
-            });
+            this.contentService.uploadMedia(formData)
+                .subscribe(res => {
+                    if (res.success) {
+                        this.contentService.editProject(this.id, this.editProject)
+                            .subscribe(response => {
+                                if (response.success) {
+                                    this.editing = false;
+                                    this.projectService.changeNav({ type: 'edit', obj: res.data });
+                                    this.editProject.media.src = [environment.contentUrl, this.editProject.media.src].join('');
+                                    this.project = clone(this.editProject);
+                                }
+                            });
+                    }
+                });
         } else {
             this.contentService.editProject(this.id, this.editProject)
                 .subscribe(res => {
                     if (res.success) {
                         this.editing = false;
+                        this.projectService.changeNav({ type: 'edit', obj: res.data });
                         this.editProject.media.src = [environment.contentUrl, this.editProject.media.src].join('');
                         this.project = clone(this.editProject);
                     }
@@ -103,7 +109,6 @@ export class SingleProjectComponent implements OnInit {
             this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
-
         if (this.file.type === 'image/png') {
             this.editProject.media.type = 'image';
             this.editProject.media.src = `images/${this.file.name}`;

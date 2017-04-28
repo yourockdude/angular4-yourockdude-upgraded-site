@@ -8,7 +8,7 @@ export class ProjectService {
     // Observable navItem stream
     navItem$ = this._navItemSource.asObservable();
     // service command
-    changeNav(number) {
+    changeNav(number?) {
         this._navItemSource.next(number);
     }
 }

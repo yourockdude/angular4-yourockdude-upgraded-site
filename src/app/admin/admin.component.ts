@@ -30,12 +30,20 @@ export class AdminComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.subscription = this.projectService.navItem$
             .subscribe(res => {
-                if (res.type === 'add') {
-                    this.projects.push(res);
-                } else if (res.type === 'delete') {
-                    const index = this.projects.indexOf(this.projects.find(f => f.title === res.title));
-                    this.projects.splice(index);
-                }
+                this.contentService.getProjects().subscribe(r => {
+                    this.projects = r.data;
+                    console.log(this.projects.map(m => m.title));
+                });
+                // if (res.type === 'add') {
+
+                // } else if (res.type === 'delete') {
+                //     const index = this.projects.indexOf(this.projects.find(f => f.id === res.id));
+                //     this.projects.splice(index);
+                // } else if (res.type === 'edit') {
+                //     const index = this.projects.indexOf(this.projects.find(f => f.id === res.id));
+                //     this.projects.splice(index);
+                //     this.projects.push(res);
+                // }
             });
     }
 

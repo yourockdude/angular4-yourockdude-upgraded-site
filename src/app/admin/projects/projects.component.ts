@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ContentService } from '../../shared/services/content.service';
 import { Project } from '../../shared/models/project';
 import { environment } from '../../../environments/environment';
@@ -19,11 +19,15 @@ export class ProjectsComponent implements OnInit {
     file: File;
     url: string;
     subscription: Subscription;
+    selectedItemIndex: string;
+    selectedItemId: string;
+    isDbClick = false;
 
     constructor(
         private contentService: ContentService,
         private projectService: ProjectService,
         private router: Router,
+        private activatedRoute: ActivatedRoute,
     ) {
         this.contentService.getProjects().subscribe(res => {
             res.data.map(project => {
@@ -59,8 +63,26 @@ export class ProjectsComponent implements OnInit {
         this.adding = false;
     }
 
-    onProjectClick(id: string) {
-        // this.router.navigate([decodeURI(`/admin/(sidebar:project/${id})`)]);
+    delete() {
+        this.contentService.deleteProject(this.selectedItemId)
+            .subscribe(res => {
+                this.projectService.changeNav();
+                const index = this.projects.indexOf(this.projects.find(f => f.id === this.selectedItemId));
+                this.projects.splice(index, 1);
+            });
+    }
+
+    onProjectClick(id: string, index: string) {
+        this.selectedItemId = id;
+        this.selectedItemIndex = index;
+    }
+
+    onProjectDbClick(id: string) {
+        this.isDbClick = true;
+        this.router.navigate(
+            [{ outlets: { 'sidebar': ['project', id] } }],
+            { relativeTo: this.activatedRoute }
+        );
     }
 
     fileChange(event) {
