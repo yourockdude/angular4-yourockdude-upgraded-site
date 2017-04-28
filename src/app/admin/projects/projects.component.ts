@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class ProjectsComponent implements OnInit {
-    projects: Project[];
+    projects: Project[] = [];
     newProject: Project = new Project();
     adding = false;
     file: File;
@@ -30,10 +30,12 @@ export class ProjectsComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
     ) {
         this.contentService.getProjects().subscribe(res => {
-            res.data.map(project => {
-                project.media.src = [environment.contentUrl, project.media.src].join('');
-            });
-            this.projects = res.data;
+            if (res.success) {
+                res.data.map(project => {
+                    project.media.src = [environment.contentUrl, project.media.src].join('');
+                });
+                this.projects = res.data;
+            }
         });
     }
 
@@ -125,5 +127,4 @@ export class ProjectsComponent implements OnInit {
             return false;
         }
     }
-
 }

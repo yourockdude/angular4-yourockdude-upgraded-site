@@ -27,6 +27,7 @@ export class SingleProjectComponent implements OnInit {
     id: string;
     file: File;
     url: any;
+    noImage = false;
 
     constructor(
         private router: Router,
@@ -41,6 +42,9 @@ export class SingleProjectComponent implements OnInit {
                     if (res.success) {
                         res.data.media.src = [environment.contentUrl, res.data.media.src].join('');
                         this.project = res.data;
+                        if (this.project.media.src.split(environment.contentUrl).pop() === '') {
+                            this.noImage = true;
+                        }
                         this.editProject = clone(this.project);
                         this.editing = this.activatedRoute.snapshot.queryParams['editing']
                         if (this.editing) {
@@ -52,11 +56,12 @@ export class SingleProjectComponent implements OnInit {
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+    }
 
     edit() {
         this.editing = true;
-        this.url = this.editProject.media.src;
+        this.url = this.noImage ? '/assets/images/no-image.png' : this.editProject.media.src;
     }
 
     delete() {
@@ -71,6 +76,7 @@ export class SingleProjectComponent implements OnInit {
     save() {
         this.editProject.media.src = this.editProject.media.src.split(environment.contentUrl).pop();
         if (this.file) {
+            this.noImage = false;
             const formData = new FormData();
             formData.append('product_file', this.file);
             this.contentService.uploadMedia(formData)
