@@ -65,11 +65,11 @@ export class NavbarComponent implements OnInit, AfterViewInit {
 
     constructor(
         private emailService: EmailService,
-        private toastrManager: ToastsManager,
+        private toastsManager: ToastsManager,
         private contentService: ContentService,
         private vcr: ViewContainerRef
     ) {
-        this.toastrManager.setRootViewContainerRef(vcr);
+        this.toastsManager.setRootViewContainerRef(vcr);
         this.contentService.getNavbar().subscribe(res => {
             this.navbar = res.data;
         });
@@ -136,18 +136,6 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         $('.sel').click(function () {
             $(this).toggleClass('active');
         });
-
-        // $('.sel__box__options').click(function () {
-        //     const txt = $(this).text();
-        //     const index = $(this).index();
-
-        //     $(this).siblings('.sel__box__options').removeClass('selected');
-        //     $(this).addClass('selected');
-
-        //     const $currentSel = $(this).closest('.sel');
-        //     $currentSel.children('.sel__placeholder').text(txt);
-        //     $currentSel.children('select').prop('selectedIndex', index + 1);
-        // });
     }
 
     showHireUsForm() {
@@ -172,7 +160,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
             if (res.success) {
                 this.showHireUsForm();
                 this.sendingEmail = false;
-                this.toastrManager.success('Ваше сообщение отправлено');
+                this.toastsManager.success('Ваше сообщение отправлено');
             }
         });
     }

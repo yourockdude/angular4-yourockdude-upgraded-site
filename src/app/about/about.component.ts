@@ -27,8 +27,14 @@ import {
 
 export class AboutComponent implements OnInit {
     aboutContent: any;
+    telegram: string;
 
     constructor(private contentService: ContentService) {
+        this.contentService.getContacts().subscribe(res => {
+            if (res.success) {
+                this.telegram = res.data.socialLinks.find(f => f.name === 'Telegram').link;
+            }
+        });
         this.contentService.getAboutPage()
             .subscribe(res => {
                 if (res.success) {

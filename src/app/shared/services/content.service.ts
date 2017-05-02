@@ -67,7 +67,7 @@ export class ContentService {
         const body = JSON.stringify({ title: title });
         const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.put(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`, body, options)
+        return this.authHttp.put(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
     }
 
@@ -75,7 +75,7 @@ export class ContentService {
         const body = JSON.stringify({ socialLinks: contacts });
         const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.put(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`, body, options)
+        return this.authHttp.put(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
     }
 
@@ -83,7 +83,7 @@ export class ContentService {
         const body = JSON.stringify(aboutPage);
         const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.put(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`, body, options)
+        return this.authHttp.put(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
     }
 
@@ -91,7 +91,7 @@ export class ContentService {
         const body = JSON.stringify(project);
         const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.put(`${environment.api}product/${id}`, body, options)
+        return this.authHttp.put(`${environment.api}product/${id}`, body, options)
             .map(res => res.json());
     }
 
@@ -99,19 +99,19 @@ export class ContentService {
         const body = JSON.stringify(project);
         const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.post(`${environment.api}products/${this.currentLanguage}`, body, options)
+        return this.authHttp.post(`${environment.api}products/${this.currentLanguage}`, body, options)
             .map(res => res.json());
     }
 
     deleteProject(id: string) {
         const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.delete(`${environment.api}product/${id}`, options)
+        return this.authHttp.delete(`${environment.api}product/${id}`, options)
             .map(res => res.json());
     }
 
     uploadMedia(formData: FormData) {
-        return this.http.post(`${environment.api}product_file`, formData)
+        return this.authHttp.post(`${environment.api}product_file`, formData)
             .map(res => res.json());
     }
 }

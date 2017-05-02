@@ -27,7 +27,7 @@
             <ng-template #image>
                 <img [src]="url ? url : 'assets/images/no-image.png'">
             </ng-template>
-            <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, video/mp4">
+            <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, image/jpg, image/jpeg, video/mp4">
         </div>
     </div>
     <div class="edit_btn_block">

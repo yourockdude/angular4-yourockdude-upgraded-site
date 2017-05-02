@@ -40,7 +40,9 @@ import { LoaderService } from './shared/services/loader.service';
     AuthHttp,
     {
       provide: AuthConfig,
-      useValue: new AuthConfig()
+      useValue: new AuthConfig({
+        noTokenScheme: true,
+      })
     },
   ],
   bootstrap: [AppComponent]
