@@ -61,11 +61,13 @@ export class HomeComponent implements OnInit {
                 }
             });
         this.contentService.getContacts().subscribe(res => {
-            this.contacts = {
-                email: res.data.socialLinks.find(f => f.name === 'Email').link,
-                telegram: res.data.socialLinks.find(f => f.name === 'Telegram').link,
-                skype: this.domSanitizer.bypassSecurityTrustUrl(res.data.socialLinks.find(f => f.name === 'Skype').link),
-            };
+            if (res.success) {
+                this.contacts = {
+                    email: res.data.socialLinks.find(f => f.name === 'Email').link,
+                    telegram: res.data.socialLinks.find(f => f.name === 'Telegram').link,
+                    skype: this.domSanitizer.bypassSecurityTrustUrl(res.data.socialLinks.find(f => f.name === 'Skype').link),
+                };
+            }
         });
     }
 

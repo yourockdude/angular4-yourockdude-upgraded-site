@@ -22,18 +22,18 @@ export class AuthorizationService {
             .map(res => {
                 const response = res.json();
                 if (response.success) {
-                    localStorage.setItem('id_token', response.data);
+                    localStorage.setItem('token', response.data);
                 }
                 return response;
             });
     }
 
     signOut() {
-        localStorage.removeItem('id_token');
+        localStorage.removeItem('token');
         this.router.navigate([this.authorizationPath]);
     }
 
     getUser() {
-        return localStorage.getItem('id_token');
+        return localStorage.getItem('token');
     }
 }

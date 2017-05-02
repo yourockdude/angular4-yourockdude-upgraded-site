@@ -1241,7 +1241,7 @@ footer a {
 
 .popup_form-item-mandatory:before,
 .popup_form-item-mandatory-error:before {
-  content: "â˘ ";
+  content: "• ";
   position: absolute;
   left: -20px;
   top: 20px;

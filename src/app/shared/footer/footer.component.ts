@@ -14,11 +14,13 @@ export class FooterComponent implements OnInit {
         private contentService: ContentService,
     ) {
         this.contentService.getContacts().subscribe(res => {
-            this.footerContacts = {
-                facebook: res.data.socialLinks.find(f => f.name === 'Facebook').link,
-                behance: res.data.socialLinks.find(f => f.name === 'Behance').link,
-                instagram: res.data.socialLinks.find(f => f.name === 'Instagram').link,
-            };
+            if (res.success) {
+                this.footerContacts = {
+                    facebook: res.data.socialLinks.find(f => f.name === 'Facebook').link,
+                    behance: res.data.socialLinks.find(f => f.name === 'Behance').link,
+                    instagram: res.data.socialLinks.find(f => f.name === 'Instagram').link,
+                };
+            }
         });
     }
 

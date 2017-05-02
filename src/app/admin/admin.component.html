@@ -3,6 +3,9 @@
         <div class="pandora pandora_admin">
             <p [routerLink]="'/'">YOUROCK INC</p>
             <span>Pandora 1.0</span>
+            <hr>
+            <div *ngIf="user">User: {{user}}</div>
+            <div *ngIf="language">Language: {{language}}</div>
         </div>
         <div>
             <div class="language pandora_language">

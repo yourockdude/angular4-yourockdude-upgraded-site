@@ -43,3 +43,8 @@ Thumbs.db
 
 # dist.zip
 dist.zip
+
+# deploy files
+dploy.yaml
+ftp-com.txt
+ftp-ru.txt

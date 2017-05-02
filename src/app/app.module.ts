@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt/angular2-jwt';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +35,14 @@ import { LoaderService } from './shared/services/loader.service';
     ToastModule.forRoot(),
     NotFoundModule, // Always should be at the end
   ],
-  providers: [LoaderService],
+  providers: [
+    LoaderService,
+    AuthHttp,
+    {
+      provide: AuthConfig,
+      useValue: new AuthConfig()
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

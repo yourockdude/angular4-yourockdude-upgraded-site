@@ -7,6 +7,7 @@ import { ProjectService } from '../shared/services/project.service';
 
 import { swithLanguage } from '../shared/utils/swith-language';
 import { Subscription } from 'rxjs/Rx';
+import { JwtHelper } from 'angular2-jwt';
 
 @Component({
     moduleId: module.id,
@@ -20,6 +21,9 @@ export class AdminComponent implements OnInit, OnDestroy {
     selectedItem: string;
     path: string;
     navigationItems: any[];
+    jwtHelper: JwtHelper = new JwtHelper();
+    user: string;
+    language: string;
 
     constructor(
         private authorizationService: AuthorizationService,
@@ -29,6 +33,8 @@ export class AdminComponent implements OnInit, OnDestroy {
         private router: Router,
         private elementRef: ElementRef,
     ) {
+        this.user = this.jwtHelper.decodeToken(localStorage.getItem('token')).name;
+        this.language = localStorage.getItem('current_language');
         this.router.events.subscribe((val: any) => {
             this.path = (this.activatedRoute.firstChild.url as any).value.map(v => v.path).join('/');
         });

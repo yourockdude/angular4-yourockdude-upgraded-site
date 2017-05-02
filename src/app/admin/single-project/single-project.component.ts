@@ -60,8 +60,8 @@ export class SingleProjectComponent implements OnInit {
     }
 
     edit() {
-        this.project;
-        this.noImage;
+        // this.project;
+        // this.noImage;
         this.editing = true;
         this.url = this.noImage ? '/assets/images/no-image.png' : this.editProject.media.src;
     }
@@ -122,5 +122,6 @@ export class SingleProjectComponent implements OnInit {
             this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
+        this.editProject.media.type = /image/.test(this.file.type.split('/')[0]) ? 'image' : 'video';
     }
 }

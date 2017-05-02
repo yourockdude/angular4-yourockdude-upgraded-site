@@ -1,53 +1,71 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../../environments/environment';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class ContentService {
     currentLanguage: string;
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http,
+        private authHttp: AuthHttp,
+    ) {
         this.currentLanguage = localStorage.getItem('current_language');
     }
 
     getProjects() {
-        return this.http.get(`${environment.api}products/${this.currentLanguage}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}products/${this.currentLanguage}`, options)
             .map(res => res.json());
     }
 
     getProjectById(id: string) {
-        return this.http.get(`${environment.api}product/${id}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}product/${id}`, options)
             .map(res => res.json());
     }
 
     getHomePage() {
-        return this.http.get(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`, options)
             .map(res => res.json());
     }
 
     getNavbar() {
-        return this.http.get(`${environment.api}pages/navbar${this.currentLanguage.toUpperCase()}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}pages/navbar${this.currentLanguage.toUpperCase()}`, options)
             .map(res => res.json());
     }
 
     getHireUsForm() {
-        return this.http.get(`${environment.api}pages/hireUs${this.currentLanguage.toUpperCase()}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}pages/hireUs${this.currentLanguage.toUpperCase()}`, options)
             .map(res => res.json());
     }
 
     getAboutPage() {
-        return this.http.get(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`, options)
             .map(res => res.json());
     }
 
     getContacts() {
-        return this.http.get(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`)
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.get(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`, options)
             .map(res => res.json());
     }
 
     editHomeTitle(title: string) {
         const body = JSON.stringify({ title: title });
-        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}pages/main${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
@@ -55,7 +73,7 @@ export class ContentService {
 
     editContacts(contacts: any) {
         const body = JSON.stringify({ socialLinks: contacts });
-        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}pages/socialLinks${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
@@ -63,7 +81,7 @@ export class ContentService {
 
     editAboutPage(aboutPage: any) {
         const body = JSON.stringify(aboutPage);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}pages/about${this.currentLanguage.toUpperCase()}`, body, options)
             .map(res => res.json());
@@ -71,9 +89,24 @@ export class ContentService {
 
     editProject(id: string, project: any) {
         const body = JSON.stringify(project);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
         return this.http.put(`${environment.api}product/${id}`, body, options)
+            .map(res => res.json());
+    }
+
+    addProject(project: any) {
+        const body = JSON.stringify(project);
+        const headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.post(`${environment.api}products/${this.currentLanguage}`, body, options)
+            .map(res => res.json());
+    }
+
+    deleteProject(id: string) {
+        const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
+        const options = new RequestOptions({ headers: headers });
+        return this.http.delete(`${environment.api}product/${id}`, options)
             .map(res => res.json());
     }
 
@@ -81,18 +114,4 @@ export class ContentService {
         return this.http.post(`${environment.api}product_file`, formData)
             .map(res => res.json());
     }
-
-    addProject(project: any) {
-        const body = JSON.stringify(project);
-        const headers = new Headers({ 'Content-Type': 'application/json' });
-        const options = new RequestOptions({ headers: headers });
-        return this.http.post(`${environment.api}products/${this.currentLanguage}`, body, options)
-            .map(res => res.json());
-    }
-
-    deleteProject(id: string) {
-        return this.http.delete(`${environment.api}product/${id}`)
-            .map(res => res.json());
-    }
-
 }

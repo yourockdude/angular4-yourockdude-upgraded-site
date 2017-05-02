@@ -118,6 +118,7 @@ export class ProjectsComponent implements OnInit {
             this.url = e.target.result;
         };
         reader.readAsDataURL(this.file);
+        this.newProject.media.type = /image/.test(this.file.type.split('/')[0]) ? 'image' : 'video';
     }
 
     noImage(src: string) {
