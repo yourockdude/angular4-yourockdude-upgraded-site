@@ -57,13 +57,17 @@
                     </tr>
                 </table>
             </div>
-            <div class="project_img">
+            <div ng2FileDrop (ng2FileDropFileAccepted)="dragFileAccepted($event)" class="project_img">
                 <video autoplay="" loop="" *ngIf="editProject.media.type==='video';else image" [src]="url">
                 </video>
                 <ng-template #image>
                     <img [src]="url">
                 </ng-template>
-                <input (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, image/jpg, image/jpeg, video/mp4">
+                <input id="files" [hidden]=true (change)="fileChange($event)" name="project_img" type="file" value="" accept="image/png, image/jpg, image/jpeg, video/mp4">
+                <label for="files">
+                     <div class="choise-file">choise file</div>
+                </label>
+                <div>file name:{{file?.name}}</div>
             </div>
         </div>
         <div class="edit_btn_block">

@@ -151,3 +151,26 @@
   66.66% {left: 20px; top: 0px;}
   100% {left: -20px; top: 0px;}
 }
+
+.drop-zone {    
+    width: 300px;
+    height: 300px;
+}
+
+.choise-file {
+  display:inline-block;
+  color:#444;
+  border:1px solid #CCC;
+  background:#DDD;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  cursor:pointer;
+  vertical-align:middle;
+  max-width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+
+.choise-file:active {
+    color:darkblue;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}

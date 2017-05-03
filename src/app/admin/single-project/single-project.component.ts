@@ -13,6 +13,7 @@ import { ProjectService } from '../../shared/services/project.service';
 import { Project } from '../../shared/models/project';
 import { environment } from '../../../environments/environment';
 import { clone } from '../../shared/utils/clone-object';
+import { Ng2FileDropAcceptedFile } from "ng2-file-drop";
 
 @Component({
     moduleId: module.id,
@@ -115,7 +116,16 @@ export class SingleProjectComponent implements OnInit {
     }
 
     fileChange(event) {
-        this.file = event.target.files[0];
+        this.readFile(event.target.files[0]);
+    }
+
+    dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
+        this.readFile(acceptedFile.file);
+    }
+
+    //TODO move to utils 
+    readFile(file: File) {
+        this.file = file;
 
         const reader = new FileReader();
         reader.onload = (e: any) => {

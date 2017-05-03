@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { Ng2FileDropModule } from 'ng2-file-drop';
 import { AdminRoutingModule } from './index';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared/shared.module';
@@ -17,9 +18,11 @@ import { ContactsComponent } from './contacts/contacts.component';
     imports: [
         AdminRoutingModule,
         SharedModule,
+        Ng2FileDropModule,
     ],
     exports: [
-        SharedModule
+        SharedModule,
+        Ng2FileDropModule,
     ],
     declarations: [
         AdminComponent,

@@ -9,12 +9,14 @@ export class ValidationService {
                 'required': 'Обязательное поле',
                 'invalidEmailAddress': `Неправильный формат email'a`,
                 'invalidPhoneNumber': 'Неправильный формат номера телефона',
+                'invalidSiteAddress': 'Invalide site address',
             };
         } else {
             config = {
                 'required': 'Field required',
                 'invalidEmailAddress': 'Invalid email address',
                 'invalidPhoneNumber': 'Invalid phone number',
+                'invalidSiteAddress': 'Invalide site address',
             };
         }
         return config[validatorName];
@@ -34,6 +36,14 @@ export class ValidationService {
             return null;
         } else {
             return { 'invalidPhoneNumber': true };
+        }
+    }
+
+    static siteValidator(control) {
+        if (control.value.match(/^https?:\/\/.+$/)) {
+            return null;
+        } else {
+            return { 'invalidSiteAddress': true };
         }
     }
 

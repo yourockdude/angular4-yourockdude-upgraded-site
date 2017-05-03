@@ -6,6 +6,8 @@ import { environment } from '../../../environments/environment';
 import { ProjectService } from '../../shared/services/project.service';
 import { Subscription } from 'rxjs/Subscription';
 
+import { Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile } from 'ng2-file-drop';
+
 @Component({
     moduleId: module.id,
     selector: 'app-yourock-projects',
@@ -111,14 +113,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     fileChange(event) {
-        this.file = event.target.files[0];
-
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            this.url = e.target.result;
-        };
-        reader.readAsDataURL(this.file);
-        this.newProject.media.type = /image/.test(this.file.type.split('/')[0]) ? 'image' : 'video';
+        this.readFile(event.target.files[0]);
     }
 
     noImage(src: string) {
@@ -127,5 +122,21 @@ export class ProjectsComponent implements OnInit {
         } else {
             return false;
         }
+    }
+
+    dragFileAccepted(acceptedFile: Ng2FileDropAcceptedFile) {
+        this.readFile(acceptedFile.file);
+    }
+
+    //TODO move to utils 
+    readFile(file: File) {
+        this.file = file;
+
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.url = e.target.result;
+        };
+        reader.readAsDataURL(this.file);
+        this.newProject.media.type = /image/.test(this.file.type.split('/')[0]) ? 'image' : 'video';
     }
 }
