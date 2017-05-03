@@ -14,14 +14,12 @@ import {
     transition,
     keyframes,
 } from '@angular/animations';
-
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
 import { EmailService } from '../services/email.service';
 import { ContentService } from '../services/content.service';
-
+import { ValidationService } from '../services/validation.service';
 import { swithLanguage } from '../utils/swith-language';
-
 import * as $ from 'jquery';
 declare const el: JQuery;
 
@@ -42,24 +40,26 @@ declare const el: JQuery;
             )
         ])
     ],
-    providers: [EmailService, ToastsManager, ContentService],
+    providers: [
+        EmailService,
+        ToastsManager,
+        ContentService,
+        ValidationService
+    ],
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit {
-
     @ViewChild('select') select: ElementRef;
+
+    hireUsForm: FormGroup;
 
     state = 'closed';
     file: File;
-    name = '';
-    phone = '';
-    email = '';
-    message = '';
     theme: string;
     fileName: string;
 
     navbar: any;
-    hireUsForm: any;
+    hireUsFormText: any;
 
     sendingEmail: boolean;
 
@@ -67,18 +67,21 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         private emailService: EmailService,
         private toastsManager: ToastsManager,
         private contentService: ContentService,
-        private vcr: ViewContainerRef
+        private vcr: ViewContainerRef,
+        private formBuilder: FormBuilder,
     ) {
         this.toastsManager.setRootViewContainerRef(vcr);
         this.contentService.getNavbar().subscribe(res => {
             this.navbar = res.data;
         });
         this.contentService.getHireUsForm().subscribe(res => {
-            this.hireUsForm = res.data;
+            this.hireUsFormText = res.data;
         });
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.buildForm();
+    }
 
     ngAfterViewInit(): void {
         (function ($) {
@@ -138,6 +141,15 @@ export class NavbarComponent implements OnInit, AfterViewInit {
         });
     }
 
+    buildForm() {
+        this.hireUsForm = this.formBuilder.group({
+            'name': ['', Validators.required],
+            'phone': ['', [Validators.required, ValidationService.phoneValidator]],
+            'email': ['', [Validators.required, ValidationService.emailValidator]],
+            'message': ['', Validators.required],
+        });
+    }
+
     showHireUsForm() {
         this.state = (this.state === 'opened' ? 'closed' : 'opened');
     }
@@ -148,45 +160,30 @@ export class NavbarComponent implements OnInit, AfterViewInit {
     }
 
     sendEmail() {
-        this.sendingEmail = true;
-        const formData: FormData = new FormData();
-        formData.append('name', this.name);
-        formData.append('phone', this.phone);
-        formData.append('email', this.email);
-        formData.append('message', this.message);
-        formData.append('theme', this.theme ? this.theme : 'Без темы');
-        formData.append('file_for_email', this.file);
-        this.emailService.sendEmail(formData).subscribe(res => {
-            if (res.success) {
-                this.showHireUsForm();
-                this.sendingEmail = false;
-                this.toastsManager.success('Ваше сообщение отправлено');
-            }
-        });
-    }
-
-    get allowToSendEmail() {
-        if (([
-            this.name,
-            this.phone,
-            this.email,
-            this.message
-        ].find(item => item === '') === undefined)
-            && this.isValidEmail
-            && this.isValidPhone
-        ) {
-            return true;
-        } else {
-            return false;
+        if (this.hireUsForm.dirty && this.hireUsForm.valid) {
+            this.sendingEmail = true;
+            const formData: FormData = new FormData();
+            formData.append('name', this.hireUsForm.value.name);
+            formData.append('phone', this.hireUsForm.value.phone);
+            formData.append('email', this.hireUsForm.value.email);
+            formData.append('message', this.hireUsForm.value.message);
+            formData.append('theme', this.theme ? this.theme : 'Без темы');
+            formData.append('file_for_email', this.file);
+            this.emailService.sendEmail(formData).subscribe(res => {
+                if (res.success) {
+                    this.showHireUsForm();
+                    this.buildForm();
+                    this.file = null;
+                    this.theme = '';
+                    this.sendingEmail = false;
+                    if (localStorage.getItem('current_language') === 'ru') {
+                        this.toastsManager.success('Ваше сообщение отправлено');
+                    } else {
+                        this.toastsManager.success('Yours message has been send');
+                    }
+                }
+            });
         }
-    }
-
-    get isValidPhone() {
-        return /^(\+7|8)\d{10}$/.test(this.phone);
-    }
-
-    get isValidEmail() {
-        return /^[\w\d]+@[\w\d]+.[\w]{2,3}$/.test(this.email);
     }
 
     swithLanguage(btn: string) {

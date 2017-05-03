@@ -19,54 +19,60 @@
             </ul>
         </nav>
     </header>
-
-    <form [@showHireUsForm]="state" method="post" class="form popup_form fadeInRight cmxform" id="contactForm" enctype="multipart/form-data">
+    <form [formGroup]="hireUsForm" novalidate [@showHireUsForm]="state" (submit)="sendEmail()" method="post" class="form popup_form fadeInRight cmxform"
+        id="contactForm" enctype="multipart/form-data">
         <div (click)="showHireUsForm()" class="popup_form-close"></div>
+
         <div class="sel sel--black-panther">
-            <span #select class="sel__placeholder sel__placeholder--black-panther" placeholder="Выберите услугу">{{hireUsForm?.title}}</span>
+            <span #select class="sel__placeholder sel__placeholder--black-panther" placeholder="Выберите услугу">{{hireUsFormText?.title}}</span>
             <div class="sel__box sel__box--black-panther">
-                <span *ngFor="let option of hireUsForm?.options" (click)="onSubjectClick($event)" class="sel__box__options sel__box__options--black-panther">{{option.name}}</span>
+                <span *ngFor="let option of hireUsFormText?.options" (click)="onSubjectClick($event)" class="sel__box__options sel__box__options--black-panther">{{option.name}}</span>
             </div>
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!name ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="name" class="popup_form-item"
-                type="text" name="name" id="name" value="" placeholder="{{hireUsForm?.formName}}">
+            <input formControlName="name" class="popup_form-item" id="name" placeholder="{{hireUsFormText?.formName}}" autocomplete="off">
+            <app-yourock-control-messages [control]="hireUsForm.controls.name"></app-yourock-control-messages>
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!isValidPhone ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="phone" class="popup_form-item"
-                type="text" name="phone" id="phone" value="" placeholder="{{hireUsForm?.phone}}">
+            <input formControlName="phone" class="popup_form-item" id="phone" placeholder="{{hireUsFormText?.phone}}" autocomplete="off">
+            <app-yourock-control-messages [control]="hireUsForm.controls.phone"></app-yourock-control-messages>
         </div>
 
         <div class="popup_form-item-mandatory">
-            <input [style.border-bottom-color]="!isValidEmail ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="email" class="popup_form-item"
-                type="text" name="email" id="email" value="" placeholder="{{hireUsForm?.email}}">
+            <input formControlName="email" class="popup_form-item" id="email" placeholder="{{hireUsFormText?.email}}" autocomplete="off">
+            <app-yourock-control-messages [control]="hireUsForm.controls.email"></app-yourock-control-messages>
         </div>
 
         <div class="popup_form-item-mandatory item-message">
-            <textarea [style.border-bottom-color]="!message ? 'darkred' : 'rgb(169, 169, 169)'" [(ngModel)]="message" class="popup_form-item"
-                name="text" id="text" value="" placeholder="{{hireUsForm?.message}}"></textarea>
+            <textarea formControlName="message" class="popup_form-item" id="text" placeholder="{{hireUsFormText?.message}}" autocomplete="off"></textarea>
+            <app-yourock-control-messages [control]="hireUsForm.controls.message"></app-yourock-control-messages>
         </div>
 
         <div class="wrapper_popup_form-item">
             <div *ngIf="file; else noFile" class="item_tittle">{{fileName}}</div>
             <ng-template #noFile>
-                <div class="item_tittle">{{hireUsForm?.file}}</div>
+                <div class="item_tittle">{{hireUsFormText?.file}}</div>
             </ng-template>
             <input class="popup_form-item attach" (change)="fileChange($event)" name="file_for_email" type="file" value="">
         </div>
 
-        <input *ngIf="allowToSendEmail;else error" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.send}}"
-            (click)="sendEmail()">
-        <ng-template #error>
-            <input style="cursor:initial" class="submit_button popup_form-btn" type="submit" value="{{hireUsForm?.error}}">
-        </ng-template>
-        <div class="popup_form-item-mandatory">
-            <span>— {{hireUsForm?.footnote}}</span>
+        <input *ngIf="hireUsForm.valid" class="submit_button popup_form-btn" type="submit" value="{{hireUsFormText?.send}}">
+        <div *ngIf="sendingEmail" class="holder">
+            <div class="dot one"></div>
+            <div class="dot two"></div>
+            <div class="dot three"></div>
         </div>
-        <div class="social">
+        <!--<ng-template #error>
+            <input style="cursor:initial" class="submit_button popup_form-btn" value="{{hireUsFormText?.error}}">
+        </ng-template>-->
+
+        <!--<div class="popup_form-item-mandatory">
+            <span>— {{hireUsFormText?.footnote}}</span>
+        </div>-->
+        <!--<div class="social">
             <a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram-white"></a>
-        </div>
+        </div>-->
     </form>
 </div>

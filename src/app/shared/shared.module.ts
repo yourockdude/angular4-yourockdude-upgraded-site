@@ -1,10 +1,11 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ControlMessagesComponent } from './utils/control-message.component';
 import { ToastrModule } from 'ngx-toastr';
 /**
  * Do not specify providers for modules that might be imported by a lazy loaded module.
@@ -15,12 +16,18 @@ import { ToastrModule } from 'ngx-toastr';
         CommonModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         ToastrModule.forRoot(),
     ],
-    declarations: [NavbarComponent, FooterComponent],
+    declarations: [
+        NavbarComponent,
+        FooterComponent,
+        ControlMessagesComponent
+    ],
     exports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
         NavbarComponent,
         FooterComponent,
