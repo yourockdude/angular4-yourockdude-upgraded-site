@@ -17,7 +17,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 @NgModule({
     imports: [
         AdminRoutingModule,
-        SharedModule,
+        SharedModule.forRoot(),
         Ng2FileDropModule,
     ],
     exports: [

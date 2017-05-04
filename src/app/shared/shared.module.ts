@@ -22,7 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     declarations: [
         NavbarComponent,
         FooterComponent,
-        ControlMessagesComponent
+        ControlMessagesComponent,
     ],
     exports: [
         CommonModule,
@@ -31,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
         RouterModule,
         NavbarComponent,
         FooterComponent,
+        ControlMessagesComponent,
     ]
 })
 export class SharedModule {

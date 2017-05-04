@@ -8,13 +8,17 @@ import 'rxjs/add/operator/catch';
 import { User } from '../models/user';
 import { environment } from '../../../environments/environment';
 
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
+
 @Injectable()
 export class AuthorizationService {
     authorizationPath = '/authorization';
+    jwtHelper: JwtHelper = new JwtHelper();
 
     constructor(
         private http: Http,
         private router: Router,
+        private authHttp: AuthHttp,
     ) { }
 
     signIn(user: User) {
@@ -23,6 +27,7 @@ export class AuthorizationService {
                 const response = res.json();
                 if (response.success) {
                     localStorage.setItem('token', response.data);
+                    this.scheduleRefresh()
                 }
                 return response;
             });
@@ -35,5 +40,26 @@ export class AuthorizationService {
 
     getUser() {
         return localStorage.getItem('token');
+    }
+
+    scheduleRefresh() {
+        this.authHttp.tokenStream.subscribe(
+            token => {
+                const now: number = new Date().valueOf();
+                const jwtExp = this.jwtHelper.decodeToken(token).exp;
+                const exp = new Date(0);
+                exp.setUTCSeconds(jwtExp);
+                const delay = exp.valueOf() - now;
+
+                setTimeout(() => {
+                    this.getRefreshToken();
+                }, delay);
+            },
+            err => console.log(err)
+        );
+    }
+
+    getRefreshToken() {
+        this.signOut();
     }
 }

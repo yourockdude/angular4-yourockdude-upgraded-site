@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ContentService } from '../../shared/services/content.service';
+import { ValidationService } from '../../shared/services/validation.service';
 import { Project } from '../../shared/models/project';
 import { environment } from '../../../environments/environment';
 import { ProjectService } from '../../shared/services/project.service';
 import { Subscription } from 'rxjs/Subscription';
 
 import { Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile } from 'ng2-file-drop';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     moduleId: module.id,
@@ -24,12 +26,14 @@ export class ProjectsComponent implements OnInit {
     selectedItemIndex: string;
     selectedItemId: string;
     isDbClick = false;
+    newProjectForm: FormGroup;
 
     constructor(
+        private activatedRoute: ActivatedRoute,
         private contentService: ContentService,
+        private formBuilder: FormBuilder,
         private projectService: ProjectService,
         private router: Router,
-        private activatedRoute: ActivatedRoute,
     ) {
         this.contentService.getProjects().subscribe(res => {
             if (res.success) {
@@ -42,7 +46,16 @@ export class ProjectsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.buildForm();
+    }
 
+    buildForm() {
+        this.newProjectForm = this.formBuilder.group({
+            'title': ['', Validators.required],
+            'text': ['', Validators.required],
+            'siteLink': ['', [Validators.required, ValidationService.siteValidator]],
+            'siteTitle': ['', Validators.required],
+        });
     }
 
     add() {
@@ -50,6 +63,15 @@ export class ProjectsComponent implements OnInit {
     }
 
     save() {
+        this.newProject = {
+            title: this.newProjectForm.value.title,
+            text: this.newProjectForm.value.text,
+            media: this.newProject.media,
+            site: {
+                link: this.newProjectForm.value.siteLink,
+                title: this.newProjectForm.value.siteTitle,
+            },
+        };
         if (this.file) {
             const formData = new FormData();
             formData.append('product_file', this.file);
@@ -110,6 +132,16 @@ export class ProjectsComponent implements OnInit {
             [{ outlets: { 'sidebar': ['project', id] } }],
             { relativeTo: this.activatedRoute }
         );
+    }
+
+    onProjectPressKey(e: KeyboardEvent, id: string) {
+        e.stopPropagation();
+        e.preventDefault();
+        if (e.keyCode === 46) {
+            this.delete();
+        } else if (e.keyCode === 13) {
+            this.onProjectDbClick(id);
+        }
     }
 
     fileChange(event) {
