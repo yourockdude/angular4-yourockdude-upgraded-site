@@ -19,11 +19,13 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { LoaderService } from './shared/services/loader.service';
 
 import 'rxjs/add/operator/pairwise';
+import { AuthorizationService } from './shared/services/authorization.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  providers: [AuthorizationService]
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -35,13 +37,20 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentLanguage: string;
 
   constructor(
+    private authorizationService: AuthorizationService,
     private loaderService: LoaderService,
     private elementRef: ElementRef,
     private router: Router,
     private location: Location,
   ) {
+    this.authorizationService.scheduleRefresh();
     if (!localStorage.getItem('current_language')) {
-      localStorage.setItem('current_language', 'ru');
+      const domain = window.location.href.split('.').slice(-1).pop();
+      if (/com/.test(domain)) {
+        localStorage.setItem('current_language', 'en');
+      } else {
+        localStorage.setItem('current_language', 'ru');
+      }
     };
     router.events.subscribe((val: RoutesRecognized) => {
       const pattern = /^\/(about)?$/;

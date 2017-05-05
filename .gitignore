@@ -46,5 +46,7 @@ dist.zip
 
 # deploy files
 dploy.yaml
-ftp-com.txt
-ftp-ru.txt
+deploy-com/ftp-com.txt
+deploy-com/index.html
+deploy-ru/ftp-ru.txt
+deploy-ru/index.html

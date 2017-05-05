@@ -64,7 +64,7 @@
 <div *ngIf="!adding">
     <div class="edit_page_h">Projects</div>
     <div class="projects_list">
-        <div [ngClass]="{'select': selectedItemIndex === i}" *ngFor="let project of projects;  let i = index" (click)="onProjectClick(project.id, i)"
+        <div [ngClass]="{'select': selectedItemId === project.id}" *ngFor="let project of projects;  let i = index" (click)="onProjectClick(project.id, i)"
             class="project_wrapper" (dblclick)="onProjectDbClick(project.id)" (keydown)="onProjectPressKey($event, project.id)" tabindex="0">
             <p class="project_name">{{project.title}}</p>
             <video class="projects_img" autoplay="" loop="" *ngIf="project.media.type==='video';else image" [src]="project.media.src">

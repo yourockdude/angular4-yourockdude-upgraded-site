@@ -105,9 +105,11 @@ export class ProjectsComponent implements OnInit {
     delete() {
         this.contentService.deleteProject(this.selectedItemId)
             .subscribe(res => {
-                this.projectService.changeNav();
-                const index = this.projects.indexOf(this.projects.find(f => f.id === this.selectedItemId));
-                this.projects.splice(index, 1);
+                if (res.success) {
+                    this.projectService.changeNav();
+                    const index = this.projects.indexOf(this.projects.find(f => f.id === this.selectedItemId));
+                    this.projects.splice(index, 1);
+                }
             });
     }
 
