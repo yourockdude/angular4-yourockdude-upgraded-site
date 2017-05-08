@@ -2,7 +2,7 @@ import {
   Component,
   ElementRef,
   OnInit,
-  AfterViewInit
+  OnDestroy,
 } from '@angular/core';
 import {
   Router,
@@ -15,24 +15,24 @@ import {
 } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable, Subscription } from 'rxjs/Rx';
-
 import { LoaderService } from './shared/services/loader.service';
-
-import 'rxjs/add/operator/pairwise';
 import { AuthorizationService } from './shared/services/authorization.service';
+import { toggleLoader, getRandomLoader } from './shared/utils/loader';
+import 'rxjs/add/operator/pairwise';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [AuthorizationService]
+  providers: [AuthorizationService, LoaderService]
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   testLoader: boolean;
   showNavbar: boolean;
   showFooter: boolean;
   loaderSrc = '/assets/images/preloader-2.png';
+  subscription: Subscription;
 
   currentLanguage: string;
 
@@ -66,20 +66,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.showNavbar = true;
       }
     });
-    router.events.subscribe((event: RouterEvent) => {
-      if (!(/^(\/admin(\/\(.+\))?(\?.+)?)|(\/authorization)$/.test((event as RoutesRecognized).url))) {
-        this.navigationInterceptor(event);
-      }
-    });
-
-    this.loaderService.changeEmitted$.subscribe(
-      loader => {
-        this.testLoader = loader;
-      }
-    );
   }
 
   ngOnInit() {
+    this.subscription = this.loaderService.changeEmitted$.subscribe(res => {
+      this.loaderSrc = res;
+    });
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         return;
@@ -88,25 +80,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit(): void { }
-
-  getRandomLoader() {
-    this.loaderSrc = `/assets/images/preloader-${Math.floor(Math.random() * 2) + 1}.png`;
-  }
-
-  navigationInterceptor(event: RouterEvent): void {
-    const common: HTMLHtmlElement = window.document.getElementsByClassName('common')[0] as HTMLHtmlElement;
-    const loader: HTMLHtmlElement = window.document.getElementsByClassName('loader_wrapper')[0] as HTMLHtmlElement;
-    if (event instanceof NavigationStart) {
-      this.getRandomLoader();
-      common.style.display = 'none';
-      loader.style.display = 'flex';
-    }
-    if (event instanceof NavigationEnd) {
-      setTimeout(() => {
-        common.style.display = 'block';
-        loader.style.display = 'none';
-      }, 1000);
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

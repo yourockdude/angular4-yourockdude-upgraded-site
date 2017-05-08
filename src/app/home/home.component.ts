@@ -13,6 +13,7 @@ import {
     keyframes,
 } from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
+import { toggleLoader, getRandomLoader } from '../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -41,7 +42,8 @@ export class HomeComponent implements OnInit {
         private elementRef: ElementRef,
         private domSanitizer: DomSanitizer,
     ) {
-        this.loaderService.emitChange(false);
+        this.loaderService.emitChange(getRandomLoader());
+        toggleLoader(true);
         this.contentService.getHomePage()
             .subscribe(res => {
                 this.homeContent = res.data;
@@ -57,7 +59,7 @@ export class HomeComponent implements OnInit {
                         project.media.src = [environment.contentUrl, project.media.src].join('');
                     });
                     this.projects = this.moveElementInArray(res.data, res.data.find(f => f.title === 'Vesper'), 0);
-                    this.loaderService.emitChange(true);
+                    toggleLoader(false);
                 }
             });
         this.contentService.getContacts().subscribe(res => {

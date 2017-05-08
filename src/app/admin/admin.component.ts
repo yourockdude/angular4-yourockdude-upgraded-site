@@ -50,16 +50,6 @@ export class AdminComponent implements OnInit, OnDestroy {
                 this.contentService.getProjects().subscribe(r => {
                     this.projects = r.data;
                 });
-                // if (res.type === 'add') {
-
-                // } else if (res.type === 'delete') {
-                //     const index = this.projects.indexOf(this.projects.find(f => f.id === res.id));
-                //     this.projects.splice(index);
-                // } else if (res.type === 'edit') {
-                //     const index = this.projects.indexOf(this.projects.find(f => f.id === res.id));
-                //     this.projects.splice(index);
-                //     this.projects.push(res);
-                // }
             });
     }
 
