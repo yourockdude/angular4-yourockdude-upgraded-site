@@ -17,8 +17,7 @@
             <div class="pandora_projects">
                 <p [ngClass]="{'select': path === '' }" (click)="onItemClick($event, '')">Projects</p>
                 <ul>
-                    <p [ngClass]="{'select': path === 'project/'+ project.id}" (click)="onItemClick($event, 'project', project.id)" *ngFor="let project of projects"
-                        [routerLink]="[{ outlets: {'sidebar': ['project', project.id] } }]">{{project.title}}</p>
+                    <p [ngClass]="{'select': path === 'project/'+ project.id}" (click)="onItemClick($event, 'project', project.id)" *ngFor="let project of projects">{{project.title}}</p>
                 </ul>
             </div>
             <p [ngClass]="{'select': path === 'main-page'}" (click)="onItemClick($event, 'main-page')">Main page</p>

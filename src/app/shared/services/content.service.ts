@@ -14,10 +14,10 @@ export class ContentService {
         this.currentLanguage = localStorage.getItem('current_language');
     }
 
-    getProjects() {
+    getProjects(lang?: string) {
         const headers = new Headers({ 'Access-Control-Allow-Origin': '*' });
         const options = new RequestOptions({ headers: headers });
-        return this.http.get(`${environment.api}products/${this.currentLanguage}`, options)
+        return this.http.get(`${environment.api}products/${lang ? lang : this.currentLanguage}`, options)
             .map(res => res.json());
     }
 
