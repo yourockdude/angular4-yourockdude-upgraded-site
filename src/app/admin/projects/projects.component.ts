@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Ng2FileDropAcceptedFile, Ng2FileDropRejectedFile } from 'ng2-file-drop';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { toggleLoader } from '../../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -35,12 +36,14 @@ export class ProjectsComponent implements OnInit {
         private projectService: ProjectService,
         private router: Router,
     ) {
+        toggleLoader(true, 'edit_page', 'holder');
         this.contentService.getProjects().subscribe(res => {
             if (res.success) {
                 res.data.map(project => {
                     project.media.src = [environment.contentUrl, project.media.src].join('');
                 });
                 this.projects = res.data;
+                toggleLoader(false, 'edit_page', 'holder');
             }
         });
     }

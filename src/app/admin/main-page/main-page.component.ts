@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../shared/services/content.service';
+import { toggleLoader } from '../../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -12,10 +13,14 @@ export class MainPageComponent implements OnInit {
     editing = false;
     editText: string;
 
-    constructor(private contentService: ContentService) {
+    constructor(
+        private contentService: ContentService
+    ) {
+        toggleLoader(true, 'edit_page', 'holder');
         this.contentService.getHomePage()
             .subscribe(res => {
                 this.title = res.data.title;
+                toggleLoader(false, 'edit_page', 'holder');
             });
     }
 

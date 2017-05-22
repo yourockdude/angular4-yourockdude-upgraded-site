@@ -12,18 +12,4 @@ export class AboutPage {
             title: string
         }[];
     };
-
-    // constructor() {
-    //     return {
-    //         title: '',
-    //         whatWeDo: {
-    //             title: '',
-    //             content: [],
-    //         },
-    //         capabilities: {
-    //             title: '',
-    //             content: [],
-    //         },
-    //     };
-    // }
 }

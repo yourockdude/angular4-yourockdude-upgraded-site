@@ -76,36 +76,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     swithLanguage(btn: string) {
         localStorage.setItem('switched', 'true');
         swithLanguage(btn);
-        // if ((this.activatedRoute.children[0].url as any).value.find(v => v.path === 'project')) {
-        //     const id = parseInt((this.activatedRoute.children[0].url as any).value[1].path, 10);
-        //     const currentProject = this.projects.find(p => p.id === id);
-        //     this.contentService.getProjects(btn)
-        //         .subscribe(res => {
-        //             if (res.success) {
-        //                 const projects = res.data;
-        //                 const newProject = projects.find(p => p.title === currentProject.title);
-        //                 if (newProject) {
-        //                     window.location.reload();
-        //                     this.router.navigate(
-        //                         [{ outlets: { 'sidebar': ['project', newProject.id] } }],
-        //                         {
-        //                             relativeTo: self.activatedRoute,
-        //                         }
-        //                     );
-        //                 } else {
-        //                     window.location.reload();
-        //                     this.router.navigate(
-        //                         [{ outlets: { 'sidebar': ['projects'] } }],
-        //                         {
-        //                             relativeTo: self.activatedRoute,
-        //                         }
-        //                     );
-        //                 };
-        //             }
-        //         });
-        // } else {
-        //     window.location.reload();
-        // }
     }
 
     onItemClick(e: MouseEvent, part: string, id?: string) {

@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
         private domSanitizer: DomSanitizer,
     ) {
         this.loaderService.emitChange(getRandomLoader());
-        toggleLoader(true);
+        toggleLoader(true, 'common', 'loader_wrapper');
         this.contentService.getHomePage()
             .subscribe(res => {
                 this.homeContent = res.data;
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
                         project.media.src = [environment.contentUrl, project.media.src].join('');
                     });
                     this.projects = this.moveElementInArray(res.data, res.data.find(f => f.title === 'Vesper'), 0);
-                    toggleLoader(false);
+                    toggleLoader(false, 'common', 'loader_wrapper');
                 }
             });
         this.contentService.getContacts().subscribe(res => {

@@ -16,6 +16,7 @@ import { Project } from '../../shared/models/project';
 import { environment } from '../../../environments/environment';
 import { clone } from '../../shared/utils/clone-object';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { toggleLoader } from '../../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -40,6 +41,7 @@ export class SingleProjectComponent implements OnInit {
         private projectService: ProjectService,
         private router: Router,
     ) {
+        toggleLoader(true, 'edit_page', 'holder');
         this.router.events.subscribe((val: NavigationEnd) => {
             if (val instanceof NavigationEnd) {
                 this.id = this.activatedRoute.snapshot.url[1].path;
@@ -49,14 +51,17 @@ export class SingleProjectComponent implements OnInit {
                         this.project = res.data;
                         if (this.project.media.src.split(environment.contentUrl).pop() === '') {
                             this.noImage = true;
+                        } else {
+                            this.noImage = false;
                         }
                         this.editProject = clone(this.project);
                         this.editing = this.activatedRoute.snapshot.queryParams['editing'];
                         if (this.editing) {
                             this.buildForm();
-                            // tslint:disable-next-line:max-line-length
-                            this.url = this.editProject.media.src === environment.contentUrl ? '/assets/images/no-image.png' : this.editProject.media.src;
                         }
+                        // tslint:disable-next-line:max-line-length
+                        this.url = this.editProject.media.src === environment.contentUrl ? '/assets/images/no-image.png' : this.editProject.media.src;
+                        toggleLoader(false, 'edit_page', 'holder');
                     }
                 });
             }

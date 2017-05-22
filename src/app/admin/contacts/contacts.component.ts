@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../shared/services/content.service';
 import { clone } from '../../shared/utils/clone-object';
+import { toggleLoader } from '../../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -16,9 +17,11 @@ export class ContactsComponent implements OnInit {
     constructor(
         private contentService: ContentService,
     ) {
+        toggleLoader(true, 'edit_page', 'holder');
         this.contentService.getContacts().subscribe(res => {
             if (res.success) {
                 this.contacts = res.data.socialLinks;
+                toggleLoader(false, 'edit_page', 'holder');
             }
         });
     }

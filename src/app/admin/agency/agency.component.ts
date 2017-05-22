@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../shared/services/content.service';
 import { AboutPage } from '../../shared/models/about-page';
 import { clone } from '../../shared/utils/clone-object';
+import { toggleLoader } from '../../shared/utils/loader';
 
 @Component({
     moduleId: module.id,
@@ -14,10 +15,13 @@ export class AgencyComponent implements OnInit {
     editAboutPage: AboutPage;
     editing = false;
 
-    constructor(private contentService: ContentService) {
+    constructor(
+        private contentService: ContentService
+    ) {
+        toggleLoader(true, 'edit_page', 'holder');
         this.contentService.getAboutPage().subscribe(res => {
             this.aboutPage = res.data;
-            console.log(this.aboutPage.capabilities);
+            toggleLoader(false, 'edit_page', 'holder');
         });
     }
 

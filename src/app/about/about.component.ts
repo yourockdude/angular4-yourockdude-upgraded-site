@@ -36,7 +36,7 @@ export class AboutComponent implements OnInit {
         private loaderService: LoaderService,
     ) {
         this.loaderService.emitChange(getRandomLoader());
-        // toggleLoader(true);
+        toggleLoader(true, 'common', 'loader_wrapper');
         this.contentService.getContacts().subscribe(res => {
             if (res.success) {
                 this.telegram = res.data.socialLinks.find(f => f.name === 'Telegram').link;
@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit {
                     res.data.awards.leftPart.image = [environment.contentUrl, res.data.awards.leftPart.image].join('');
                     res.data.awards.rightPart.image = [environment.contentUrl, res.data.awards.rightPart.image].join('');
                     this.aboutContent = res.data;
-                    // toggleLoader(false);
+                    toggleLoader(false, 'common', 'loader_wrapper');
                 }
             });
     }
