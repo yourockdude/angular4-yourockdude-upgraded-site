@@ -10,14 +10,17 @@
                 <br><br>
                 <a href="mailto:hello@yourockdude.com" class="email contact">hello@yourockdude.com</a>
             </div>
-            <div *ngIf="footerContacts" class="social">
-                <a href="{{footerContacts.facebook}}" target="_blank" class="social__facebook"></a>
-                <a href="{{footerContacts.instagram}}" target="_blank" class="social__instagram"></a>
-                <a href="{{footerContacts.behance}}" target="_blank" class="social__behance"></a>
-                <!--<a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram"></a>
+            <div style="justify-content:initial;display:flex">
+                <div *ngIf="footerContacts" class="social">
+                    <a href="{{footerContacts.facebook}}" target="_blank" class="social__facebook"></a>
+                    <a href="{{footerContacts.instagram}}" target="_blank" class="social__instagram"></a>
+                    <a href="{{footerContacts.behance}}" target="_blank" class="social__behance"></a>
+                    <!--<a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram"></a>
                 <a href="https://www.linkedin.com/in/konstantin-gritsenko" target="_blank" class="social__linkedin"></a>-->
+                </div>
+                <div class="street">Россия, Ростов-на-Дону, ул.Пушкинская, 157-161</div>
             </div>
-            <div class="street" style="opacity:0;">Россия, Ростов-на-Дону, ул.Пушкинская, 157-161</div>
+            <a href="http://partners.agima.ru/" target="_blank" class="agima"></a>
         </footer>
     </div>
 </div>

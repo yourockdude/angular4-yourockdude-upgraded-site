@@ -174,3 +174,10 @@
     color:darkblue;
     box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
 }
+
+.agima {
+  height: 40px;
+  width: 100px;  
+  background-image: url(../images/agima.svg);
+  background-repeat: no-repeat;
+}
