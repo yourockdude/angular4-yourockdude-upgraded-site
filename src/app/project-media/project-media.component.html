@@ -1,6 +1,6 @@
 <figure class="cbp-so-side" [ngClass]="{'cbp-so-side-left': index%2===1, 'cbp-so-side-right': index%2===0}">
     <!--will add for safari controls="true" -->
-    <video autoplay="" loop="" *ngIf="project.media.type==='video';else image">
+    <video autoplay loop muted loop *ngIf="project.media.type==='video';else image">
         <source src="{{project.media.src}}">
     </video>
     <ng-template #image>

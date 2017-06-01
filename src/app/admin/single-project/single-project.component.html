@@ -80,7 +80,7 @@
                 </table>
             </div>
             <div ng2FileDrop (ng2FileDropFileAccepted)="dragFileAccepted($event)" class="project_img">
-                <video autoplay="" loop="" *ngIf="editProject.media.type==='video';else image" [src]="url">
+                <video autoplay loop muted *ngIf="editProject.media.type==='video';else image" [src]="url">
                 </video>
                 <ng-template #image>
                     <img [src]="url">
