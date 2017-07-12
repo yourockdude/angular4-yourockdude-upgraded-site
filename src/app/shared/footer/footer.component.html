@@ -1,4 +1,4 @@
-<div class="page">
+<!-- <div class="page">
     <div class="footer-wrapper" style="display: block;">
         <footer class="footer">
             <div class="copyrigh" style="display: none;">
@@ -10,17 +10,54 @@
                 <br><br>
                 <a href="mailto:hello@yourockdude.com" class="email contact">hello@yourockdude.com</a>
             </div>
-            <div style="justify-content:initial;display:flex">
+            <div style="justify-content: space-between;display:flex;width: 100%;">
                 <div *ngIf="footerContacts" class="social">
                     <a href="{{footerContacts.facebook}}" target="_blank" class="social__facebook"></a>
                     <a href="{{footerContacts.instagram}}" target="_blank" class="social__instagram"></a>
                     <a href="{{footerContacts.behance}}" target="_blank" class="social__behance"></a>
-                    <!--<a href="https://telegram.me/yourockinc" target="_blank" class="social__telegram"></a>
-                <a href="https://www.linkedin.com/in/konstantin-gritsenko" target="_blank" class="social__linkedin"></a>-->
                 </div>
-                <div class="street">Россия, Ростов-на-Дону, ул.Пушкинская, 157-161</div>
+                <div class="street">
+                    <span *ngIf="currentLanguage==='ru'">Россия, Ростов-на-Дону, ул.Пушкинская, 157-161</span>
+                    <br>
+                    <span *ngIf="currentLanguage==='en' || isAgency">USA Boca Raton Florida</span>
+                </div>
+                <a class="phone-2 contact">
+                    <span *ngIf="currentLanguage==='ru'">+7(919)-894-44-44</span>
+                    <br>
+                    <span *ngIf="currentLanguage==='en' || isAgency">+1(607)-882-16-54</span>
+                </a>
+                <a href="https://agima.partners/" target="_blank" class="agima"></a>
             </div>
-            <a href="http://partners.agima.ru/" target="_blank" class="agima"></a>
         </footer>
     </div>
+</div> -->
+
+<div class="footer-wrapper" style="display: block;">
+    <footer class="footer">
+
+        <div class="f-content">
+            <div class="f-social">
+                <a class="social__facebook" target="_blank" href="https://www.facebook.com/yourockdudeinc"></a>
+                <a class="social__instagram" target="_blank" href="https://www.instagram.com/cr8tive/"></a>
+                <a class="social__behance" target="_blank" href="https://www.behance.net/cr8t1ve"></a>
+            </div>
+            <div class="f-address">
+                <div *ngIf="currentLanguage==='en'">
+                    Boca Raton, Florida, USA
+                </div>
+                <div *ngIf="currentLanguage==='ru'">
+                    Россия, Ростов-на-Дону, ул.Пушкинская, 157-161
+                </div>
+            </div>
+            <div class="f-phone">
+                <div *ngIf="currentLanguage==='en'">
+                    +1(607)-882-16-54
+                </div>
+                <div *ngIf="currentLanguage==='ru'">
+                    +7(919)-894-44-44
+                </div>
+            </div>
+            <a class="agima" href="http://partners.agima.ru/" target="_blank"></a>
+        </div>
+    </footer>
 </div>

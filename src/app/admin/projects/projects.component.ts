@@ -165,7 +165,7 @@ export class ProjectsComponent implements OnInit {
         this.readFile(acceptedFile.file);
     }
 
-    //TODO move to utils 
+    // TODO move to utils 
     readFile(file: File) {
         this.file = file;
 

@@ -2,182 +2,302 @@
     display: none !important;
 }
 
-.ru, .en {
+.ru,
+.en {
     cursor: pointer;
 }
 
 .loader_wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }
 
 .loader {
-      margin-top: 17%;
-      margin-bottom: 17%;
-      height: 270px;
-      -webkit-animation: preloader 3s infinite linear;
-      -moz-animation: preloader 3s infinite linear;
-      -ms-animation: preloader 3s infinite linear;
-      -o-animation: preloader 3s infinite linear;
-      animation: preloader 3s infinite linear;
-    }
+    margin-top: 17%;
+    margin-bottom: 17%;
+    height: 270px;
+    -webkit-animation: preloader 3s infinite linear;
+    -moz-animation: preloader 3s infinite linear;
+    -ms-animation: preloader 3s infinite linear;
+    -o-animation: preloader 3s infinite linear;
+    animation: preloader 3s infinite linear;
+}
 
-    @-webkit-keyframes preloader {
-      to { -webkit-transform: rotate(360deg); }
+@-webkit-keyframes preloader {
+    to {
+        -webkit-transform: rotate(360deg);
     }
+}
 
-    @-moz-keyframes preloader {
-      to { -moz-transform: rotate(360deg); }
+@-moz-keyframes preloader {
+    to {
+        -moz-transform: rotate(360deg);
     }
+}
 
-    @-ms-keyframes preloader {
-      to { -ms-transform: rotate(360deg); }
+@-ms-keyframes preloader {
+    to {
+        -ms-transform: rotate(360deg);
     }
+}
 
-    @-o-keyframes preloader {
-      to { -o-transform: rotate(360deg); }
+@-o-keyframes preloader {
+    to {
+        -o-transform: rotate(360deg);
     }
+}
 
-    @keyframes preloader {
-      to { transform: rotate(360deg); }
+@keyframes preloader {
+    to {
+        transform: rotate(360deg);
     }
+}
 
-    .select {
-      background-color: lightgray;
-    }
+.select {
+    background-color: lightgray;
+}
 
-    .project_wrapper:hover {
-      background-color: lightsteelblue;
-      cursor: pointer;
-    }
+.project_wrapper:hover {
+    background-color: lightsteelblue;
+    cursor: pointer;
+}
 
-    .project_wrapper {
-      min-height: 100px;
-    }
-    
-    /*.project_name {
+.project_wrapper {
+    min-height: 100px;
+}
+
+
+/*.project_name {
       display: inline-block;
     }*/
 
-    .disable-text-selection {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+.disable-text-selection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .edit_btn {
-  margin-left: 3% !important;
+    margin-left: 3% !important;
 }
 
-.pandora_menu_list p, .pandora.pandora_admin p {
-  cursor: pointer;
+.pandora_menu_list p,
+.pandora.pandora_admin p {
+    cursor: pointer;
 }
 
 .pandora_menu_list p:hover {
-  background-color: lightsteelblue;
+    background-color: lightsteelblue;
 }
 
 .error-message {
-  color: darkred
+    color: darkred
 }
 
-.holder{
-  position: absolute;  
-  left: 50%;
-  top: 50%;
+.holder {
+    position: absolute;
+    left: 50%;
+    top: 50%;
 }
 
-.dot{
-  position: absolute;  
-  width: 20px;
-  height: 20px;    
-  border-radius: 50%;
-  left: -20px;
-  top: 0px;
-  -webkit-animation: rotate 1.5s infinite;
-  -moz-animation: rotate 1.5s infinite;
-  -o-animation: rotate 1.5s infinite;
-  animation: rotate 1.5s infinite;
+.dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    left: -20px;
+    top: 0px;
+    -webkit-animation: rotate 1.5s infinite;
+    -moz-animation: rotate 1.5s infinite;
+    -o-animation: rotate 1.5s infinite;
+    animation: rotate 1.5s infinite;
 }
 
-.one{
-  background: gray;  
-  -webkit-animation-delay: 0s;
-  -moz-animation-delay: 0s;
-  -o-animation-delay: 0s;
-  animation-delay: 0s;
+.one {
+    background: gray;
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    -o-animation-delay: 0s;
+    animation-delay: 0s;
 }
-.two{
-  background: gray;  
-  -webkit-animation-delay: 0.5s;
-  -moz-animation-delay: 0.5s;
-  -o-animation-delay: 0.5s;
-  animation-delay: 0.5s;
+
+.two {
+    background: gray;
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
+    -o-animation-delay: 0.5s;
+    animation-delay: 0.5s;
 }
-.three{
-  background: gray;
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  -o-animation-delay: 1s;
-  animation-delay: 1s;
+
+.three {
+    background: gray;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
 @-webkit-keyframes rotate {
-  0% {left: -20px; top: 0px;}
-  33.33% {left: 0px; top: -30px;}
-  66.66% {left: 20px; top: 0px;}
-  100% {left: -20px; top: 0px;}
-}
-@-moz-keyframes rotate {
-  0% {left: -20px; top: 0px;}
-  33.33% {left: 0px; top: -30px;}
-  66.66% {left: 20px; top: 0px;}
-  100% {left: -20px; top: 0px;}
-}
-@-o-keyframes rotate {
-  0% {left: -20px; top: 0px;}
-  33.33% {left: 0px; top: -30px;}
-  66.66% {left: 20px; top: 0px;}
-  100% {left: -20px; top: 0px;}
-}
-@keyframes rotate {
-  0% {left: -20px; top: 0px;}
-  33.33% {left: 0px; top: -30px;}
-  66.66% {left: 20px; top: 0px;}
-  100% {left: -20px; top: 0px;}
+    0% {
+        left: -20px;
+        top: 0px;
+    }
+    33.33% {
+        left: 0px;
+        top: -30px;
+    }
+    66.66% {
+        left: 20px;
+        top: 0px;
+    }
+    100% {
+        left: -20px;
+        top: 0px;
+    }
 }
 
-.drop-zone {    
+@-moz-keyframes rotate {
+    0% {
+        left: -20px;
+        top: 0px;
+    }
+    33.33% {
+        left: 0px;
+        top: -30px;
+    }
+    66.66% {
+        left: 20px;
+        top: 0px;
+    }
+    100% {
+        left: -20px;
+        top: 0px;
+    }
+}
+
+@-o-keyframes rotate {
+    0% {
+        left: -20px;
+        top: 0px;
+    }
+    33.33% {
+        left: 0px;
+        top: -30px;
+    }
+    66.66% {
+        left: 20px;
+        top: 0px;
+    }
+    100% {
+        left: -20px;
+        top: 0px;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        left: -20px;
+        top: 0px;
+    }
+    33.33% {
+        left: 0px;
+        top: -30px;
+    }
+    66.66% {
+        left: 20px;
+        top: 0px;
+    }
+    100% {
+        left: -20px;
+        top: 0px;
+    }
+}
+
+.drop-zone {
     width: 300px;
     height: 300px;
 }
 
 .choise-file {
-  display:inline-block;
-  color:#444;
-  border:1px solid #CCC;
-  background:#DDD;
-  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-  cursor:pointer;
-  vertical-align:middle;
-  max-width: 100px;
-  padding: 5px;
-  text-align: center;
+    display: inline-block;
+    color: #444;
+    border: 1px solid #CCC;
+    background: #DDD;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    vertical-align: middle;
+    max-width: 100px;
+    padding: 5px;
+    text-align: center;
 }
 
 .choise-file:active {
-    color:darkblue;
-    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+    color: darkblue;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.6);
+}
+
+.f-content {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+}
+
+.f-social {
+    display: flex;
+}
+
+.f-social a {
+    margin: 0 5px;
 }
 
 .agima {
-  height: 40px;
-  width: 100px;  
-  background-image: url(../images/agima.svg);
-  background-repeat: no-repeat;
+    height: 40px;
+    width: 75px;
+    background-image: url(../images/agima.svg);
+    background-repeat: no-repeat;
+    margin-top: -6px;
+}
+
+.social__behance,
+.social__telegram {
+    height: 26px;
+    background-repeat: no-repeat;
+}
+
+.social__behance {
+    width: 26px;
+    background-image: url(../images/behance.svg);
+    background-size: cover;
+    margin-top: -4px !important;
+}
+
+.social__instagram {
+    width: 26px;
+    background-image: url(../images/instagram.svg);
+}
+
+.social__facebook,
+.social__instagram {
+    height: 23px;
+    background-repeat: no-repeat;
+}
+
+.social__facebook {
+    width: 22px;
+    background-image: url(../images/facebook.svg);
+    background-size: cover;
+}
+
+@media screen and (max-width: 1300px) {
+    .f-address {
+        display: none;
+    }
+    .f-phone {
+        display: none;
+    }
 }

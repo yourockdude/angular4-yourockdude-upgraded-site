@@ -728,7 +728,7 @@ nav li a {
 footer {
   /*background: url( ../images/bgn.png);*/
   background-size: cover;
-  padding: 150px 4% 2% 0;
+  padding: 150px 4% 2% 4%;
   font-family: "HelveticaNeueCyr-Roman";
   z-index: 999;
 }
@@ -850,41 +850,6 @@ footer a {
   display: block;
   margin-right: 14px;
   outline: none;
-}
-
-.social__facebook {
-  width: 7px;
-  height: 16px;
-  background-image: url(../images/facebook.png);
-  background-repeat: no-repeat;
-}
-
-.social__instagram {
-  width: 16px;
-  height: 16px;
-  background-image: url(../images/instagram.png);
-  background-repeat: no-repeat;
-}
-
-.social__behance {
-  width: 26px;
-  height: 16px;
-  background-image: url(../images/behance.png);
-  background-repeat: no-repeat;
-}
-
-.social__telegram {
-  width: 16px;
-  height: 16px;
-  /*background-image: url(../images/telegram.png);*/
-  background-repeat: no-repeat;
-}
-
-.social__linkedin {
-  width: 20px;
-  height: 16px;
-  /*background-image: url(../images/linkedin.png);*/
-  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 768px) {
